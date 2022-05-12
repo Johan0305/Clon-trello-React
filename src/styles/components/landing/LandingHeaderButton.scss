@@ -1,0 +1,10 @@
+.landingHeader-Button{
+    padding: 10px 0;
+    font-size: 20px;
+    width: 20%;
+    @include landingButtons;
+}
+
+.landingHeader-Button:hover{
+    background: #97D7C7;
+}

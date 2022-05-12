@@ -1,15 +1,11 @@
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import Landing from "./pages/Landing"
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <Link>Hola</Link>
-      </nav>
       <Routes>
-        <Route />
-        <Route />
-        <Route />
+        <Route exact path="/" element={<Landing />}/>
       </Routes>
     </BrowserRouter>
   );

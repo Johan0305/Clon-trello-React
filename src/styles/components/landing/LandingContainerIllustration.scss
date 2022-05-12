@@ -1,0 +1,9 @@
+.landindgContainer-Illustration{
+    display: flex;
+    align-content: center;
+    width: 45%;
+
+    @media (max-width: 768px) {
+        display: none;
+      }
+}
