@@ -9,7 +9,7 @@ const LoginFormEmailPassword = () => {
       <div className="loginMain">
         <img width="200px" height="57.14px" src={logoTrello} alt="" />
         <div className="loginContainerRegister">
-          <p className="loginTextCreateAccount">Crea tu cuenta</p>
+          <p className="loginTextCreateAccount">Iniciar sesión en Trello</p>
           <form className="loginForm">
             <InputForm
               type="email"
