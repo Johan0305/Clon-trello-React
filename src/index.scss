@@ -1,10 +1,20 @@
 /* abstracts */
-@use "./styles/abstracts/variables";
-@use "./styles/abstracts/mixins";
+@import "./styles/abstracts/variables";
+@import "./styles/abstracts/mixins";
 
 /* base */
-@use "./styles/base/base";
-@use "./styles/base/resets";
+@import "./styles/base/base";
+@import "./styles/base/resets";
 
 /* components */
-@use "./styles/components/Nav.scss";
+@import "./styles/components/landing/LandingHeader.scss";
+@import "./styles/components/landing/LandingHeaderButton.scss";
+@import "./styles/components/landing/LandingContainer.scss";
+@import "./styles/components/landing/LandingContainerIllustration.scss";
+@import "./styles/components/landing/LandingContainerDescription.scss";
+@import "./styles/components/landing/LandingContainerDescriptionText.scss";
+@import "./styles/components/landing/LandingContainerDescriptionForm.scss";
+
+/* Pages */
+@import "./styles/pages/Landing.scss";
+
