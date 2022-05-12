@@ -8,6 +8,17 @@
 
 /* components */
 @import "./styles/components/componentsRegisterForm/ButtonFormRegister.scss";
-
+@import "./styles/components/landing/LandingHeader.scss";
+@import "./styles/components/landing/LandingHeaderButton.scss";
+@import "./styles/components/landing/LandingContainer.scss";
+@import "./styles/components/landing/LandingContainerIllustration.scss";
+@import "./styles/components/landing/LandingContainerDescription.scss";
+@import "./styles/components/landing/LandingContainerDescriptionText.scss";
+@import "./styles/components/landing/LandingContainerDescriptionForm.scss";
 /* pages */
 @import "./styles/pages/RegisterForm.scss";
+@import "./styles/pages/Landing.scss";
+
+
+
+
