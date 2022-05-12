@@ -2,9 +2,8 @@ import logoTrello from "../assets/logo/logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
-import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 
-const RegisterForm = () => {
+const LoginFormSSO = () => {
   return (
     <div className="loginContainer">
       <div className="loginMain">
@@ -16,20 +15,6 @@ const RegisterForm = () => {
               type="email"
               text="Introduce tu correo electrónico"
             ></InputForm>
-            <small>
-              Al registrarte, confirmas que has leído y aceptado nuestras
-              <RedirectionLink
-                text=" Condiciones del servicio "
-                redirect="https://www.atlassian.com/legal/cloud-terms-of-service"
-                numId={1}
-              />
-              y nuestra
-              <RedirectionLink
-                text=" Política de Privacidad."
-                redirect="https://www.atlassian.com/legal/privacy-policy"
-                numId={1}
-              />
-            </small>
             <ButtonFormRegister
               text={"Continuar"}
               color={"white"}
@@ -55,9 +40,12 @@ const RegisterForm = () => {
               background={"#f8f9fa"}
               idbtn={2}
             />
+            <Link to="/login" className="linkSites1">
+              Ingresar con correo electrónico y contraseña
+            </Link>
           </form>
           <Link to="/login" className="linkSites2">
-            ¿Ya tienes cuenta? Inicia sesión
+            Registrese para crear una cuenta
           </Link>
         </div>
       </div>
@@ -65,4 +53,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginFormSSO;

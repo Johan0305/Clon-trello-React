@@ -17,23 +17,6 @@ body {
   background-attachment: fixed;
 }
 
-.linkSites1 {
-  text-decoration: none;
-}
-
-.linkSites1:hover {
-  color: rgb(0, 165, 110);
-}
-
-.linkSites2 {
-  text-decoration: none;
-  margin-top: 30px;
-}
-
-.linkSites2:hover {
-  color: rgb(0, 165, 110);
-}
-
 button {
   cursor: pointer;
 }
@@ -80,14 +63,6 @@ button {
       .loginForm > small {
         font-size: 12.8px;
         text-align: justify;
-      }
-      .loginForm > input {
-        width: 302px;
-        height: 38px;
-        box-shadow: none;
-        border: 1px solid whitesmoke;
-        font-size: 16px;
-        padding-left: 10px;
       }
     }
   }
