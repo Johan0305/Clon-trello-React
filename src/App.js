@@ -1,14 +1,14 @@
 
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes,} from "react-router-dom";
 import RegisterForm from "./pages/RegisterForm.js";
-import Landing from "./pages/Landing"
+import Landing from "./pages/HomeLanding";
 
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path="/register-form" element={<register-form />} />
+        <Route exact path="/register-form" element={<RegisterForm />} />
         <Route exact path="/" element={<Landing />}/>
       </Routes>
     </BrowserRouter>
