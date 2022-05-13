@@ -1,8 +1,12 @@
-import Nav from "../components/dashboard/Nav"
+
+import Navigation from "../components/dashboard/nav/Navigation";
+import BoardsMenu from "../components/dashboard/boards menu/BoardsMenu";
+
 const Dashboard = () => {
     return (
         <>
-            <Nav/>
+            <Navigation/>
+            <BoardsMenu/>
         </>
     );
 }

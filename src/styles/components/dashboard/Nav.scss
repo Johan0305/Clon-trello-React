@@ -1,0 +1,95 @@
+nav{
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.nav-left, .nav-right{
+    display: flex;
+}
+
+.nav-left{
+    gap: 32px;
+}
+
+.nav-right{
+    gap: 18px;
+}
+
+.nav-option {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--round);
+    cursor: pointer;
+}
+
+.nav-option:hover{
+    background-color: var(--transparent);
+    
+}
+
+.nav-option a{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-button-create{
+    background-color: var(--primary-dark);
+
+}
+
+.nav-button-create:hover{
+    background-color: var(--transparent);
+}
+
+.nav-search{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: var(--round);
+    background-color: var(--transparent);
+}
+.nav-search:focus-within{
+    background-color: white;
+    border: 1px solid var(--black);
+    svg{
+        color: var(--black);
+    }
+}
+.nav-search input[type=text]{
+    border-style: none;
+    background: none;
+    font-size: 16px;
+}
+
+.nav-search input[type=text]:focus{
+    outline: none;
+    color: var(--black);
+    font-size: 16px;
+}
+
+::placeholder{
+    font-size: 16px;
+    color: white;
+}
+
+.nav-search input:focus::placeholder{
+    font-size: 16px;
+    color: var(--black);
+}
+
+.nav-notifications{
+    display: flex;
+    align-items: center;
+}
+
+.nav-notifications-icon {
+    cursor: pointer;
+}

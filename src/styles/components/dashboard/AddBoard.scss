@@ -1,0 +1,19 @@
+.add-board{
+    width: 256px;
+    height: 128px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-lighter);
+    border-radius: var(--round);
+    cursor: pointer;
+}
+
+.add-board:hover{
+    background-color: var(--primary-light);
+}
+
+.add-board-label{
+    color: var(--black);
+    font-weight: 400;
+}

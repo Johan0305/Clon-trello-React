@@ -1,0 +1,14 @@
+.toggle-boards{
+    width: 320px;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border-radius: var(--round);
+    cursor: pointer;
+    background-color: var(--primary-light);
+    margin-top: 32px;
+}
+
+.toggle-boards:hover{
+    background-color: var(--primary);
+}
