@@ -1,4 +1,4 @@
-import logoTrello from "../assets/logo/logo.svg";
+import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
