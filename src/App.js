@@ -1,14 +1,13 @@
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
+    
     <BrowserRouter>
-      <nav>
-        <Link>Hola</Link>
-      </nav>
       <Routes>
         <Route />
-        <Route />
+        <Route exact path="/Dashboard" element={<Dashboard/>}/>
         <Route />
       </Routes>
     </BrowserRouter>

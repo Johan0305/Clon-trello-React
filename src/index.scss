@@ -1,10 +1,21 @@
 /* abstracts */
-@use "./styles/abstracts/variables";
-@use "./styles/abstracts/mixins";
+@import "./styles/abstracts/variables";
+@import "./styles/abstracts/mixins";
 
 /* base */
-@use "./styles/base/base";
-@use "./styles/base/resets";
+@import "./styles/base/base";
+@import "./styles/base/resets";
 
 /* components */
-@use "./styles/components/Nav.scss";
+@import "./styles/components/dashboard/Nav.scss";
+@import "./styles/components/dashboard/NavLogo.scss";
+@import "./styles/components/dashboard/ActionButton.scss";
+@import "./styles/components/dashboard/Avatar.scss";
+@import "./styles/components/dashboard/BoardsMenu.scss";
+@import "./styles/components/dashboard/BoardsUser.scss";
+@import "./styles/components/dashboard/BoardTile.scss";
+@import "./styles/components/dashboard/AddBoard.scss";
+@import "./styles/components/dashboard/ToggleBoardsButton.scss";
+@import "./styles/components/dashboard/Popover.scss";
+@import "./styles/components/dashboard/BoardThumbnail.scss";
+@import "./styles/components/dashboard/Notification.scss";

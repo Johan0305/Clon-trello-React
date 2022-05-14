@@ -1,0 +1,11 @@
+html,
+body {
+  font-family: var(--font-default);
+}
+
+.divider{
+  height: 1px;
+  background-color: var(--grey);
+  width: 100%;
+  margin: 12px 0;
+}
