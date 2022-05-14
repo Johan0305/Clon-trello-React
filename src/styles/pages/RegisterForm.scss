@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;700&display=swap");
+
+* {
+  font-family: "Radio Canada", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: rgb(162, 189, 232);
+  background: linear-gradient(
+    180deg,
+    rgb(210, 227, 255) 0%,
+    rgba(235, 255, 255, 1) 100%
+  );
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+button {
+  cursor: pointer;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+
+  .loginMain {
+    height: 632.48px;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .loginContainerRegister {
+      height: 560.34px;
+      width: 400px;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      padding: 24px 48px;
+      justify-content: flex-start;
+
+      .loginTextCreateAccount {
+        background-color: #ffffff;
+        color: #6c757d;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 48px;
+      }
+      .loginForm {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #6c757d;
+        height: 380px;
+        justify-content: space-around;
+        border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 20px;
+      }
+      .loginForm > small {
+        font-size: 12.8px;
+        text-align: justify;
+      }
+    }
+  }
+}

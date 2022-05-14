@@ -1,0 +1,28 @@
+.lCDescription-form{
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.lCDescription-form-email{
+    width: 60%;
+    font-size: 18px;
+    padding-left: 10px;
+    border: 1px solid #DFE5DD;
+    border-radius: 5px;
+}
+
+.link-lCDescription-form-button{
+    display: flex;
+    width: 40%;
+}
+
+.lCDescription-form-button{
+    @include landingButtons;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.lCDescription-form-button:hover{
+    background: #97D7C7;
+}

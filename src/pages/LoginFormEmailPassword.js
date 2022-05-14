@@ -2,34 +2,23 @@ import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
-import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 
-const RegisterForm = () => {
+const LoginFormEmailPassword = () => {
   return (
     <div className="loginContainer">
       <div className="loginMain">
         <img width="200px" height="57.14px" src={logoTrello} alt="" />
         <div className="loginContainerRegister">
-          <p className="loginTextCreateAccount">Crea tu cuenta</p>
+          <p className="loginTextCreateAccount">Iniciar sesión en Trello</p>
           <form className="loginForm">
             <InputForm
               type="email"
               text="Introduce tu correo electrónico"
             ></InputForm>
-            <small>
-              Al registrarte, confirmas que has leído y aceptado nuestras
-              <RedirectionLink
-                text=" Condiciones del servicio "
-                redirect="https://www.atlassian.com/legal/cloud-terms-of-service"
-                numId={1}
-              />
-              y nuestra
-              <RedirectionLink
-                text=" Política de Privacidad."
-                redirect="https://www.atlassian.com/legal/privacy-policy"
-                numId={1}
-              />
-            </small>
+            <InputForm
+              type="password"
+              text="Introduce tu contraseña"
+            ></InputForm>
             <ButtonFormRegister
               text={"Continuar"}
               color={"white"}
@@ -55,9 +44,12 @@ const RegisterForm = () => {
               background={"#f8f9fa"}
               idbtn={2}
             />
+            <Link to="/loginsso" className="linkSites1">
+              Ingresar con SSO
+            </Link>
           </form>
-          <Link to="/login" className="linkSites2">
-            ¿Ya tienes cuenta? Inicia sesión
+          <Link to="/register-form" className="linkSites2">
+            Registrese para crear una cuenta
           </Link>
         </div>
       </div>
@@ -65,4 +57,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginFormEmailPassword;
