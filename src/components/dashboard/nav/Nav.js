@@ -2,17 +2,15 @@ import NavLogo from './NavLogo';
 import ActionButton from '../ActionButton';
 import Avatar from '../Avatar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faBell , faAngleDown , faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 
 const Nav = () => {
     return(
-        <nav>
+        <nav className="nav">
             <div className="nav-left">
                 <NavLogo/>
-                
+
                 <div className="nav-option">
                     <a>
                         Reciente

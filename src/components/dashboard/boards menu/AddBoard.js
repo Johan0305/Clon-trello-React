@@ -1,4 +1,4 @@
-const BoardAdd = () => {
+const AddBoard = () => {
     return (
         <div className="add-board">
                 <h3 className="add-board-label">Crear un nuevo tablero</h3>
@@ -6,4 +6,4 @@ const BoardAdd = () => {
     );
 }
 
-export default BoardAdd;
+export default AddBoard;
