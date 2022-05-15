@@ -1,0 +1,38 @@
+.board-tile{
+    width: 256px;
+    height: 128px;
+    background-color: var(--secondary);
+    border-radius: var(--round);
+    cursor: pointer;
+}
+
+.board-tile:hover{
+    background-color: var(--secondary-dark);
+}
+
+.board-tile-header{
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.board-mark-button{
+    cursor: pointer;
+    svg{
+        color: white;
+    }
+}
+
+.board-mark-button:hover{
+    svg{
+        color: var(--marked);
+    }
+}
+
+
+.board-name{
+    font-size: 20px;
+    color: white;
+}
