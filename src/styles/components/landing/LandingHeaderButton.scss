@@ -1,7 +1,11 @@
-.landingHeader-Button{
-    padding: 10px 0;
-    font-size: 20px;
+.link-landingHeader-Button{
+    display: flex;
     width: 20%;
+}
+
+.landingHeader-Button{
+    padding: 10px 10px;
+    font-size: 20px;
     @include landingButtons;
 }
 
