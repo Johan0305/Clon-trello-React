@@ -1,0 +1,17 @@
+.aboutProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.aboutProfile-inputuser, .aboutProfile-email{
+    margin: 15px;
+    height: 0.7cm;
+    width: 250px;
+}
+
+.aboutProfile-textareaBio{
+    margin: 15px;
+    height: 3.5cm;
+}
+
