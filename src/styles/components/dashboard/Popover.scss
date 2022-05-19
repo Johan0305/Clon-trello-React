@@ -86,13 +86,11 @@
     text-align: center;
 }
 
-
-
 .popover-button-create:hover{
     background-color: var(--primary);
 }
 
-.popover-profile{
+.popover-containerProfile{
     display: flex;
     gap: 12px;
     align-items: center;
@@ -112,4 +110,10 @@
     position:absolute;
     top: 48px;
     left: -36px;
+}
+
+.popover-notifications, .popover-profile{
+    position:absolute;
+    top: 48px;
+    left: -300px;
 }

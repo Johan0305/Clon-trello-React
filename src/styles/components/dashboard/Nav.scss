@@ -10,6 +10,7 @@
 
 .nav-left, .nav-right{
     display: flex;
+    align-items: center;
 }
 
 .nav-left{
@@ -67,12 +68,7 @@
     color: var(--black);
 }
 
-.nav-notifications{
-    display: flex;
-    align-items: center;
-}
-
-.nav-notifications-icon {
+.nav-notifications-icon, .nav-avatar {
     cursor: pointer;
 }
 
