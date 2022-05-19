@@ -5,7 +5,7 @@ const AboutProfile = () => {
         <div className="aboutProfile">
             <p className="aboutProfile-about"><strong>Acerca de</strong></p>
             <hr></hr>
-            <p>Nombre de usuario:</p>
+            <p className="aboutProfile-nameUSer">Nombre de usuario:</p>
             <input className="aboutProfile-inputuser" type="text"></input>
             <p>Correo electrónico:</p>
             <input className="aboutProfile-email" type="email"></input>

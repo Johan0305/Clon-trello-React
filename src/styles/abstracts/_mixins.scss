@@ -5,3 +5,12 @@
     color: white;
     cursor: pointer;      
 }
+
+@mixin  dashboardButton-a () {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--round);
+    cursor: pointer;    
+}

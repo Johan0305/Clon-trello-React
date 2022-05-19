@@ -107,3 +107,9 @@
 .popover-close:hover{
     text-decoration: underline;
 }
+
+.popover-recent, .popover-mark, .popover-create{
+    position:absolute;
+    top: 48px;
+    left: -36px;
+}
