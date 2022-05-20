@@ -1,7 +1,12 @@
-@mixin landingButtons (){
-    background: #BAC948;
-    border: 1px solid #E2D469;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;      
+@mixin landingButtons() {
+  background: #bac948;
+  border: 1px solid #e2d469;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+@mixin modalButtonsInternal2($background, $width) {
+  background-color: $background;
+  width: $width;
 }

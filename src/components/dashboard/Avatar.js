@@ -1,12 +1,11 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Avatar = () => {
-    return (
-        <div className="avatar">
-            <FontAwesomeIcon icon={faCrown}/>
-        </div>
-    );
-}
+const Avatar = ({ type, id }) => {
+  return (
+    <div className={`avatar${id}`}>
+      <FontAwesomeIcon icon={type} />
+    </div>
+  );
+};
 
 export default Avatar;
