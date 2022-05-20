@@ -1,0 +1,14 @@
+.navOption-mark{
+    @include dashboardButton-a;
+}
+
+.navOption-mark:hover{
+    background-color: var(--transparent);
+    
+}
+
+.navOption-markA{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}

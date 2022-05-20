@@ -1,3 +1,9 @@
+
+@mixin modalButtonsInternal2($background, $width) {
+  background-color: $background;
+  width: $width;
+}
+
 @mixin landingButtons (){
     background: #BAC948;
     border: 1px solid #E2D469;
@@ -5,3 +11,13 @@
     color: white;
     cursor: pointer;      
 }
+
+@mixin  dashboardButton-a () {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: var(--round);
+    cursor: pointer;    
+}
+
