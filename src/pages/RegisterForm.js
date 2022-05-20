@@ -8,7 +8,9 @@ const RegisterForm = () => {
   return (
     <div className="loginContainer">
       <div className="loginMain">
-        <img width="200px" height="57.14px" src={logoTrello} alt="" />
+      <Link to="/">
+          <img width="200px" height="57.14px" src={logoTrello} alt="" />
+        </Link>
         <div className="loginContainerRegister">
           <p className="loginTextCreateAccount">Crea tu cuenta</p>
           <form className="loginForm">
