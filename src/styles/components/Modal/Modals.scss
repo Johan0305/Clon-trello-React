@@ -1,0 +1,86 @@
+.containerInternalModal1,
+.containerInternalModal5 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 48px;
+}
+
+.container1InternalModal2 {
+  display: flex;
+  flex-direction: column;
+  height: 59px;
+  justify-content: space-between;
+
+  .containerAvatarInternalModal2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 74px;
+  }
+}
+.container2InternalModal2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 36px;
+  height: 59px;
+  width: 385px;
+  justify-content: space-around;
+  .containerButtonsInternalModal2 {
+    display: flex;
+    justify-content: space-between;
+    button {
+      height: 22px;
+      border: none;
+      color: white;
+      border-radius: var(--round);
+    }
+
+    .buttonModal1 {
+      @include modalButtonsInternal2(var(--primary), 45px);
+    }
+    .buttonModal2 {
+      @include modalButtonsInternal2(var(--light-green), 53px);
+    }
+    .buttonModal3 {
+      @include modalButtonsInternal2(var(--lime-green), 62px);
+    }
+    .buttonModal4 {
+      @include modalButtonsInternal2(var(--yellow), 119px);
+    }
+    .buttonModal5 {
+      @include modalButtonsInternal2(var(--softblue), 45px);
+    }
+    .buttonModal6 {
+      @include modalButtonsInternal2(var(--grey), 31px);
+    }
+  }
+}
+
+.containerInternalModal4 {
+  display: flex;
+  flex-direction: column;
+  height: 54px;
+  justify-content: space-between;
+  width: 244px;
+  .containerCalendarInternalModal4 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.buttonInternalModal6 {
+  background-color: var(--red-delete);
+  width: 132px;
+  height: 31px;
+  border-radius: var(--round);
+  color: white;
+  border: none;
+}
+
+.buttonInternalModal6:hover {
+  background-color: var(--scarlett);
+}
