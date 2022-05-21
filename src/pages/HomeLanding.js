@@ -3,9 +3,9 @@ import LandingContainer from "../components/landing/LandingContainer";
 
 const Landing = () => {
  return ( 
-     <>   
-     <LandingHeader />
-     <LandingContainer />
+     <>
+        <LandingHeader />
+        <LandingContainer />
      </>      
  );
 }

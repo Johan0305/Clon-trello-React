@@ -55,6 +55,10 @@
     border: 1px solid white;
     border-radius: var(--round);
     background-color: var(--transparent);
+    ::placeholder{
+        font-size: 16px;
+        color: white;
+    }
 }
 .nav-search:focus-within{
     background-color: white;
@@ -75,10 +79,7 @@
     font-size: 16px;
 }
 
-::placeholder{
-    font-size: 16px;
-    color: white;
-}
+
 
 .nav-search input:focus::placeholder{
     font-size: 16px;
