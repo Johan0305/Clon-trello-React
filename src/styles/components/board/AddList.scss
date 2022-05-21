@@ -1,0 +1,56 @@
+.add-list{
+    width: 308px;
+    background-color: #EBECF0;    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--round);
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    h3, h4, p, span, a{
+        color: var(--black);
+    }
+    svg{
+        color: var(--grey);
+        font-size: 20px;
+        cursor: pointer;
+    }
+    svg:hover{
+        color: var(--lime-green);
+    }
+}
+
+.add-list-input{
+    width: 100%;
+    
+    input[type=text]{
+        width: 280px;
+        border: 1px solid #034C4C;
+        border-radius: var(--round);
+        padding: 6px 12px;
+    }
+}
+
+.add-list-actions{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-list-button{
+    background-color: var(--primary-dark);
+    color: white;
+    font-size: 16px;
+    padding: 6px;
+    width: 216px;
+    text-align: center;
+    border-radius: var(--round);
+    cursor: pointer;
+
+}
+
+.add-list-button:hover{
+    background-color: var(--transparent);
+    color: var(--black);
+}

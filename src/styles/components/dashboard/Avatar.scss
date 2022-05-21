@@ -1,3 +1,15 @@
+.avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    width: 32px;
+    height: 32px;
+    background-color: var(--yellow);
+    svg{
+        color: white !important;
+    }
+}
 .avatar1 {
   display: flex;
   justify-content: center;
