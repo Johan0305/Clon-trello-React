@@ -1,18 +1,22 @@
 import Popover from "../Popover";
 import ActionButton from "../ActionButton";
+import { useSelector, useDispatch } from "react-redux";
+import { TOGGLE_CREATE } from "../../../store/reducers/Nav.reducer";
 
-const ButtonCreate = ({ open, setOpen }) => {
+const ButtonCreate = () => {
+  const dispatch = useDispatch();
+  const { buttonCreate } = useSelector((state) => state.navReducer);
   return (
     <div className="navOption-create">
       <button
         className="action-button nav-button-create navOption-CreateBtn"
-        onClick={() => {
-          open ? setOpen(false) : setOpen(true);
+        onClick={(event) => {
+          dispatch({ type: TOGGLE_CREATE, payload: !buttonCreate });
         }}
       >
         Crear
       </button>
-      {open && (
+      {buttonCreate && (
         <div className="popover-create">
           <Popover popoverTitle={"Crear tablero"}>
             <h3>

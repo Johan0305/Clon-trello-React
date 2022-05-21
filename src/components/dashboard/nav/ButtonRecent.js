@@ -1,21 +1,26 @@
 import Popover from "../Popover";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faClose } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import BoardThumbnail from "./BoardThumbnail";
+import { useSelector, useDispatch } from "react-redux";
+import { TOGGLE_RECENT } from "../../../store/reducers/Nav.reducer";
 
-const ButtonRecent = ({ open, setOpen }) => {
+const ButtonRecent = () => {
+  const dispatch = useDispatch();
+  const { buttonRecent } = useSelector((state) => state.navReducer);
+
   return (
     <div className="navOption-recent">
       <a
         className="navOption-recentA"
-        onClick={() => {
-          open ? setOpen(false) : setOpen(true);
+        onClick={(event) => {
+          dispatch({ type: TOGGLE_RECENT, payload: !buttonRecent });
         }}
       >
         Reciente
         <FontAwesomeIcon icon={faAngleDown} />
       </a>
-      {open && (
+      {buttonRecent && (
         <div className="popover-recent">
           <Popover popoverTitle={"Tableros recientes"}>
             <div className="popover-option">
