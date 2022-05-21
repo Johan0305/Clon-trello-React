@@ -1,0 +1,43 @@
+.modal-global {
+  background-color: rgb(0, 0, 0, 0.75);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-space {
+  position: absolute;
+  width: 768px;
+  height: 348px;
+  background-color: rgba(235, 236, 240, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.internalModalDefault {
+  display: flex;
+  width: 736px;
+  align-items: center;
+  strong {
+    font-size: 20px;
+  }
+  p {
+    font-size: 16px;
+    color: var(--grey);
+  }
+}
+
+.buttonExit {
+  position: fixed;
+  left: 68.5%;
+  border: none;
+  font-size: 20px;
+}

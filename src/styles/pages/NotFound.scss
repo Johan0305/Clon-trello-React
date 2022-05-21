@@ -1,0 +1,20 @@
+.notFound{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.notFound-img{
+    width: 50%;
+}
+
+.notFound-Paragraph{
+    font-size: 18px;
+    margin: 10px;
+}
+
+.notFound-ref{
+    color: grey;
+    font-size: 12px;
+}
