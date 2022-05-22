@@ -35,6 +35,17 @@
 @import "./styles/components/board/List.scss";
 @import "./styles/components/board/Card.scss";
 @import "./styles/components/board/CardTag.scss";
+@import "./styles/components/dashboard/ButtonCreate.scss";
+@import "./styles/components/dashboard/ButtonMark.scss";
+@import "./styles/components/dashboard/ButtonNotifications.scss";
+@import "./styles/components/dashboard/ButtonProfile.scss";
+@import "./styles/components/dashboard/ButtonRecent.scss";
+@import "./styles/components/Modal/Modal.scss";
+@import "./styles/components/Modal/Modals.scss";
+@import "./styles/components/profile/AboutProfile.scss";
+
 /* pages */
 @import "./styles/pages/RegisterForm.scss";
 @import "./styles/pages/Landing.scss";
+@import "./styles/pages/Profile.scss";
+@import "./styles/pages/NotFound.scss";
