@@ -10,7 +10,7 @@ export const modalReducer = (state = initialState, action) => {
     case ACTIVATE:
       return { ...state, modal: true };
     case DESACTIVATE:
-      return { ...state, modal: false };
+      return { ...initialState };
     default:
       return state;
   }

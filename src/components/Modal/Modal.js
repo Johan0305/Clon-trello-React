@@ -22,7 +22,9 @@ const Modal = () => {
             <strong>Tarjeta con detalles</strong>
             <p>En lista Doing</p>
             <button
-              onClick={() => dispatch({ type: DESACTIVATE })}
+              onClick={() => {
+                dispatch({ type: DESACTIVATE });
+              }}
               className="buttonExit"
             >
               <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
