@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Board from "./pages/Board";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/dashboard";
 import RegisterForm from "./pages/RegisterForm.js";
 import Landing from "./pages/HomeLanding";
 import LoginFormEmailPassword from "./pages/LoginFormEmailPassword.js";
