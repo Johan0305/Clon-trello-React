@@ -22,15 +22,15 @@ const LoginFormEmailPassword = () => {
             <InputForm
               type="email"
               text="Introduce tu correo electrónico"
+              pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
+              errorMessage="El email es requerido y debe ser válido"
             ></InputForm>
             <InputForm
               type="password"
               text="Introduce tu contraseña"
-              pattern=".{6,}"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}"
+              errorMessage="La contraseña es requerida y debe conetener entre 8-12 carácteres y al menos una letra mayúscula, una letra minúscula y un número"
             ></InputForm>
-            <p className="loginPassword-text">
-              La contraseña debe contener al menos 6 caractéres.
-            </p>
             <ButtonFormRegister
               text={"Continuar"}
               color={"white"}

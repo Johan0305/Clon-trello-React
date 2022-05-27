@@ -9,4 +9,16 @@
     width: 180px;
     font-size: 12px;
   }
+
+}
+
+.inputForm:invalid ~ .inputForm-span{
+  display: block;
+}
+
+.inputForm-span{
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
 }

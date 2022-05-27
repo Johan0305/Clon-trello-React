@@ -22,6 +22,8 @@ const LoginFormSSO = () => {
             <InputForm
               type="email"
               text="Introduce tu correo electrónico"
+              pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
+              errorMessage="El email es requerido y debe ser válido"
             ></InputForm>
             <ButtonFormRegister
               text={"Continuar"}
