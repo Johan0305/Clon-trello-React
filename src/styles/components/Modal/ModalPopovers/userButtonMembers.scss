@@ -1,0 +1,20 @@
+.userButtonMembers {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  strong {
+    font-size: 16px;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+.buttonAddMembers {
+  height: 30px;
+  margin-top: 15px;
+  border: none;
+  background-color: var(--primary-dark);
+  color: white;
+  border-radius: var(--round);
+}

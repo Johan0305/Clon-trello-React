@@ -1,0 +1,62 @@
+.membersModal {
+  cursor: pointer;
+}
+
+.popoverModal {
+  width: 308px;
+  background-color: white;
+  border: 1px solid var(--grey);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: var(--round);
+  padding: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: fixed;
+  z-index: 999;
+  h3,
+  h4,
+  p,
+  span,
+  a {
+    color: var(--black);
+  }
+  .required-field-indicator {
+    color: var(--red-delete);
+  }
+}
+
+.popoverModal-header {
+  display: flex;
+  justify-content: space-between;
+  svg {
+    cursor: pointer;
+    color: var(--grey);
+  }
+  svg:hover {
+    color: var(--lime-green);
+  }
+}
+
+.containerPopoverCalendar {
+  position: fixed;
+  top: 300px;
+  .text-center {
+    display: flex;
+    flex-direction: column;
+  }
+  .container-buttons-calendar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    .buttonInternalModal6 {
+      width: 100%;
+    }
+  }
+}
+
+.calendar-dropdown {
+  cursor: pointer;
+}
