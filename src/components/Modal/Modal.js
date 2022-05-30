@@ -126,7 +126,13 @@ const Modal = () => {
                 <FontAwesomeIcon icon={faCalendarDays} />
               </p>
               <p>
-                {date[0].toDateString()} - {date[1].toDateString()}
+                {date.length > 0 ? (
+                  <p className="text-center">
+                    {date[0].toDateString()} -{date[1].toDateString()}
+                  </p>
+                ) : (
+                  <p className="text-center">{date.toDateString()}</p>
+                )}
               </p>
               <div>
                 <p
