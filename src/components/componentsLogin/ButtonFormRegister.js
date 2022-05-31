@@ -1,4 +1,4 @@
-const ButtonFormRegister = ({ text, color, background, idbtn }) => {
+const ButtonFormRegister = ({ text, icon, color, background, idbtn }) => {
   return (
     <button
       className={`loginButton${idbtn}`}
@@ -7,6 +7,7 @@ const ButtonFormRegister = ({ text, color, background, idbtn }) => {
         color: `${color}`,
       }}
     >
+      <div className="logginButton-Icon">{icon}</div>
       {text}
     </button>
   );

@@ -2,6 +2,12 @@ import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faGoogle,
+  faApple,
+  faMicrosoft,
+} from "@fortawesome/free-brands-svg-icons";
 
 const LoginFormSSO = () => {
   return (
@@ -16,6 +22,8 @@ const LoginFormSSO = () => {
             <InputForm
               type="email"
               text="Introduce tu correo electrónico"
+              pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
+              errorMessage="El email es requerido y debe ser válido"
             ></InputForm>
             <ButtonFormRegister
               text={"Continuar"}
@@ -26,18 +34,21 @@ const LoginFormSSO = () => {
             <p>O</p>
             <ButtonFormRegister
               text={"Continuar con Google"}
+              icon={<FontAwesomeIcon icon={faGoogle} />}
               color={"#212529"}
               background={"#f8f9fa"}
               idbtn={2}
             />
             <ButtonFormRegister
               text={"Continuar con Microsoft"}
+              icon={<FontAwesomeIcon icon={faMicrosoft} />}
               color={"#212529"}
               background={"#f8f9fa"}
               idbtn={2}
             />
             <ButtonFormRegister
               text={"Continuar con Apple"}
+              icon={<FontAwesomeIcon icon={faApple} />}
               color={"#212529"}
               background={"#f8f9fa"}
               idbtn={2}
