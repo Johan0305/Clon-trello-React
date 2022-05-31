@@ -32,6 +32,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
 
     .loginContainerRegister {
       height: 560.34px;
@@ -42,6 +43,10 @@ button {
       flex-direction: column;
       padding: 24px 48px;
       justify-content: flex-start;
+      @media (max-width: 768px) {
+        width: 180px;
+        padding: 18px 35px;
+      }
 
       .loginTextCreateAccount {
         background-color: #ffffff;
@@ -61,7 +66,7 @@ button {
         padding-bottom: 20px;
       }
       .loginForm > small {
-        font-size: 12.8px;
+        font-size: 10px;
         text-align: justify;
       }
     }
