@@ -1,0 +1,43 @@
+.grid-colors-tags {
+  width: 100%;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 23%);
+  grid-template-rows: repeat(2, 30px);
+  .color-tag {
+    width: 100%;
+    height: 30px;
+    background-color: cadetblue;
+    border-radius: var(--round);
+  }
+}
+
+.buttons-tag {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  button {
+    width: 40%;
+  }
+  .save-tag {
+    background-color: var(--primary-dark);
+  }
+}
+.container-createTag {
+  .colors-tags-create {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+    .color-tag-create {
+      width: 80%;
+      height: 22px;
+      background-color: cadetblue;
+      color: white;
+    }
+  }
+  .create-tag {
+    height: 40px !important;
+    background-color: var(--primary-dark);
+  }
+}
