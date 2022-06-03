@@ -21,10 +21,28 @@ const RegisterForm = () => {
           <p className="loginTextCreateAccount">Crea tu cuenta</p>
           <form className="loginForm">
             <InputForm
+              type="name"
+              text="Introduce tu nombre"
+              pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              errorMessage="El nombre es requerido y debe contener mínimo 8 carácteres"
+            ></InputForm>
+            <InputForm
+              type="nickname"
+              text="Introduce tu nickname"
+              pattern="(?=.*[a-z]).{8,}"
+              errorMessage="El nickname es requerido y debe contener mínimo 8 carácteres"
+            ></InputForm>
+            <InputForm
               type="email"
               text="Introduce tu correo electrónico"
               pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
               errorMessage="El email es requerido y debe ser válido"
+            ></InputForm>
+            <InputForm
+              type="password"
+              text="Introduce tu contraseña"
+              pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              errorMessage="La contraseña es requerida y debe contener mínimo 8 carácteres y al menos una letra mayúscula, una letra minúscula y un número"
             ></InputForm>
             <small>
               Al registrarte, confirmas que has leído y aceptado nuestras
