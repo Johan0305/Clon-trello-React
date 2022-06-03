@@ -19,3 +19,16 @@
   border-radius: var(--round);
   cursor: pointer;
 }
+
+@mixin hide-mobile(){
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+@mixin  hide-tablet() {
+  @media (max-width: 786px) {
+    display: none;
+  }
+
+}

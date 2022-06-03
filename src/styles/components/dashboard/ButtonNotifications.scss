@@ -1,5 +1,8 @@
 .navOption-notification{
     position: relative;
+    @media (max-width: 480px) {
+        display: none;
+      }
 }
 
 .navOption-notificationA{
