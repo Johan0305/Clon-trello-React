@@ -1,5 +1,7 @@
 .navOption-mark{
     @include dashboardButton-a;
+    @include hide-mobile;
+    @include hide-tablet;
 }
 
 .navOption-mark:hover{

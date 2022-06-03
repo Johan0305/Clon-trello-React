@@ -1,5 +1,7 @@
 .navOption-recent{
     @include dashboardButton-a;
+    @include hide-mobile;
+    @include hide-tablet;
 }
 
 .navOption-recent:hover{

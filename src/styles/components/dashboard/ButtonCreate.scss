@@ -7,4 +7,6 @@
   align-items: center;
   gap: 6px;
   font-size: 18px;
+  @include hide-mobile;
+  @include hide-tablet;
 }
