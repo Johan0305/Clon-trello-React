@@ -33,8 +33,10 @@ const Modal = () => {
       <div className="modal-space">
         <InternalModal>
           <div className="containerInternalModal1">
-            <strong>Tarjeta con detalles</strong>
-            <p>En lista Doing</p>
+            <div className="card-details-internalmodal1">
+              <strong>Tarjeta con detalles</strong>
+              <p>En lista Doing</p>
+            </div>
             <button
               onClick={() => {
                 dispatch({ type: DESACTIVATE });
