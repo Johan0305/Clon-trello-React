@@ -1,11 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;700&display=swap");
-
 * {
   font-family: "Radio Canada", sans-serif;
   padding: 0;
   margin: 0;
 }
-
 body {
   background: rgb(162, 189, 232);
   background: linear-gradient(
@@ -16,25 +14,21 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
-
 button {
   cursor: pointer;
 }
-
 .loginContainer {
   display: flex;
   justify-content: center;
   margin-top: 48px;
-
   .loginMain {
     width: 400px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-
     .loginContainerRegister {
       width: 400px;
-      background-color: #ffffff;
+      background-color: #FFFFFF;
       display: flex;
       align-items: center;
       flex-direction: column;
@@ -44,10 +38,9 @@ button {
         width: 180px;
         padding: 18px 35px;
       }
-
       .loginTextCreateAccount {
-        background-color: #ffffff;
-        color: #6c757d;
+        background-color: #FFFFFF;
+        color: #6C757D;
         font-size: 1.25rem;
         font-weight: 700;
         margin-bottom: 48px;
@@ -56,9 +49,9 @@ button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: #6c757d;
+        color: #6C757D;
         justify-content: space-between;
-        border-bottom: 1px solid #e5e5e5;
+        border-bottom: 1px solid #E5E5E5;
         padding-bottom: 40px;
       }
       .loginForm > small {

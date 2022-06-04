@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Board from "./pages/Board";
 import Dashboard from "./pages/dashboard";
 import RegisterForm from "./pages/RegisterForm.js";
@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 
 function App() {
+  const token = localStorage.getItem("token");
   return (
     <BrowserRouter>
       <Routes>
@@ -16,9 +17,18 @@ function App() {
         <Route exact path="/register-form" element={<RegisterForm />} />
         <Route exact path="/login" element={<LoginFormEmailPassword />} />
         <Route exact path="/loginsso" element={<LoginFormSSO />} />
-        <Route exact path="/dashboard" element={<Dashboard />} />
-        <Route exact path="/board" element={<Board />} />
-        <Route exact path="/profile" element={<Profile />} />
+        <Route
+          path="/dashboard"
+          element={token !== "" ? <Dashboard /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/board"
+          element={token !== "" ? <Board /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/profile"
+          element={token !== "" ? <Profile /> : <Navigate to="/" />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
