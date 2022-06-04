@@ -26,7 +26,7 @@ const LoginFormEmailPassword = () => {
       email: email,
       password: password,
     });
-    localStorage.setItem("token", res.data.token);
+    localStorage.setItem("token", res.data.data.token);
   };
 
   return (
@@ -61,7 +61,7 @@ const LoginFormEmailPassword = () => {
               color={"white"}
               background={"#28a746"}
               idbtn={1}
-            ></ButtonFormRegister>
+            />
             <p>O</p>
             <ButtonFormRegister
               text={"Continuar con Google"}
@@ -70,6 +70,7 @@ const LoginFormEmailPassword = () => {
               background={"#f8f9fa"}
               idbtn={2}
             />
+
             <ButtonFormRegister
               text={"Continuar con Microsoft"}
               icon={<FontAwesomeIcon icon={faMicrosoft} />}
