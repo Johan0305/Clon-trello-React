@@ -8,7 +8,7 @@ export const TOGGLE_ALL_MODAL = "TOGGLE_ALL_MODAL";
 const initialState = {
   buttonMembers: false,
   buttonDelete: false,
-  buttonEditag: false,
+  buttonEditag: 0,
   buttonCreatetag: false,
   buttonCalendar: false,
 };
@@ -20,7 +20,7 @@ export const modalPopoverReducer = (state = initialState, action) => {
         ...state,
         buttonMembers: action.payload,
         buttonDelete: false,
-        buttonEditag: false,
+        buttonEditag: 0,
         buttonCreatetag: false,
         buttonCalendar: false,
       };
@@ -29,7 +29,7 @@ export const modalPopoverReducer = (state = initialState, action) => {
         ...state,
         buttonMembers: false,
         buttonDelete: action.payload,
-        buttonEditag: false,
+        buttonEditag: 0,
         buttonCreatetag: false,
         buttonCalendar: false,
       };
@@ -47,7 +47,7 @@ export const modalPopoverReducer = (state = initialState, action) => {
         ...state,
         buttonMembers: false,
         buttonDelete: false,
-        buttonEditag: false,
+        buttonEditag: 0,
         buttonCreatetag: action.payload,
         buttonCalendar: false,
       };
@@ -56,7 +56,7 @@ export const modalPopoverReducer = (state = initialState, action) => {
         ...state,
         buttonMembers: false,
         buttonDelete: false,
-        buttonEditag: false,
+        buttonEditag: 0,
         buttonCreatetag: false,
         buttonCalendar: action.payload,
       };

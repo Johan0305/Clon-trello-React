@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { TOGGLE_EDITAG } from "../../store/reducers/ModalPopover.reducer";
 import PopoverModal from "./PopoverModal";
+import { TOGGLE_EDITAG } from "../../store/reducers/ModalPopover.reducer";
 
 const ButtonModal = ({ text, id }) => {
   const dispatch = useDispatch();
   const { buttonEditag } = useSelector((state) => state.modalPopoverReducer);
-
   const colorsArray = [
     "59A7A7",
     "99D7C7",
@@ -22,12 +21,14 @@ const ButtonModal = ({ text, id }) => {
       <button
         className={`buttonModal${id}`}
         onClick={() =>
-          dispatch({ type: TOGGLE_EDITAG, payload: !buttonEditag })
+          buttonEditag === 0
+            ? dispatch({ type: TOGGLE_EDITAG, payload: id })
+            : dispatch({ type: TOGGLE_EDITAG, payload: 0 })
         }
       >
         {text}
       </button>
-      {buttonEditag && (
+      {buttonEditag === id && (
         <PopoverModal popoverTitle="Etiquetas">
           <label>
             <strong>Nombre</strong>
@@ -45,7 +46,6 @@ const ButtonModal = ({ text, id }) => {
           </div>
         </PopoverModal>
       )}
-      {console.log(text)}
     </div>
   );
 };
