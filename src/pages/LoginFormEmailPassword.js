@@ -1,6 +1,6 @@
 import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -13,6 +13,7 @@ import axios from "axios";
 
 const LoginFormEmailPassword = () => {
   const [user, setUser] = useState({ email: "", password: "" });
+  const nav = useNavigate();
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -22,11 +23,19 @@ const LoginFormEmailPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = user;
-    const res = await axios.post("http://localhost:8080/users/login", {
-      email: email,
-      password: password,
-    });
-    localStorage.setItem("token", res.data.data.token);
+    try {
+      const res = await axios.post("http://localhost:8080/users/login", {
+        email: email,
+        password: password,
+      });
+      localStorage.setItem("token", res.data.data.token);
+      const token = await localStorage.getItem("token");
+      if (token) {
+        nav("/dashboard");
+      }
+    } catch (e) {
+      alert("El usuario aún no esta registrado");
+    }
   };
 
   return (
@@ -85,9 +94,6 @@ const LoginFormEmailPassword = () => {
               background={"#f8f9fa"}
               idbtn={2}
             />
-            <Link to="/loginsso" className="linkSites1">
-              Ingresar con SSO
-            </Link>
           </form>
           <Link to="/register-form" className="linkSites2">
             Registrese para crear una cuenta

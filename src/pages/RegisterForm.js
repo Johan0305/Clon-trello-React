@@ -1,6 +1,6 @@
 import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
 import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,8 +9,42 @@ import {
   faApple,
   faMicrosoft,
 } from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
+import axios from "axios";
 
 const RegisterForm = () => {
+  const [user, setUser] = useState({
+    name: "",
+    nickname: "",
+    email: "",
+    password: "",
+  });
+  const nav = useNavigate();
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUser({ ...user, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { name, nickname, email, password } = user;
+    try {
+      const res = await axios.post("http://localhost:8080/users/register", {
+        name: name,
+        nickname: nickname,
+        email: email,
+        password: password,
+      });
+      localStorage.setItem("token", res.data.data.token);
+      const token = await localStorage.getItem("token");
+      if (token) {
+        nav("/dashboard");
+      }
+    } catch (e) {
+      alert("El usuario ya se encuentra registrado");
+    }
+  };
+
   return (
     <div className="loginContainer">
       <div className="loginMain">
@@ -19,30 +53,42 @@ const RegisterForm = () => {
         </Link>
         <div className="loginContainerRegister">
           <p className="loginTextCreateAccount">Crea tu cuenta</p>
-          <form className="loginForm">
+          <form className="loginForm" onSubmit={handleSubmit}>
             <InputForm
               type="name"
+              name="name"
               text="Introduce tu nombre"
               pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
               errorMessage="El nombre es requerido y debe contener mínimo 8 carácteres"
+              onChange={handleChange}
+              value={user.name}
             ></InputForm>
             <InputForm
               type="nickname"
+              name="nickname"
               text="Introduce tu nickname"
               pattern="(?=.*[a-z]).{8,}"
               errorMessage="El nickname es requerido y debe contener mínimo 8 carácteres"
+              onChange={handleChange}
+              value={user.nickname}
             ></InputForm>
             <InputForm
               type="email"
+              name="email"
               text="Introduce tu correo electrónico"
               pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
               errorMessage="El email es requerido y debe ser válido"
+              onChange={handleChange}
+              value={user.email}
             ></InputForm>
             <InputForm
               type="password"
+              name="password"
               text="Introduce tu contraseña"
               pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}"
               errorMessage="La contraseña es requerida y debe contener mínimo 8 carácteres y al menos una letra mayúscula, una letra minúscula y un número"
+              onChange={handleChange}
+              value={user.password}
             ></InputForm>
             <small>
               Al registrarte, confirmas que has leído y aceptado nuestras
