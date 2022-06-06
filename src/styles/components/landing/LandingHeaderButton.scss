@@ -1,14 +1,14 @@
-.link-landingHeader-Button{
-    display: flex;
-    width: 20%;
+.link-landingHeader-Button {
+  display: flex;
+  align-items: center;
 }
 
-.landingHeader-Button{
-    padding: 10px 10px;
-    font-size: 20px;
-    @include landingButtons;
+.landingHeader-Button {
+  padding: 10px 10px;
+  font-size: 20px;
+  @include landingButtons;
 }
 
-.landingHeader-Button:hover{
-    background: #97D7C7;
+.landingHeader-Button:hover {
+  background: #97d7c7;
 }
