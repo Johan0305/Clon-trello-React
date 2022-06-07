@@ -1,3 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;700&display=swap");
+* {
+  font-family: "Radio Canada", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
 .aboutProfile{
     display: flex;
     flex-direction: column;
@@ -10,7 +17,7 @@
     width: 250px;
 }
 
-.aboutProfile-textareaBio{
+.aboutProfile-imgBio{
     margin: 15px;
     height: 3.5cm;
 }
@@ -19,3 +26,22 @@
     margin-top: 15px;
 }
 
+.aboutProfile-buttonUpdate{
+  width: 150px;
+  height: 30px;
+  border: 1px solid rgb(227, 226, 226);
+  font-size: 16px;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
+  color: #6C757D;
+  font-size: 1.25rem;
+  @media (max-width: 768px) {
+    width: 180px;
+    font-size: 12px;
+  }
+}
+
+.aboutProfile-buttonUpdate:hover {
+    background-color: rgb(162, 189, 232) !important;
+  }
