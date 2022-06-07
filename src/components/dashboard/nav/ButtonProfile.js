@@ -5,10 +5,13 @@ import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_PROFILE } from "../../../store/reducers/Nav.reducer";
+
 const ButtonProfile = () => {
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { buttonProfile } = useSelector((state) => state.navReducer);
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
   return (
     <div className="navOption-profile">
       <div
@@ -27,8 +30,8 @@ const ButtonProfile = () => {
               <Avatar type={faCrown} id={1} />
               <Link to="/profile">
                 <div className="popover-user-email">
-                  <h4>Natalia Dos Santos</h4>
-                  <span>nat@sherwood.com</span>
+                  <h4>{name}</h4>
+                  <span>{email}</span>
                 </div>
               </Link>
             </div>
