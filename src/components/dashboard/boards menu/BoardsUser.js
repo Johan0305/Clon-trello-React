@@ -34,6 +34,7 @@ const BoardsUser = () => {
     } catch (err) {
       alert("No pudimos crear el tablero, inténtalo más tarde");
     }
+    dispatch(getBoards());
   };
 
   return (
@@ -42,7 +43,7 @@ const BoardsUser = () => {
       <BoardTile boardName={"Soccer"} />
       <form onSubmit={handleCreate}>
         <input type="text" value={newBoard} onChange={handleChange} />
-        <button onClick={() => dispatch(getBoards())}>Crear</button>
+        <button>Crear</button>
       </form>
     </div>
   );
