@@ -15,7 +15,6 @@ export const getBoards = (payload) => {
       });
       dispatch({ type: BOARDS_SUCCESS, payload: user.data.data.boards });
       dispatch({ type: BOARDS_LOADING, payload: false });
-      console.log(user.data.data.boards);
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
       dispatch({ type: BOARDS_LOADING, payload: false });
