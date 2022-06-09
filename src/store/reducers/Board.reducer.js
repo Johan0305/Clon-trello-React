@@ -8,13 +8,14 @@ export const getBoards = (payload) => {
   return async function (dispatch) {
     dispatch({ type: BOARDS_LOADING, payload: true });
     try {
-      const user = await axios.get("http://localhost:8080/users/", {
+      const user = await axios.get("http://localhost:8080/users/myuser", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      dispatch({ type: BOARDS_SUCCESS, payload: user.data.boards });
+      dispatch({ type: BOARDS_SUCCESS, payload: user.data.data.boards });
       dispatch({ type: BOARDS_LOADING, payload: false });
+      console.log(user.data.data.boards);
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
       dispatch({ type: BOARDS_LOADING, payload: false });
@@ -38,7 +39,7 @@ export const boardReducer = (state = initialState, action) => {
     case BOARDS_SUCCESS:
       return {
         ...state,
-        posts: action.payload,
+        boards: action.payload,
       };
     case BOARDS_ERROR:
       return {

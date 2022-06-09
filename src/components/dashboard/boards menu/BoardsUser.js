@@ -1,10 +1,17 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getBoards } from "../../../store/reducers/Board.reducer";
 import BoardTile from "./BoardTile";
 import AddBoard from "./AddBoard";
 
 const BoardsUser = () => {
   const [newBoard, setNewBoard] = useState("");
+  const dispatch = useDispatch();
+  const { boards, loading, error } = useSelector((state) => state.boardReducer);
+  useEffect(() => {
+    dispatch(getBoards());
+  }, []);
 
   const handleChange = (e) => {
     const { value } = e.target;
@@ -28,13 +35,14 @@ const BoardsUser = () => {
       alert("No pudimos crear el tablero, inténtalo más tarde");
     }
   };
+
   return (
     <div className="boards-user">
       <BoardTile boardName={"GTA"} />
       <BoardTile boardName={"Soccer"} />
       <form onSubmit={handleCreate}>
         <input type="text" value={newBoard} onChange={handleChange} />
-        <button>Crear</button>
+        <button onClick={() => dispatch(getBoards())}>Crear</button>
       </form>
     </div>
   );
