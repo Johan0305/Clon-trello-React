@@ -29,6 +29,9 @@ const LoginFormEmailPassword = () => {
         password: password,
       });
       localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("name", res.data.data.name);
+      localStorage.setItem("nickname", res.data.data.nickname);
+      localStorage.setItem("email", res.data.data.email);
       const token = await localStorage.getItem("token");
       if (token) {
         nav("/dashboard");
