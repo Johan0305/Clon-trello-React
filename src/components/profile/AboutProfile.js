@@ -3,8 +3,9 @@ import { useState } from "react";
 import axios from "axios";
 
 const AboutProfile = () => {
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
+  const [name, setName] = useState(localStorage.getItem("name"));
+  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+  const [pictureDefault, usePictureDefault] = localStorage.getItem("picture");
   const [image, setImage] = useState(null); //capturamos para mostrar base64
   const [file, setFile] = useState(null); //capturamos archivo para enviar obj
 
@@ -12,11 +13,15 @@ const AboutProfile = () => {
     e.preventDefault();
 
     const data = new FormData();
-    data.append("file", file);
 
-    const response = await axios.post("http://localhost:8080", {
-      data,
+    data.append("name", name);
+    data.append("nickname", nickname);
+    if (file !== pictureDefault) {
+      data.append("picture", file);
+    }
+    const response = await axios.put("http://localhost:8080/users", data, {
       headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "multipart/form-data",
       },
     });
@@ -53,14 +58,16 @@ const AboutProfile = () => {
           id="name"
           type="text"
           className="aboutProfile-inputuser"
+          onChange={(e) => setName(e.target.result)}
           placeholder={name}
         ></input>
-        <label htmlFor="email">Correo electrónico:</label>
+        <label htmlFor="email">Nickname:</label>
         <input
-          id="email"
-          type="email"
+          id="nickname"
+          type="text"
           className="aboutProfile-email"
-          placeholder={email}
+          onChange={(e) => setName(e.target.result)}
+          placeholder={nickname}
         ></input>
         <label htmlFor="img">Tu foto de Perfil</label>
         {!!image && (

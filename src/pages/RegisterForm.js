@@ -39,6 +39,7 @@ const RegisterForm = () => {
       localStorage.setItem("name", res.data.data.name);
       localStorage.setItem("nickname", res.data.data.nickname);
       localStorage.setItem("email", res.data.data.email);
+      localStorage.setItem("picture", res.data.data.picture);
       const token = await localStorage.getItem("token");
       if (token) {
         nav("/dashboard");
