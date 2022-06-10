@@ -1,9 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 const Avatar = ({ type, id }) => {
   return (
     <div className={`avatar${id}`}>
-      <FontAwesomeIcon icon={type} />
+      <img
+        src={localStorage.getItem("picture")}
+        alt="profile-img"
+        width={30}
+        height={30}
+      />
     </div>
   );
 };

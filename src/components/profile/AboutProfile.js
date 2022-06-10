@@ -7,6 +7,7 @@ const AboutProfile = () => {
   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
   const [image, setImage] = useState(null); //capturamos para mostrar base64
   const [file, setFile] = useState(null); //capturamos archivo para enviar obj
+  const [picture, setPicture] = useState(localStorage.getItem("picture"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +21,6 @@ const AboutProfile = () => {
     localStorage.removeItem("name", "nickname", "picture");
     localStorage.setItem("name", name);
     localStorage.setItem("nickname", nickname);
-    localStorage.setItem("picture", file.name);
 
     const response = await axios.put("http://localhost:8080/users", data, {
       headers: {
@@ -28,6 +28,16 @@ const AboutProfile = () => {
         "Content-Type": "multipart/form-data",
       },
     });
+    const updatePicture = await axios.get(
+      "http://localhost:8080/users/myuser",
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    localStorage.setItem("picture", updatePicture.data.data.picture);
+    setPicture(localStorage.getItem("picture"));
   };
 
   const readFile = (file) => {
@@ -47,6 +57,11 @@ const AboutProfile = () => {
 
   return (
     <div className="aboutProfile">
+      <header className="profileContainer-header">
+        <img src={picture} alt="ratita" width={200} height={200}></img>
+        <h2 className="profileContainer-name">{name}</h2>
+        <h3 className="profileContainer-userName">@{nickname}</h3>
+      </header>
       <p className="aboutProfile-about">
         <strong>Acerca de</strong>
       </p>
