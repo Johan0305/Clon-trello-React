@@ -5,7 +5,6 @@ import axios from "axios";
 const AboutProfile = () => {
   const [name, setName] = useState(localStorage.getItem("name"));
   const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
-  const [pictureDefault, usePictureDefault] = localStorage.getItem("picture");
   const [image, setImage] = useState(null); //capturamos para mostrar base64
   const [file, setFile] = useState(null); //capturamos archivo para enviar obj
 
@@ -16,17 +15,19 @@ const AboutProfile = () => {
 
     data.append("name", name);
     data.append("nickname", nickname);
-    if (file !== pictureDefault) {
-      data.append("picture", file);
-    }
+    data.append("picture", file);
+
+    localStorage.removeItem("name", "nickname", "picture");
+    localStorage.setItem("name", name);
+    localStorage.setItem("nickname", nickname);
+    localStorage.setItem("picture", file.name);
+
     const response = await axios.put("http://localhost:8080/users", data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "multipart/form-data",
       },
     });
-
-    console.log(response);
   };
 
   const readFile = (file) => {
@@ -58,16 +59,16 @@ const AboutProfile = () => {
           id="name"
           type="text"
           className="aboutProfile-inputuser"
-          onChange={(e) => setName(e.target.result)}
-          placeholder={name}
+          onChange={(e) => setName(e.target.value)}
+          value={name}
         ></input>
         <label htmlFor="email">Nickname:</label>
         <input
           id="nickname"
           type="text"
           className="aboutProfile-email"
-          onChange={(e) => setName(e.target.result)}
-          placeholder={nickname}
+          onChange={(e) => setNickname(e.target.value)}
+          value={nickname}
         ></input>
         <label htmlFor="img">Tu foto de Perfil</label>
         {!!image && (
