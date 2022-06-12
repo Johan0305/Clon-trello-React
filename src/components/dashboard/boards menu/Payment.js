@@ -1,18 +1,19 @@
 const handler = window.ePayco.checkout.configure({
-  key: "fb2113a0b20ddf98686628f23bfb30a2",
+  key: process.env.REACT_APP_EPAYCO_PUBLIC_KEY,
   test: true,
 });
 
 const Payment = () => {
   function handleClick() {
     const name = localStorage.getItem("name");
+    const invoice = Math.floor(Math.random() * (99999 - 10000 + 1) + 10000);
     handler.open({
       external: false,
 
       //Parametros compra (obligatorio)
       name: "Tableros ilimitados",
-      description: "Con este pago podras crear tableros ilimitadamente",
-      invoice: "785236",
+      description: "Compra tus tableros ilimitados",
+      invoice: `${invoice}`,
       currency: "cop",
       amount: "50000",
       tax_base: "0",

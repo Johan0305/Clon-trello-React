@@ -1,0 +1,16 @@
+.pageResponse-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 30px;
+    padding: 15px;
+    width: 500px;
+    border: 2px solid var(--yellow);
+    p{
+        margin: 3px;
+    }
+}
+
+.pageResponse-title{
+    margin: 5px;
+}
