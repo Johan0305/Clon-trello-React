@@ -9,7 +9,7 @@ import Profile from "./pages/Profile";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/" />;
+  return token ? children : <Navigate to="/register-form" />;
 };
 
 const MainRoutes = ({ children }) => {
