@@ -2,17 +2,22 @@ import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import ActionButton from "../ActionButton";
+
 import { getBoards } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUserPlus,
   faStar,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
+
 
 const Tools = () => {
   const { boardName } = useParams();
@@ -87,5 +92,7 @@ const Tools = () => {
     </div>
   );
 };
+
+
 
 export default Tools;

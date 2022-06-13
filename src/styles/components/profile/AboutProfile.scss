@@ -17,13 +17,26 @@
     width: 250px;
 }
 
-.aboutProfile-imgBio{
+.aboutProfile-imgBioChoose{
+    width: 150px;
+    height: 150px;
     margin: 15px;
-    height: 7cm;
 }
+
+.aboutProfile-imgBio{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: 2px solid var(--yellow);
+}
+
 
 .aboutProfile-nameUSer, .aboutProfile-about{
     margin-top: 15px;
+}
+
+.aboutProfile-imgInputChoose{
+  margin: 10px;
 }
 
 .aboutProfile-buttonUpdate{
@@ -32,7 +45,8 @@
   border: 1px solid rgb(227, 226, 226);
   font-size: 16px;
   border-radius: 10px;
-  margin: 5px;
+  margin: 10px;
+  align-items: center;
   cursor: pointer;
   color: #6C757D;
   font-size: 1.25rem;
