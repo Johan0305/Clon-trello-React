@@ -2,32 +2,82 @@ import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import ActionButton from "../ActionButton";
+
+import { getBoards } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faUserPlus,
   faStar,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+
 
 const Tools = () => {
-  const [boardName, setBoardName] = useState("Call of Dutty");
+  const { boardName } = useParams();
+  const boards = useSelector((state) => state.boardReducer);
+  const thisBoard = boards.boards.filter((x) => x.name === boardName);
+  const [data, setData] = useState({});
+  const [newBoardName, setNewBoardName] = useState(boardName);
+  const dispatch = useDispatch();
+  const routeThisBoard = `http://localhost:8080/boards/${thisBoard[0]._id}`;
+
+  const theBoard = async () => {
+    const res = await axios.get(routeThisBoard);
+    setData(res.data.data);
+  };
+
+  const handleSubmitName = async (e) => {
+    e.preventDefault();
+    const updatedBoard = await axios.put(routeThisBoard, {
+      name: newBoardName,
+    });
+  };
+
+  const handleMark = async (e) => {
+    e.preventDefault();
+    const mark = !data.marked;
+    const markBoard = await axios.put(routeThisBoard, {
+      marked: mark,
+    });
+    theBoard();
+  };
+
+  useEffect(() => {
+    dispatch(getBoards());
+    theBoard();
+  }, []);
+
   return (
     <div className="tools-bar">
       <div className="tools-boardName">
-        <form>
+        <form onBlur={handleSubmitName}>
           <input
             type="text"
-            value={boardName}
-            onChange={(e) => setBoardName(e.target.value)}
+            value={newBoardName}
+            onChange={(e) => setNewBoardName(e.target.value)}
           />
         </form>
       </div>
-      <IconButton styleName={"tools-button-fav"}>
-        <FontAwesomeIcon icon={faStar} />
-      </IconButton>
+      <form onSubmit={handleMark}>
+        <button className="button-wrapper">
+          <IconButton
+            styleName={
+              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
+            }
+          >
+            <FontAwesomeIcon icon={faStar} />
+          </IconButton>
+        </button>
+      </form>
       <Separator />
-      <Avatar id={1} />
+      <Avatar />
       <IconButton styleName={"tools-button-add"}>
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
@@ -42,5 +92,7 @@ const Tools = () => {
     </div>
   );
 };
+
+
 
 export default Tools;

@@ -61,8 +61,21 @@
     }
 }
 
+
 .tools-button-fav:hover{
     background-color: white;
+}
+
+.tools-button-fav-marked{
+    background-color: white;
+    padding: 6px;
+    border-radius: 4px;
+    cursor: pointer;
+  
+        svg{
+            color: var(--marked);
+        }
+
 }
 
 .tools-button-add{

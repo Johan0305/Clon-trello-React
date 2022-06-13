@@ -18,6 +18,19 @@
     
 }
 
+.board-tile-footer{
+    display: flex;
+    padding-right: 32px;
+    justify-content: end;
+    a{
+        color: var(--red-delete);
+        font-size: 12px;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+}
+
 .board-mark-button{
     cursor: pointer;
     svg{
@@ -25,7 +38,8 @@
     }
 }
 
-.board-mark-button:hover{
+
+.board-mark-button-marked{
     svg{
         color: var(--marked);
     }
