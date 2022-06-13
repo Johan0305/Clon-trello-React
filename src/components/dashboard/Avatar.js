@@ -1,11 +1,10 @@
-const Avatar = ({ type, id }) => {
+const Avatar = ({ id }) => {
   return (
-    <div className={`avatar${id}`}>
+    <div>
       <img
         src={localStorage.getItem("picture")}
         alt="profile-img"
-        width={30}
-        height={30}
+        className={`avatar${id}`}
       />
     </div>
   );

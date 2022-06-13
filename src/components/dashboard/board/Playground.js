@@ -146,7 +146,7 @@ const Playground = () => {
                                         <FontAwesomeIcon icon={faCalendarAlt} />
                                         <span>14 de may - 15 de may</span>
                                       </div>
-                                      <Avatar />
+                                      <Avatar id={1} />
                                     </div>
                                   </div>
                                 );

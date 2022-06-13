@@ -53,7 +53,7 @@ const Modal = () => {
               <strong>Miembros</strong>
             </div>
             <div className="containerAvatarInternalModal2">
-              <Avatar type={faCrown} id={1} />
+              <FontAwesomeIcon icon={faCrown} className="avatar2" />
               <div>
                 <span
                   className="membersModal"
@@ -61,7 +61,7 @@ const Modal = () => {
                     dispatch({ type: TOGGLE_MEMBERS, payload: !buttonMembers })
                   }
                 >
-                  <Avatar type={faPlus} id={2} />
+                  <Avatar type={faPlus} id={1} />
                 </span>
                 {buttonMembers && (
                   <div className="PopoverModalAvatar">

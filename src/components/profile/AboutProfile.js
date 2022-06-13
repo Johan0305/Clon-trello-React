@@ -1,4 +1,3 @@
-import BoardThumbnail from "../dashboard/nav/BoardThumbnail";
 import { useState } from "react";
 import axios from "axios";
 
@@ -45,7 +44,6 @@ const AboutProfile = () => {
 
     //reader.onload = (e) => console.log(e.target.result);
     reader.onload = (e) => setImage(e.target.result);
-
     reader.readAsDataURL(file);
   };
 
@@ -58,7 +56,13 @@ const AboutProfile = () => {
   return (
     <div className="aboutProfile">
       <header className="profileContainer-header">
-        <img src={picture} alt="ratita" width={200} height={200}></img>
+        <img
+          src={picture}
+          alt="profile_img"
+          width={200}
+          height={200}
+          className="aboutProfile-imgBio"
+        ></img>
         <h2 className="profileContainer-name">{name}</h2>
         <h3 className="profileContainer-userName">@{nickname}</h3>
       </header>
@@ -85,13 +89,13 @@ const AboutProfile = () => {
           onChange={(e) => setNickname(e.target.value)}
           value={nickname}
         ></input>
-        <label htmlFor="img">Tu foto de Perfil</label>
+        <label htmlFor="img">Selecciona tu nueva foto de perfil:</label>
         {!!image && (
           <img
             src={image}
             alt="Foto perfil"
             loading="lazy"
-            className="aboutProfile-imgBio"
+            className="aboutProfile-imgBioChoose"
           />
         )}
         <input
@@ -100,24 +104,10 @@ const AboutProfile = () => {
           name="img"
           accept="image/*"
           onChange={handleChange}
+          className="aboutProfile-imgInputChoose"
         />
         <button className="aboutProfile-buttonUpdate">Actualizar</button>
       </form>
-      <div className="aboutprofile-recentBoards">
-        <p>Tableros Recientes</p>
-        <div className="popover-option">
-          <div className="popover-option-board">
-            <BoardThumbnail />
-            <h3>Clonando Trello</h3>
-          </div>
-        </div>
-        <div className="popover-option">
-          <div className="popover-option-board">
-            <BoardThumbnail />
-            <h3>Rpg Game</h3>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

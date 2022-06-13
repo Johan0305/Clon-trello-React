@@ -1,5 +1,4 @@
 import Nav from "../components/dashboard/nav/Nav";
-import Avatar from "../components/dashboard/Avatar";
 import AboutProfile from "../components/profile/AboutProfile";
 import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch } from "react-redux";
