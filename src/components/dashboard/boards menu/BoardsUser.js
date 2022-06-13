@@ -17,33 +17,49 @@ const BoardsUser = () => {
     const { value } = e.target;
     setNewBoard(value);
   };
+
   const handleCreate = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post(
-        "http://localhost:8080/boards",
-        {
-          name: newBoard,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+    if (boards.length < 3) {
+      try {
+        const res = await axios.post(
+          "http://localhost:8080/boards",
+          {
+            name: newBoard,
+            marked: false,
+            closed: false,
           },
-        }
-      );
-    } catch (err) {
-      alert("No pudimos crear el tablero, inténtalo más tarde");
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } catch (err) {
+        alert("No pudimos crear el tablero, inténtalo más tarde");
+      }
+      dispatch(getBoards());
+
+      setNewBoard("");
+    } else if (boards.length == 3) {
+      alert("Bajate las luks pues");
     }
-    dispatch(getBoards());
   };
 
   return (
     <div className="boards-user">
-      <BoardTile boardName={"GTA"} />
-      <BoardTile boardName={"Soccer"} />
-      <form onSubmit={handleCreate}>
-        <input type="text" value={newBoard} onChange={handleChange} />
-        <button>Crear</button>
+      {boards.map((item, id) => {
+        return <BoardTile boardName={item.name} boardId={item._id} />;
+      })}
+      <form onSubmit={handleCreate} className="add-board-form">
+        <input
+          type="text"
+          value={newBoard}
+          onChange={handleChange}
+          className="add-board-input"
+          placeholder="Crea un nuevo tablero..."
+        />
+        <button className="add-board-button">Crear tablero</button>
       </form>
     </div>
   );

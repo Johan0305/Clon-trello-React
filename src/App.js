@@ -40,7 +40,7 @@ function App() {
           element={<PrivateRoute children={<Dashboard />}></PrivateRoute>}
         />
         <Route
-          path="/board"
+          path="/board/:boardName"
           element={<PrivateRoute children={<Board />}></PrivateRoute>}
         />
         <Route
