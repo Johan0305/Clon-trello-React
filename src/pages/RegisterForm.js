@@ -19,6 +19,7 @@ const RegisterForm = () => {
     nickname: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const nav = useNavigate();
   const handleChange = (e) => {
@@ -63,7 +64,7 @@ const RegisterForm = () => {
               type="name"
               name="name"
               text="Introduce tu nombre"
-              pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              pattern="^[A-Za-z].{8,}$"
               errorMessage="El nombre es requerido y debe contener mínimo 8 carácteres"
               onChange={handleChange}
               value={user.name}
@@ -72,7 +73,7 @@ const RegisterForm = () => {
               type="nickname"
               name="nickname"
               text="Introduce tu nickname"
-              pattern="(?=.*[a-z]).{8,}"
+              pattern="^[A-Za-z0-9].{8,}$"
               errorMessage="El nickname es requerido y debe contener mínimo 8 carácteres"
               onChange={handleChange}
               value={user.nickname}
@@ -94,6 +95,15 @@ const RegisterForm = () => {
               errorMessage="La contraseña es requerida y debe contener mínimo 8 carácteres y al menos una letra mayúscula, una letra minúscula y un número"
               onChange={handleChange}
               value={user.password}
+            ></InputForm>
+            <InputForm
+              type="password"
+              name="confirmPassword"
+              text="Confirma tu contraseña"
+              pattern={user.password}
+              errorMessage="Las contraseñas no coinciden"
+              onChange={handleChange}
+              value={user.confirmPassword}
             ></InputForm>
             <small>
               Al registrarte, confirmas que has leído y aceptado nuestras
