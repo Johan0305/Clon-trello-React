@@ -7,7 +7,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className="dashboard-background">
       <Nav />
       <div
         onClick={(event) => {

@@ -5,6 +5,7 @@ import BoardThumbnail from "./BoardThumbnail";
 import { TOGGLE_MARK } from "../../../store/reducers/Nav.reducer";
 import { getBoards } from "../../../store/reducers/Board.reducer";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const ButtonMark = () => {
@@ -28,13 +29,15 @@ const ButtonMark = () => {
           <Popover popoverTitle={"Tableros marcados"}>
             {boards.map((item, _id) => {
               return (
-                <div className="popover-option">
-                  <div className="popover-option-board">
-                    <BoardThumbnail />
-                    <h3>{item.name}</h3>
+                <Link to={`/board/${item.name}`}>
+                  <div className="popover-option">
+                    <div className="popover-option-board">
+                      <BoardThumbnail />
+                      <h3>{item.name}</h3>
+                    </div>
+                    <FontAwesomeIcon icon={faStar} />
                   </div>
-                  <FontAwesomeIcon icon={faStar} />
-                </div>
+                </Link>
               );
             })}
           </Popover>

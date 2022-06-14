@@ -17,7 +17,16 @@ body {
 }
 
 .board-background{
-  background-color: var(--secondary);
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.dashboard-background{
+  background-color: white;
   position: fixed;
   z-index: 999;
   top: 0;
@@ -29,4 +38,52 @@ body {
 .button-wrapper{
   background-color: transparent;
   border:none;
+}
+
+// Base colors
+.blue{
+  background-color: var(--secondary);
+}
+
+.blue-dark{
+  background-color: var(--secondary-dark);
+}
+
+.coral{
+  background-color: coral;
+}
+
+.coral-dark{
+  background-color: tomato;
+}
+
+.orange{
+  background-color: orange;
+}
+
+.orange-dark{
+  background-color: orangered;
+}
+
+.violet{
+  background-color: mediumpurple;
+}
+
+.violet-dark{
+  background-color: darkviolet;
+}
+
+.pink{
+  background-color: deeppink;
+}
+
+.pink-dark{
+  background-color: mediumvioletred;
+}
+
+.yellowgreen{
+  background-color: yellowgreen;
+}
+.yellowgreen-dark{
+  background-color: olivedrab;
 }

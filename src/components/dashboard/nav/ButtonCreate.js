@@ -28,6 +28,7 @@ const ButtonCreate = () => {
             name: newBoard,
             marked: true,
             closed: false,
+            color: "#9ACD32",
           },
           {
             headers: {

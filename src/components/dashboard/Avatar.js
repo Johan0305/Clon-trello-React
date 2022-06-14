@@ -4,7 +4,7 @@ const Avatar = ({ id }) => {
       <img
         src={localStorage.getItem("picture")}
         alt="profile-img"
-        className={`avatar${id}`}
+        className="avatar1"
       />
     </div>
   );
