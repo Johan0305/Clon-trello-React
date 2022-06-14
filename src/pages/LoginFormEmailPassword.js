@@ -10,6 +10,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const LoginFormEmailPassword = () => {
   const [user, setUser] = useState({ email: "", password: "" });
@@ -38,7 +39,11 @@ const LoginFormEmailPassword = () => {
         nav("/dashboard");
       }
     } catch (e) {
-      alert("El usuario aún no esta registrado");
+      swal(
+        "Error",
+        "Verifique su contraseña o email, o si el usuario aún no esta registrado",
+        "error"
+      );
     }
   };
 

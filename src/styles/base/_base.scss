@@ -30,3 +30,21 @@ body {
   background-color: transparent;
   border:none;
 }
+
+.swal-modal {
+  background-color: var(--primary-light);
+  border: 3px solid white;
+}
+
+.swal-title {
+  margin: 0px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 20px;
+  color: var(--primary-dark);
+}
+
+.swal-text {
+  margin: 15px;
+  text-align: center;
+  color: var(--primary-dark);
+}

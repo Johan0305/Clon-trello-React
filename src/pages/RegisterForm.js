@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -45,7 +46,7 @@ const RegisterForm = () => {
         nav("/dashboard");
       }
     } catch (e) {
-      alert("El usuario ya se encuentra registrado");
+      swal("Error", "El usuario ya se encuentra registrado", "error");
     }
   };
 

@@ -36,7 +36,7 @@ const Payment = () => {
   }
 
   return (
-    <button onClick={handleClick} className="toggle-boards">
+    <button onClick={handleClick} className="paymentButton-boards">
       Pagar Tableros Ilimitados
     </button>
   );
