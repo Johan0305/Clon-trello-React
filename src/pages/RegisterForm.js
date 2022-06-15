@@ -51,22 +51,24 @@ const RegisterForm = () => {
   const responseFacebook = async (response) => {
     try {
       console.log(response);
-      localStorage.setItem("token", response.accessToken);
-      localStorage.setItem("name", response.name);
-      localStorage.setItem("nickname", response.name);
-      localStorage.setItem("email", response.email);
 
-      /* const name = await localStorage.getItem("name");
-      const nickname = await localStorage.getItem("nickname");
-      const email = await localStorage.getItem("email");
-      const password = await response.id;
+      const name = response.name;
+      const nickname = response.name;
+      const email = response.email;
+      const password = response.id;
 
       const res = await axios.post("http://localhost:8080/users/register", {
         name: name,
         nickname: nickname,
         email: email,
         password: password,
-      }); */
+      });
+      localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("name", res.data.data.name);
+      localStorage.setItem("nickname", res.data.data.nickname);
+      localStorage.setItem("email", res.data.data.email);
+      localStorage.setItem("picture", res.data.data.picture);
+
       const token = await localStorage.getItem("token");
       if (token) {
         nav("/dashboard");
@@ -76,7 +78,7 @@ const RegisterForm = () => {
     }
   };
   const componentClicked = () => {
-    swal("Facebook", "Iniciarás sesión con facebook");
+    swal("Facebook", "Te registrarás con facebook");
   };
 
   return (
@@ -159,7 +161,7 @@ const RegisterForm = () => {
               autoLoad={false}
               fields="name,email,picture"
               onClick={componentClicked}
-              textButton="Inicia sesión con Facebook"
+              textButton="Registrate con Facebook"
               callback={responseFacebook}
               cssClass="loginFormButton"
               icon={
@@ -170,7 +172,7 @@ const RegisterForm = () => {
             />
           </form>
           <Link to="/login" className="linkSites2">
-            ¿Ya tienes cuenta? Inicia sesión
+            ¿Ya tienes cuenta o registro con Facebook? Inicia sesión
           </Link>
         </div>
       </div>
