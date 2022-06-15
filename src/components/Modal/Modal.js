@@ -17,29 +17,33 @@ import {
   TOGGLE_MEMBERS,
   TOGGLE_DELETE,
   TOGGLE_CREATETAG,
+  TOGGLE_ALL_MODAL,
 } from "../../store/reducers/ModalPopover.reducer";
 import UserButtonMembers from "./ModalPopovers/userButtonMembers";
 import { useState } from "react";
 import Calendar from "react-calendar";
 
-const Modal = () => {
+const Modal = ({ id, content }) => {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const { buttonMembers, buttonDelete, buttonCreatetag, buttonCalendar } =
     useSelector((state) => state.modalPopoverReducer);
   const tagName = ["Dev", "BMW", "Diseño", "Cositas por hacer", "Dev"];
   return (
-    <div className="modal-global">
+    <div className="modal-global" key={id}>
       <div className="modal-space">
         <InternalModal>
           <div className="containerInternalModal1">
             <div className="card-details-internalmodal1">
-              <strong>Tarjeta con detalles</strong>
+              <strong>{content}</strong>
               <p>En lista Doing</p>
             </div>
             <button
               onClick={() => {
-                dispatch({ type: DESACTIVATE });
+                return (
+                  dispatch({ type: DESACTIVATE }),
+                  dispatch({ type: TOGGLE_ALL_MODAL })
+                );
               }}
               className="buttonExit"
             >

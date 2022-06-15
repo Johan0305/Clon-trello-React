@@ -74,12 +74,13 @@ const onDragEnd = (result, columns, setColumns) => {
 };
 
 const Playground = () => {
-  const moodal = useSelector((state) => state.modalReducer.modal);
+  const { modal } = useSelector((state) => state.modalReducer);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [modalId, setModalId] = useState("");
+
   return (
     <div className="playground-grid">
-      {moodal === true && <Modal></Modal>}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
@@ -104,7 +105,6 @@ const Playground = () => {
                   {(provided, snapshot) => {
                     return (
                       <div
-                        onDoubleClick={() => dispatch({ type: ACTIVATE })}
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
@@ -113,6 +113,7 @@ const Playground = () => {
                             : "#EBECF0",
                         }}
                       >
+                        {}
                         {column.items.map((item, index) => {
                           return (
                             <Draggable
@@ -132,6 +133,15 @@ const Playground = () => {
                                       margin: "0 0 8px 0",
                                       ...provided.draggableProps.style,
                                     }}
+                                    onDoubleClick={() => {
+                                      return (
+                                        dispatch({
+                                          type: ACTIVATE,
+                                          payload: item.id,
+                                        }),
+                                        console.log(modal)
+                                      );
+                                    }}
                                   >
                                     <div className="card-tags">
                                       <CardTag />
@@ -148,6 +158,12 @@ const Playground = () => {
                                       </div>
                                       <Avatar id={1} />
                                     </div>
+                                    {modal === item.id && (
+                                      <Modal
+                                        content={item.content}
+                                        id={item.id}
+                                      />
+                                    )}
                                   </div>
                                 );
                               }}
