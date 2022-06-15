@@ -4,13 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
 import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGoogle,
-  faApple,
-  faMicrosoft,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
+import FacebookLogin from "react-facebook-login";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -18,6 +16,7 @@ const RegisterForm = () => {
     nickname: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const nav = useNavigate();
   const handleChange = (e) => {
@@ -45,8 +44,41 @@ const RegisterForm = () => {
         nav("/dashboard");
       }
     } catch (e) {
-      alert("El usuario ya se encuentra registrado");
+      swal("Error", "El usuario ya se encuentra registrado", "error");
     }
+  };
+
+  const responseFacebook = async (response) => {
+    try {
+      console.log(response);
+
+      const name = response.name;
+      const nickname = response.name;
+      const email = response.email;
+      const password = response.id;
+
+      const res = await axios.post("http://localhost:8080/users/register", {
+        name: name,
+        nickname: nickname,
+        email: email,
+        password: password,
+      });
+      localStorage.setItem("token", res.data.data.token);
+      localStorage.setItem("name", res.data.data.name);
+      localStorage.setItem("nickname", res.data.data.nickname);
+      localStorage.setItem("email", res.data.data.email);
+      localStorage.setItem("picture", res.data.data.picture);
+
+      const token = await localStorage.getItem("token");
+      if (token) {
+        nav("/dashboard");
+      }
+    } catch (e) {
+      swal("Error", "No se pudo iniciar sesión con facebook", "error");
+    }
+  };
+  const componentClicked = () => {
+    swal("Facebook", "Te registrarás con facebook");
   };
 
   return (
@@ -62,7 +94,7 @@ const RegisterForm = () => {
               type="name"
               name="name"
               text="Introduce tu nombre"
-              pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              pattern="^[A-Za-z].{8,}$"
               errorMessage="El nombre es requerido y debe contener mínimo 8 carácteres"
               onChange={handleChange}
               value={user.name}
@@ -71,7 +103,7 @@ const RegisterForm = () => {
               type="nickname"
               name="nickname"
               text="Introduce tu nickname"
-              pattern="(?=.*[a-z]).{8,}"
+              pattern="^[A-Za-z0-9].{8,}$"
               errorMessage="El nickname es requerido y debe contener mínimo 8 carácteres"
               onChange={handleChange}
               value={user.nickname}
@@ -94,6 +126,15 @@ const RegisterForm = () => {
               onChange={handleChange}
               value={user.password}
             ></InputForm>
+            <InputForm
+              type="password"
+              name="confirmPassword"
+              text="Confirma tu contraseña"
+              pattern={user.password}
+              errorMessage="Las contraseñas no coinciden"
+              onChange={handleChange}
+              value={user.confirmPassword}
+            ></InputForm>
             <small>
               Al registrarte, confirmas que has leído y aceptado nuestras
               <RedirectionLink
@@ -115,30 +156,23 @@ const RegisterForm = () => {
               idbtn={1}
             ></ButtonFormRegister>
             <p>O</p>
-            <ButtonFormRegister
-              text={"Continuar con Google"}
-              icon={<FontAwesomeIcon icon={faGoogle} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Microsoft"}
-              icon={<FontAwesomeIcon icon={faMicrosoft} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Apple"}
-              icon={<FontAwesomeIcon icon={faApple} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
+            <FacebookLogin
+              appId="447152813888823"
+              autoLoad={false}
+              fields="name,email,picture"
+              onClick={componentClicked}
+              textButton="Registrate con Facebook"
+              callback={responseFacebook}
+              cssClass="loginFormButton"
+              icon={
+                <div className="logginButton-Icon">
+                  <FontAwesomeIcon icon={faFacebook} />
+                </div>
+              }
             />
           </form>
           <Link to="/login" className="linkSites2">
-            ¿Ya tienes cuenta? Inicia sesión
+            ¿Ya tienes cuenta o registro con Facebook? Inicia sesión
           </Link>
         </div>
       </div>

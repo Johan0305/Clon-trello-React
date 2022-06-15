@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { getBoards } from "../../../store/reducers/Board.reducer";
 import BoardTile from "./BoardTile";
 import AddBoard from "./AddBoard";
+import swal from "sweetalert";
+import Payment from "../../dashboard/boards menu/Payment";
 
 const BoardsUser = () => {
   const [newBoard, setNewBoard] = useState("");
@@ -36,13 +38,20 @@ const BoardsUser = () => {
           }
         );
       } catch (err) {
-        alert("No pudimos crear el tablero, inténtalo más tarde");
+        swal(
+          "Error",
+          "No pudimos crear el tablero, inténtalo más tarde",
+          "error"
+        );
       }
       dispatch(getBoards());
 
       setNewBoard("");
     } else if (boards.length == 3) {
-      alert("Bajate las luks pues");
+      swal(
+        "Tableros Ilimitados",
+        "Si deseas crear tableros ilimitados debes pagar para esta opción"
+      );
     }
   };
 
@@ -61,6 +70,7 @@ const BoardsUser = () => {
         />
         <button className="add-board-button">Crear tablero</button>
       </form>
+      {boards.length == 3 && <Payment />}
     </div>
   );
 };

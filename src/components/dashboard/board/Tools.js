@@ -10,14 +10,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import {
   faUserPlus,
   faStar,
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
-
 
 const Tools = () => {
   const { boardName } = useParams();
@@ -77,7 +74,7 @@ const Tools = () => {
         </button>
       </form>
       <Separator />
-      <Avatar />
+      <Avatar id={1} />
       <IconButton styleName={"tools-button-add"}>
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
@@ -92,7 +89,5 @@ const Tools = () => {
     </div>
   );
 };
-
-
 
 export default Tools;
