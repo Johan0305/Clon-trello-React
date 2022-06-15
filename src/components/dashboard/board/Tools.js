@@ -2,7 +2,6 @@ import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import ActionButton from "../ActionButton";
-
 import { getBoards } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
@@ -73,10 +72,7 @@ const Tools = () => {
         </button>
       </form>
       <Separator />
-      <div className="container-img-board">
-        <Avatar />
-      </div>
-
+      <Avatar id={1} />
       <IconButton styleName={"tools-button-add"}>
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
