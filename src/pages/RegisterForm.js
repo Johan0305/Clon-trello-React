@@ -4,14 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
 import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGoogle,
-  faApple,
-  faMicrosoft,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
+import FacebookLogin from "react-facebook-login";
 
 const RegisterForm = () => {
   const [user, setUser] = useState({
@@ -49,6 +46,37 @@ const RegisterForm = () => {
     } catch (e) {
       swal("Error", "El usuario ya se encuentra registrado", "error");
     }
+  };
+
+  const responseFacebook = async (response) => {
+    try {
+      console.log(response);
+      localStorage.setItem("token", response.accessToken);
+      localStorage.setItem("name", response.name);
+      localStorage.setItem("nickname", response.name);
+      localStorage.setItem("email", response.email);
+
+      /* const name = await localStorage.getItem("name");
+      const nickname = await localStorage.getItem("nickname");
+      const email = await localStorage.getItem("email");
+      const password = await response.id;
+
+      const res = await axios.post("http://localhost:8080/users/register", {
+        name: name,
+        nickname: nickname,
+        email: email,
+        password: password,
+      }); */
+      const token = await localStorage.getItem("token");
+      if (token) {
+        nav("/dashboard");
+      }
+    } catch (e) {
+      swal("Error", "No se pudo iniciar sesión con facebook", "error");
+    }
+  };
+  const componentClicked = () => {
+    swal("Facebook", "Iniciarás sesión con facebook");
   };
 
   return (
@@ -126,26 +154,19 @@ const RegisterForm = () => {
               idbtn={1}
             ></ButtonFormRegister>
             <p>O</p>
-            <ButtonFormRegister
-              text={"Continuar con Google"}
-              icon={<FontAwesomeIcon icon={faGoogle} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Microsoft"}
-              icon={<FontAwesomeIcon icon={faMicrosoft} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Apple"}
-              icon={<FontAwesomeIcon icon={faApple} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
+            <FacebookLogin
+              appId="447152813888823"
+              autoLoad={false}
+              fields="name,email,picture"
+              onClick={componentClicked}
+              textButton="Inicia sesión con Facebook"
+              callback={responseFacebook}
+              cssClass="loginFormButton"
+              icon={
+                <div className="logginButton-Icon">
+                  <FontAwesomeIcon icon={faFacebook} />
+                </div>
+              }
             />
           </form>
           <Link to="/login" className="linkSites2">

@@ -2,12 +2,6 @@ import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGoogle,
-  faApple,
-  faMicrosoft,
-} from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
@@ -79,29 +73,6 @@ const LoginFormEmailPassword = () => {
               color={"white"}
               background={"#28a746"}
               idbtn={1}
-            />
-            <p>O</p>
-            <ButtonFormRegister
-              text={"Continuar con Google"}
-              icon={<FontAwesomeIcon icon={faGoogle} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-
-            <ButtonFormRegister
-              text={"Continuar con Microsoft"}
-              icon={<FontAwesomeIcon icon={faMicrosoft} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Apple"}
-              icon={<FontAwesomeIcon icon={faApple} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
             />
           </form>
           <Link to="/register-form" className="linkSites2">
