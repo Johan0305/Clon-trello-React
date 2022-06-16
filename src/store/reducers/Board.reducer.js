@@ -1,5 +1,6 @@
 import axios from "axios";
 const BOARDS_SUCCESS = "BOARDS_SUCCESS";
+const THE_BOARDS_SUCCESS = "THE_BOARDS_SUCCESS";
 const BOARDS_ERROR = "BOARDS_ERROR";
 const BOARDS_LOADING = "BOARDS_LOADING";
 
@@ -22,8 +23,24 @@ export const getBoards = (payload) => {
   };
 };
 
+export const getTheBoards = (payload) => {
+  return async function (dispatch) {
+    try {
+      const theBoards = await axios.get("http://localhost:8080/boards", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      dispatch({ type: THE_BOARDS_SUCCESS, payload: theBoards.data.data });
+    } catch (err) {
+      dispatch({ type: BOARDS_ERROR, payload: err });
+    }
+  };
+};
+
 const initialState = {
   boards: [],
+  theBoards: [],
   loading: false,
   error: null,
 };
@@ -40,6 +57,12 @@ export const boardReducer = (state = initialState, action) => {
         ...state,
         boards: action.payload,
       };
+    case THE_BOARDS_SUCCESS:
+      return {
+        ...state,
+        theBoards: action.payload,
+      };
+
     case BOARDS_ERROR:
       return {
         ...state,

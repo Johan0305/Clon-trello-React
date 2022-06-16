@@ -2,14 +2,14 @@ import Popover from "../Popover";
 import ActionButton from "../ActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_CREATE } from "../../../store/reducers/Nav.reducer";
-import { getBoards } from "../../../store/reducers/Board.reducer";
+import { getBoards, getTheBoards } from "../../../store/reducers/Board.reducer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const ButtonCreate = () => {
   const [newBoard, setNewBoard] = useState("");
   const dispatch = useDispatch();
-  const { boards } = useSelector((state) => state.boardReducer);
+  const { theBoards } = useSelector((state) => state.boardReducer);
   const { buttonCreate } = useSelector((state) => state.navReducer);
   useEffect(() => {
     dispatch(getBoards());
@@ -20,7 +20,7 @@ const ButtonCreate = () => {
   };
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (boards.length < 3) {
+    if (theBoards.length < 3) {
       try {
         const res = await axios.post(
           "http://localhost:8080/boards",
@@ -39,9 +39,10 @@ const ButtonCreate = () => {
       } catch (err) {
         alert("No pudimos crear el tablero, inténtalo más tarde");
       }
-      dispatch(getBoards());
+      dispatch(getTheBoards());
+      dispatch({ type: TOGGLE_CREATE, payload: !buttonCreate });
       setNewBoard("");
-    } else if (boards.length == 3) {
+    } else if (theBoards.length == 3) {
       alert("Bajate las luks pues");
     }
   };

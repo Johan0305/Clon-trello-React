@@ -1,28 +1,24 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getBoards } from "../../../store/reducers/Board.reducer";
+import { getTheBoards } from "../../../store/reducers/Board.reducer";
 import { ColorPicker } from "@mantine/core";
 import BoardTile from "./BoardTile";
 
 const BoardsUser = () => {
-  const [newBoard, setNewBoard] = useState("");
+  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
-  const { boards } = useSelector((state) => state.boardReducer);
-  const [color, onChange] = useState("#A2BDE8");
+  const [newBoard, setNewBoard] = useState("");
+  const [childChange, setChildChange] = useState(0);
+  const [color, setColor] = useState("#A2BDE8");
 
   useEffect(() => {
-    dispatch(getBoards());
-  }, []);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setNewBoard(value);
-  };
+    dispatch(getTheBoards());
+  }, [childChange]);
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (boards.length < 3) {
+    if (theBoards.length < 3) {
       try {
         const res = await axios.post(
           "http://localhost:8080/boards",
@@ -38,28 +34,35 @@ const BoardsUser = () => {
             },
           }
         );
-        dispatch(getBoards());
+        dispatch(getTheBoards());
       } catch (err) {
         alert("No pudimos crear el tablero, inténtalo más tarde");
       }
 
       setNewBoard("");
-    } else if (boards.length === 3) {
+    } else if (theBoards.length === 3) {
       alert("Bajate las luks pues");
     }
   };
 
   return (
     <div className="boards-user">
-      {boards.map((item, id) => {
-        return <BoardTile boardName={item.name} boardId={item._id} />;
+      {theBoards.map((item, id) => {
+        return (
+          <BoardTile
+            key={id}
+            boardName={item.name}
+            boardId={item._id}
+            changeChild={setChildChange}
+          />
+        );
       })}
       <form onSubmit={handleCreate} className="add-board add-board-form">
         <div className="add-board-form-header">
           <input
             type="text"
             value={newBoard}
-            onChange={handleChange}
+            onChange={(e) => setNewBoard(e.target.value)}
             className="add-board-input"
             placeholder="Crea un nuevo tablero..."
           />
@@ -76,7 +79,7 @@ const BoardsUser = () => {
             withPicker={false}
             fullWidth
             value={color}
-            onChange={onChange}
+            onChange={setColor}
             swatchesPerRow={7}
             swatches={["#FF7F50", "#FFA500", "#9370DB", "#A2BDE8", "#9ACD32"]}
             size="xs"
