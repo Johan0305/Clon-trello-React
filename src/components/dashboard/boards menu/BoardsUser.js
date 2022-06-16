@@ -11,11 +11,12 @@ const BoardsUser = () => {
   const [newBoard, setNewBoard] = useState("");
   const [childChange, setChildChange] = useState(0);
   const [color, setColor] = useState("#A2BDE8");
-
+  const renderedBoards = [];
   useEffect(() => {
     dispatch(getTheBoards());
-  }, [childChange]);
+  }, []);
 
+  const drawBoards = () => {};
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
@@ -44,7 +45,7 @@ const BoardsUser = () => {
       alert("Bajate las luks pues");
     }
   };
-
+  console.log("desde la pagina", theBoards);
   return (
     <div className="boards-user">
       {theBoards.map((item, id) => {
@@ -82,7 +83,6 @@ const BoardsUser = () => {
             onChange={setColor}
             swatchesPerRow={7}
             swatches={["#FF7F50", "#FFA500", "#9370DB", "#A2BDE8", "#9ACD32"]}
-            size="xs"
           />
         </div>
       </form>

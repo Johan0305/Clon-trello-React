@@ -31,6 +31,8 @@ const BoardTile = ({ boardName, boardId, changeChild }) => {
     const updatedBoard = await axios.put(routeThisBoard, {
       name: newBoardName,
     });
+
+    changeChild(1);
   };
 
   const handleMark = async (e) => {
@@ -39,6 +41,8 @@ const BoardTile = ({ boardName, boardId, changeChild }) => {
     const markBoard = await axios.put(routeThisBoard, {
       marked: mark,
     });
+
+    changeChild(1);
   };
 
   return (
