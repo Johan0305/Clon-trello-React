@@ -5,6 +5,14 @@
     align-items: center;
 }
 
+.lCDescription-formFacebook{
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
 .lCDescription-form-email{
     width: 60%;
     font-size: 18px;
@@ -26,4 +34,19 @@
 
 .lCDescription-form-button:hover{
     background: #97D7C7;
+}
+
+.lCDescription-form-buttonFb{
+    background: var(--primary);
+    border: 1px solid #e2d469;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.lCDescription-form-buttonFb:hover{
+    background: var(--positive);
 }

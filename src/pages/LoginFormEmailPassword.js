@@ -2,12 +2,9 @@ import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import FacebookLogin from "react-facebook-login";
 import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
@@ -61,35 +58,6 @@ const LoginFormEmailPassword = () => {
     }
   };
 
-  const responseFacebook = async (response) => {
-    try {
-      console.log(response);
-
-      const email = response.email;
-      const password = response.id;
-
-      const res = await axios.post("http://localhost:8080/users/login", {
-        email: email,
-        password: password,
-      });
-      localStorage.setItem("token", res.data.data.token);
-      ls.set("name", res.data.data.name);
-      ls.set("nickname", res.data.data.nickname);
-      ls.set("email", res.data.data.email);
-      ls.set("picture", res.data.data.picture);
-
-      const token = await localStorage.getItem("token");
-      if (token) {
-        nav("/dashboard");
-      }
-    } catch (e) {
-      swal("Error", "No se pudo iniciar sesión con facebook", "error");
-    }
-  };
-  const componentClicked = () => {
-    swal("Facebook", "Iniciarás sesión con facebook");
-  };
-
   return (
     <div className="loginContainer">
       <div className="loginMain">
@@ -122,21 +90,6 @@ const LoginFormEmailPassword = () => {
               color={"white"}
               background={"#28a746"}
               idbtn={1}
-            />
-            <p>O</p>
-            <FacebookLogin
-              appId="447152813888823"
-              autoLoad={false}
-              fields="name,email,picture"
-              onClick={componentClicked}
-              textButton="Inicia sesión con Facebook"
-              callback={responseFacebook}
-              cssClass="loginFormButton"
-              icon={
-                <div className="logginButton-Icon">
-                  <FontAwesomeIcon icon={faFacebook} />
-                </div>
-              }
             />
           </form>
           <Link to="/register-form" className="linkSites2">
