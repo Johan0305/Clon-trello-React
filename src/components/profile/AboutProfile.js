@@ -1,12 +1,29 @@
 import { useState } from "react";
 import axios from "axios";
+import ls from "localstorage-slim";
+import encUTF8 from "crypto-js/enc-utf8";
+import AES from "crypto-js/aes";
 
 const AboutProfile = () => {
-  const [name, setName] = useState(localStorage.getItem("name"));
-  const [nickname, setNickname] = useState(localStorage.getItem("nickname"));
+  ls.config.encrypt = true;
+  ls.config.secret = "secret-string";
+
+  ls.config.encrypter = (data, secret) =>
+    AES.encrypt(JSON.stringify(data), secret).toString();
+
+  ls.config.decrypter = (data, secret) => {
+    try {
+      return JSON.parse(AES.decrypt(data, secret).toString(encUTF8));
+    } catch (e) {
+      return data;
+    }
+  };
+
+  const [name, setName] = useState(ls.get("name"));
+  const [nickname, setNickname] = useState(ls.get("nickname"));
   const [image, setImage] = useState(null); //capturamos para mostrar base64
   const [file, setFile] = useState(null); //capturamos archivo para enviar obj
-  const [picture, setPicture] = useState(localStorage.getItem("picture"));
+  const [picture, setPicture] = useState(ls.get("picture"));
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,8 +35,8 @@ const AboutProfile = () => {
     data.append("picture", file);
 
     localStorage.removeItem("name", "nickname", "picture");
-    localStorage.setItem("name", name);
-    localStorage.setItem("nickname", nickname);
+    ls.set("name", name);
+    ls.set("nickname", nickname);
 
     const response = await axios.put("http://localhost:8080/users", data, {
       headers: {
@@ -35,8 +52,8 @@ const AboutProfile = () => {
         },
       }
     );
-    localStorage.setItem("picture", updatePicture.data.data.picture);
-    setPicture(localStorage.getItem("picture"));
+    ls.set("picture", updatePicture.data.data.picture);
+    setPicture(ls.get("picture"));
   };
 
   const readFile = (file) => {
