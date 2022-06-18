@@ -9,14 +9,11 @@ const BoardsUser = () => {
   const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState("");
-  const [childChange, setChildChange] = useState(0);
   const [color, setColor] = useState("#A2BDE8");
-  const renderedBoards = [];
   useEffect(() => {
     dispatch(getTheBoards());
   }, []);
 
-  const drawBoards = () => {};
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
@@ -45,7 +42,8 @@ const BoardsUser = () => {
       alert("Bajate las luks pues");
     }
   };
-  console.log("desde la pagina", theBoards);
+
+  console.log("the boards", theBoards);
   return (
     <div className="boards-user">
       {theBoards.map((item, id) => {
@@ -54,7 +52,7 @@ const BoardsUser = () => {
             key={id}
             boardName={item.name}
             boardId={item._id}
-            changeChild={setChildChange}
+            boardMark={item.marked}
           />
         );
       })}

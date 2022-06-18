@@ -5,18 +5,15 @@ import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
 const Board = () => {
   const { boardName } = useParams();
-  const boards = useSelector((state) => state.boardReducer);
-  const thisBoard = boards.boards.filter((x) => x.name === boardName);
+  const theBoards = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
-  const routeThisBoard = `http://localhost:8080/boards/${thisBoard[0]._id}`;
-  const theBoard = async () => {
-    const res = await axios.get(routeThisBoard);
-    setData(res.data.data);
+  const theBoard = () => {
+    const res = theBoards.theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
   };
   useEffect(() => {
     theBoard();
@@ -29,7 +26,7 @@ const Board = () => {
           dispatch({ type: TOGGLE_ALL });
         }}
       >
-        <Tools />
+        <Tools boardId={data._id} boardMark={data.boardMark} />
         <Playground />
       </div>
     </div>

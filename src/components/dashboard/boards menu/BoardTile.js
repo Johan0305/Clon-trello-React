@@ -1,54 +1,56 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateBoard,
+  deleteBoard,
+} from "../../../store/reducers/Board.reducer";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import ActionButton from "../ActionButton";
 
-const BoardTile = ({ boardName, boardId, changeChild }) => {
+const BoardTile = ({ boardName, boardId, boardMark }) => {
   const { theBoards } = useSelector((state) => state.boardReducer);
-  const routeThisBoard = `http://localhost:8080/boards/${boardId}`;
+  const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
+  const [isMarked, setIsMarked] = useState(boardMark);
 
   const theBoard = () => {
-    const res = theBoards.filter((item) => item._id === boardId);
+    const res = theBoards.filter((item) => item.name === boardName);
     setData(res[0]);
-  };
-
-  const deleteBoard = async () => {
-    const deleteThis = await axios.delete(routeThisBoard);
-    changeChild(1);
+    setIsMarked(res[0].marked);
   };
 
   useEffect(() => {
     theBoard();
   }, []);
 
-  const handleSubmitName = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    const updatedBoard = await axios.put(routeThisBoard, {
-      name: newBoardName,
-    });
-
-    changeChild(1);
+    dispatch(
+      updateBoard(boardId, {
+        ...data,
+        name: newBoardName,
+      })
+    );
   };
 
   const handleMark = async (e) => {
     e.preventDefault();
-    const mark = !data.marked;
-    const markBoard = await axios.put(routeThisBoard, {
-      marked: mark,
-    });
-
-    changeChild(1);
+    setIsMarked(!isMarked);
+    dispatch(
+      updateBoard(boardId, {
+        ...data,
+        marked: isMarked,
+      })
+    );
   };
 
   return (
     <div className="board-tile" style={{ backgroundColor: data.color }}>
       <div className="board-tile-header">
-        <form onBlur={handleSubmitName}>
+        <form onBlur={handleUpdate}>
           <input
             type="text"
             value={newBoardName}
@@ -56,11 +58,10 @@ const BoardTile = ({ boardName, boardId, changeChild }) => {
             onChange={(e) => setNewBoardName(e.target.value)}
           />
         </form>
-
         <button
           onClick={handleMark}
           className={
-            data.marked
+            isMarked
               ? "board-mark-button-marked button-wrapper"
               : "board-mark-button button-wrapper"
           }
@@ -72,9 +73,7 @@ const BoardTile = ({ boardName, boardId, changeChild }) => {
         <Link to={`/board/${boardName}`}>
           <ActionButton label={"Ir al tablero"} styleName={"board-tile-go"} />
         </Link>
-        <a onClick={deleteBoard} className="board-tile-delete">
-          <FontAwesomeIcon icon={faTrashCan} />
-        </a>
+        <a>Eliminar</a>
       </div>
     </div>
   );

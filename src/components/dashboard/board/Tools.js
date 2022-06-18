@@ -2,11 +2,14 @@ import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import ActionButton from "../ActionButton";
-import { getBoards } from "../../../store/reducers/Board.reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import {
+  updateBoard,
+  deleteBoard,
+} from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -15,45 +18,49 @@ import {
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Tools = () => {
+const Tools = ({ boardId, boardMark }) => {
+  const { theBoards } = useSelector((state) => state.boardReducer);
+  const dispatch = useDispatch();
   const { boardName } = useParams();
-  const boards = useSelector((state) => state.boardReducer);
-  const thisBoard = boards.boards.filter((x) => x.name === boardName);
   const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
-  const dispatch = useDispatch();
-  const routeThisBoard = `http://localhost:8080/boards/${thisBoard[0]._id}`;
+  const [isMarked, setIsMarked] = useState(boardMark);
 
-  const theBoard = async () => {
-    const res = await axios.get(routeThisBoard);
-    setData(res.data.data);
+  const theBoard = () => {
+    const res = theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
+    setIsMarked(res[0].marked);
   };
 
-  const handleSubmitName = async (e) => {
+  useEffect(() => {
+    theBoard();
+  }, []);
+
+  const handleUpdate = async (e) => {
     e.preventDefault();
-    const updatedBoard = await axios.put(routeThisBoard, {
-      name: newBoardName,
-    });
+    dispatch(
+      updateBoard(boardId, {
+        ...data,
+        name: newBoardName,
+      })
+    );
   };
 
   const handleMark = async (e) => {
     e.preventDefault();
-    const mark = !data.marked;
-    const markBoard = await axios.put(routeThisBoard, {
-      marked: mark,
-    });
-    theBoard();
+    setIsMarked(!isMarked);
+    dispatch(
+      updateBoard(boardId, {
+        ...data,
+        marked: isMarked,
+      })
+    );
   };
-
-  useEffect(() => {
-    dispatch(getBoards());
-    theBoard();
-  }, []);
 
   return (
     <div className="tools-bar">
       <div className="tools-boardName">
-        <form onBlur={handleSubmitName}>
+        <form onBlur={handleUpdate}>
           <input
             type="text"
             value={newBoardName}
@@ -61,8 +68,8 @@ const Tools = () => {
           />
         </form>
       </div>
-      <form onSubmit={handleMark}>
-        <button className="button-wrapper">
+      <form>
+        <button className="button-wrapper" onClick={handleMark}>
           <IconButton
             styleName={
               data.marked ? "tools-button-fav-marked" : "tools-button-fav"
