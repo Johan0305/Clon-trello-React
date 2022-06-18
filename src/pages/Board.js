@@ -20,7 +20,7 @@ const Board = () => {
     const res = await theBoards.filter((item) => item.name === boardName);
     setData(res[0]);
   };
-  console.log(data.marked);
+
   return (
     <div className="board-background" style={{ backgroundColor: data.color }}>
       <Nav navColor={data.color} />
@@ -29,7 +29,7 @@ const Board = () => {
           dispatch({ type: TOGGLE_ALL });
         }}
       >
-        <Tools boardId={data._id} boardMark={data.marked} />
+        <Tools data={data} />
         <Playground />
       </div>
     </div>
