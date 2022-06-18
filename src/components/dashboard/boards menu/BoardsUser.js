@@ -6,7 +6,7 @@ import { ColorPicker } from "@mantine/core";
 import BoardTile from "./BoardTile";
 
 const BoardsUser = () => {
-  const { theBoards } = useSelector((state) => state.boardReducer);
+  const { theBoards, loading } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState("");
   const [color, setColor] = useState("#A2BDE8");
@@ -39,19 +39,21 @@ const BoardsUser = () => {
       alert("Bajate las luks pues");
     }
   };
-
+  console.log(loading);
   return (
     <div className="boards-user">
-      {theBoards.map((item, id) => {
-        return (
-          <BoardTile
-            key={id}
-            boardName={item.name}
-            boardId={item._id}
-            boardMark={item.marked}
-          />
-        );
-      })}
+      {!loading &&
+        theBoards.map((item, id) => {
+          return (
+            <BoardTile
+              key={id}
+              boardName={item.name}
+              boardId={item._id}
+              boardMark={item.marked}
+            />
+          );
+        })}
+
       <form onSubmit={handleCreate} className="add-board add-board-form">
         <div className="add-board-form-header">
           <input

@@ -32,10 +32,12 @@ export const getTheBoards = () => {
 export const deleteBoard = (boardId) => {
   return async function (dispatch) {
     try {
+      dispatch({ type: BOARDS_LOADING, payload: true });
       const board = await axios.delete(
         `http://localhost:8080/boards/${boardId}`
       );
       dispatch({ type: DELETE_BOARD, payload: boardId });
+      dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
       alert("No se pudo borrar el tablero");
     }
@@ -90,5 +92,4 @@ export const boardReducer = (state = initialState, action) => {
     default:
       return state;
   }
-  return;
 };

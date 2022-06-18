@@ -44,7 +44,12 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
       })
     );
   };
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    dispatch(deleteBoard(boardId));
+  };
 
+  console.log(theBoards);
   return (
     <div className="board-tile" style={{ backgroundColor: data.color }}>
       <div className="board-tile-header">
@@ -71,13 +76,7 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
         <Link to={`/board/${boardName}`}>
           <ActionButton label={"Ir al tablero"} styleName={"board-tile-go"} />
         </Link>
-        <a
-          onClick={() => {
-            dispatch(deleteBoard(boardId));
-          }}
-        >
-          Eliminar
-        </a>
+        <button onClick={handleDelete}>Eliminar</button>
       </div>
     </div>
   );
