@@ -5,7 +5,6 @@ import ActionButton from "../ActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   updateBoard,
   deleteBoard,
@@ -24,12 +23,10 @@ const Tools = ({ boardId, boardMark }) => {
   const { boardName } = useParams();
   const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
-  const [isMarked, setIsMarked] = useState(boardMark);
 
   const theBoard = () => {
     const res = theBoards.filter((item) => item.name === boardName);
     setData(res[0]);
-    setIsMarked(res[0].marked);
   };
 
   useEffect(() => {
@@ -48,13 +45,13 @@ const Tools = ({ boardId, boardMark }) => {
 
   const handleMark = async (e) => {
     e.preventDefault();
-    setIsMarked(!isMarked);
     dispatch(
       updateBoard(boardId, {
         ...data,
-        marked: isMarked,
+        marked: !boardMark,
       })
     );
+    console.log(boardMark);
   };
 
   return (
@@ -71,8 +68,8 @@ const Tools = ({ boardId, boardMark }) => {
       <form>
         <button className="button-wrapper" onClick={handleMark}>
           <IconButton
-            styleName={
-              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
+            colorChange={
+              boardMark ? "tools-button-fav-marked" : "tools-button-fav"
             }
           >
             <FontAwesomeIcon icon={faStar} />

@@ -14,6 +14,7 @@ const initialState = {
 
 export const getTheBoards = () => {
   return async function (dispatch) {
+    dispatch({ type: BOARDS_LOADING, payload: true });
     try {
       const boards = await axios.get("http://localhost:8080/boards", {
         headers: {
@@ -24,6 +25,7 @@ export const getTheBoards = () => {
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
     }
+    dispatch({ type: BOARDS_LOADING, payload: false });
   };
 };
 
@@ -47,7 +49,6 @@ export const updateBoard = (boardId, data) => {
         `http://localhost:8080/boards/${boardId}`,
         data
       );
-      console.log("actualizar", data);
       dispatch({ type: UPDATE_BOARD, payload: data });
     } catch (err) {
       alert("No se pudo actualizar tu tablero");

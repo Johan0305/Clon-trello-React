@@ -8,25 +8,28 @@ import { useParams } from "react-router-dom";
 
 const Board = () => {
   const { boardName } = useParams();
-  const theBoards = useSelector((state) => state.boardReducer);
+  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
-  const theBoard = () => {
-    const res = theBoards.theBoards.filter((item) => item.name === boardName);
-    setData(res[0]);
-  };
+
   useEffect(() => {
     theBoard();
-  }, []);
+  });
+
+  const theBoard = async () => {
+    const res = await theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
+  };
+  console.log(data.marked);
   return (
     <div className="board-background" style={{ backgroundColor: data.color }}>
       <Nav navColor={data.color} />
       <div
-        onClick={(event) => {
+        onClick={() => {
           dispatch({ type: TOGGLE_ALL });
         }}
       >
-        <Tools boardId={data._id} boardMark={data.boardMark} />
+        <Tools boardId={data._id} boardMark={data.marked} />
         <Playground />
       </div>
     </div>

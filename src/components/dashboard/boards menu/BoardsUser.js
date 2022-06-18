@@ -10,15 +10,12 @@ const BoardsUser = () => {
   const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState("");
   const [color, setColor] = useState("#A2BDE8");
-  useEffect(() => {
-    dispatch(getTheBoards());
-  }, []);
 
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
       try {
-        const res = await axios.post(
+        await axios.post(
           "http://localhost:8080/boards",
           {
             name: newBoard,
@@ -43,7 +40,6 @@ const BoardsUser = () => {
     }
   };
 
-  console.log("the boards", theBoards);
   return (
     <div className="boards-user">
       {theBoards.map((item, id) => {
