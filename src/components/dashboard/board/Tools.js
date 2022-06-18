@@ -24,18 +24,16 @@ const Tools = ({ boardId, boardMark }) => {
   const { boardName } = useParams();
   const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
-  const [isMarked, setIsMarked] = useState(boardMark);
 
   const theBoard = () => {
     const res = theBoards.filter((item) => item.name === boardName);
     setData(res[0]);
-    setIsMarked(res[0].marked);
   };
 
   useEffect(() => {
     theBoard();
   }, []);
-
+  console.log(boardId);
   const handleUpdate = async (e) => {
     e.preventDefault();
     dispatch(
@@ -48,11 +46,11 @@ const Tools = ({ boardId, boardMark }) => {
 
   const handleMark = async (e) => {
     e.preventDefault();
-    setIsMarked(!isMarked);
+
     dispatch(
       updateBoard(boardId, {
         ...data,
-        marked: isMarked,
+        marked: !boardMark,
       })
     );
   };
@@ -72,7 +70,7 @@ const Tools = ({ boardId, boardMark }) => {
         <button className="button-wrapper" onClick={handleMark}>
           <IconButton
             styleName={
-              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
+              boardMark ? "tools-button-fav-marked" : "tools-button-fav"
             }
           >
             <FontAwesomeIcon icon={faStar} />

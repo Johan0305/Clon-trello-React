@@ -26,8 +26,8 @@ const Board = () => {
           dispatch({ type: TOGGLE_ALL });
         }}
       >
-        <Tools boardId={data._id} boardMark={data.boardMark} />
-        <Playground />
+        <Tools boardId={data._id} boardMark={data.mark} />
+        <Playground boardId={data._id} />
       </div>
     </div>
   );

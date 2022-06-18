@@ -14,12 +14,10 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
-  const [isMarked, setIsMarked] = useState(boardMark);
 
   const theBoard = () => {
     const res = theBoards.filter((item) => item.name === boardName);
     setData(res[0]);
-    setIsMarked(res[0].marked);
   };
 
   useEffect(() => {
@@ -38,11 +36,10 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
 
   const handleMark = async (e) => {
     e.preventDefault();
-    setIsMarked(!isMarked);
     dispatch(
       updateBoard(boardId, {
         ...data,
-        marked: isMarked,
+        marked: !boardMark,
       })
     );
   };
@@ -61,7 +58,7 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
         <button
           onClick={handleMark}
           className={
-            isMarked
+            boardMark
               ? "board-mark-button-marked button-wrapper"
               : "board-mark-button button-wrapper"
           }

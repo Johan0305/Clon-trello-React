@@ -43,7 +43,7 @@ const BoardsUser = () => {
     }
   };
 
-  console.log("the boards", theBoards);
+  //console.log("the boards", theBoards);
   return (
     <div className="boards-user">
       {theBoards.map((item, id) => {
