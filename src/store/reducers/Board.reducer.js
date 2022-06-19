@@ -15,12 +15,14 @@ const initialState = {
 export const getTheBoards = () => {
   return async function (dispatch) {
     try {
+      dispatch({ type: BOARDS_LOADING, payload: true });
       const boards = await axios.get("http://localhost:8080/boards", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       dispatch({ type: THE_BOARDS_SUCCESS, payload: boards.data.data });
+      dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
     }

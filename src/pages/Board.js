@@ -8,9 +8,10 @@ import { useParams } from "react-router-dom";
 
 const Board = () => {
   const { boardName } = useParams();
-  const { theBoards } = useSelector((state) => state.boardReducer);
+  const { theBoards, loading } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
+  console.log(loading);
 
   useEffect(() => {
     theBoard();

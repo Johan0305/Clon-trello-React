@@ -45,17 +45,16 @@ const BoardsUser = () => {
   } else {
     return (
       <div className="boards-user">
-        {!loading &&
-          theBoards.map((item, id) => {
-            return (
-              <BoardTile
-                key={id}
-                boardName={item.name}
-                boardId={item._id}
-                boardMark={item.marked}
-              />
-            );
-          })}
+        {theBoards.map((item, id) => {
+          return (
+            <BoardTile
+              key={id}
+              boardName={item.name}
+              boardId={item._id}
+              boardMark={item.marked}
+            />
+          );
+        })}
 
         <form onSubmit={handleCreate} className="add-board add-board-form">
           <div className="add-board-form-header">
