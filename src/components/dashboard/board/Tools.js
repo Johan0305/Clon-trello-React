@@ -5,7 +5,6 @@ import ActionButton from "../ActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   updateBoard,
   deleteBoard,
@@ -18,11 +17,10 @@ import {
   faEllipsisV,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Tools = ({ boardId, boardMark }) => {
+const Tools = ({ data }) => {
   const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const { boardName } = useParams();
-  const [data, setData] = useState({});
   const [newBoardName, setNewBoardName] = useState(boardName);
 
   const theBoard = () => {
@@ -34,10 +32,11 @@ const Tools = ({ boardId, boardMark }) => {
     theBoard();
   }, []);
 
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     dispatch(
-      updateBoard(boardId, {
+      updateBoard(data._id, {
         ...data,
         name: newBoardName,
       })
@@ -46,13 +45,13 @@ const Tools = ({ boardId, boardMark }) => {
 
   const handleMark = async (e) => {
     e.preventDefault();
-
     dispatch(
-      updateBoard(boardId, {
+      updateBoard(data._id, {
         ...data,
-        marked: !boardMark,
+        marked: !data.marked,
       })
     );
+    console.log(data);
   };
 
   return (
@@ -69,8 +68,8 @@ const Tools = ({ boardId, boardMark }) => {
       <form>
         <button className="button-wrapper" onClick={handleMark}>
           <IconButton
-            styleName={
-              boardMark ? "tools-button-fav-marked" : "tools-button-fav"
+            colorChange={
+              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
             }
           >
             <FontAwesomeIcon icon={faStar} />

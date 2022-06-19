@@ -15,12 +15,14 @@ const initialState = {
 export const getTheBoards = () => {
   return async function (dispatch) {
     try {
+      dispatch({ type: BOARDS_LOADING, payload: true });
       const boards = await axios.get("http://localhost:8080/boards", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
       dispatch({ type: THE_BOARDS_SUCCESS, payload: boards.data.data });
+      dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
     }
@@ -30,10 +32,12 @@ export const getTheBoards = () => {
 export const deleteBoard = (boardId) => {
   return async function (dispatch) {
     try {
+      dispatch({ type: BOARDS_LOADING, payload: true });
       const board = await axios.delete(
         `http://localhost:8080/boards/${boardId}`
       );
       dispatch({ type: DELETE_BOARD, payload: boardId });
+      dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
       alert("No se pudo borrar el tablero");
     }
@@ -47,7 +51,6 @@ export const updateBoard = (boardId, data) => {
         `http://localhost:8080/boards/${boardId}`,
         data
       );
-      console.log("actualizar", data);
       dispatch({ type: UPDATE_BOARD, payload: data });
     } catch (err) {
       alert("No se pudo actualizar tu tablero");
@@ -89,5 +92,4 @@ export const boardReducer = (state = initialState, action) => {
     default:
       return state;
   }
-  return;
 };

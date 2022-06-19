@@ -88,11 +88,13 @@ const Playground = ({ boardId }) => {
   const moodal = useSelector((state) => state.modalReducer.modal);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [data, setData] = useState();
   const [lists, setLists] = useState([]);
+
 
   return (
     <div className="playground-grid">
-      {moodal === true && <Modal></Modal>}
+      {moodal === true && <Modal data={data} />}
       <DragDropContext
         onDragEnd={(result) => onDragEnd(result, lists, setLists)}
       >
@@ -117,7 +119,6 @@ const Playground = ({ boardId }) => {
                   {(provided, snapshot) => {
                     return (
                       <div
-                        onDoubleClick={() => dispatch({ type: ACTIVATE })}
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                         style={{
@@ -136,6 +137,14 @@ const Playground = ({ boardId }) => {
                               {(provided, snapshot) => {
                                 return (
                                   <div
+                                    onDoubleClick={() => {
+                                      setData(item);
+                                      console.log(snapshot);
+                                      dispatch({
+                                        type: ACTIVATE,
+                                        payload: true,
+                                      });
+                                    }}
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
