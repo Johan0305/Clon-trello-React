@@ -39,51 +39,55 @@ const BoardsUser = () => {
       alert("Bajate las luks pues");
     }
   };
-  console.log(loading);
-  return (
-    <div className="boards-user">
-      {!loading &&
-        theBoards.map((item, id) => {
-          return (
-            <BoardTile
-              key={id}
-              boardName={item.name}
-              boardId={item._id}
-              boardMark={item.marked}
-            />
-          );
-        })}
 
-      <form onSubmit={handleCreate} className="add-board add-board-form">
-        <div className="add-board-form-header">
-          <input
-            type="text"
-            value={newBoard}
-            onChange={(e) => setNewBoard(e.target.value)}
-            className="add-board-input"
-            placeholder="Crea un nuevo tablero..."
-          />
-        </div>
-        <div className="add-board-form-footer">
-          <button
-            className="add-board-button"
-            style={{ backgroundColor: color }}
-          >
-            Crear
-          </button>
-          <ColorPicker
-            format="hex"
-            withPicker={false}
-            fullWidth
-            value={color}
-            onChange={setColor}
-            swatchesPerRow={7}
-            swatches={["#FF7F50", "#FFA500", "#9370DB", "#A2BDE8", "#9ACD32"]}
-          />
-        </div>
-      </form>
-    </div>
-  );
+  if (loading === true) {
+    return <h1>Actualizando...</h1>;
+  } else {
+    return (
+      <div className="boards-user">
+        {!loading &&
+          theBoards.map((item, id) => {
+            return (
+              <BoardTile
+                key={id}
+                boardName={item.name}
+                boardId={item._id}
+                boardMark={item.marked}
+              />
+            );
+          })}
+
+        <form onSubmit={handleCreate} className="add-board add-board-form">
+          <div className="add-board-form-header">
+            <input
+              type="text"
+              value={newBoard}
+              onChange={(e) => setNewBoard(e.target.value)}
+              className="add-board-input"
+              placeholder="Crea un nuevo tablero..."
+            />
+          </div>
+          <div className="add-board-form-footer">
+            <button
+              className="add-board-button"
+              style={{ backgroundColor: color }}
+            >
+              Crear
+            </button>
+            <ColorPicker
+              format="hex"
+              withPicker={false}
+              fullWidth
+              value={color}
+              onChange={setColor}
+              swatchesPerRow={7}
+              swatches={["#FF7F50", "#FFA500", "#9370DB", "#A2BDE8", "#9ACD32"]}
+            />
+          </div>
+        </form>
+      </div>
+    );
+  }
 };
 
 export default BoardsUser;

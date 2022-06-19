@@ -14,7 +14,6 @@ const initialState = {
 
 export const getTheBoards = () => {
   return async function (dispatch) {
-    dispatch({ type: BOARDS_LOADING, payload: true });
     try {
       const boards = await axios.get("http://localhost:8080/boards", {
         headers: {
@@ -25,7 +24,6 @@ export const getTheBoards = () => {
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
     }
-    dispatch({ type: BOARDS_LOADING, payload: false });
   };
 };
 
