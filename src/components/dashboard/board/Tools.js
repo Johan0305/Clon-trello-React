@@ -33,7 +33,7 @@ const Tools = ({ boardId, boardMark }) => {
   useEffect(() => {
     theBoard();
   }, []);
-  console.log(boardId);
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     dispatch(

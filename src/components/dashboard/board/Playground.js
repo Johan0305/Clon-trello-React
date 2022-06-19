@@ -41,6 +41,7 @@ const Playground = ({ boardId }) => {
   console.log(boardId);
   const getLists = async () => {
     const res = await axios.get(`http://localhost:8080/lists/${boardId}`);
+    setLists(res.data.data);
   };
 
   useEffect(() => {
@@ -87,14 +88,15 @@ const Playground = ({ boardId }) => {
   const moodal = useSelector((state) => state.modalReducer.modal);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(columnsFromBackend);
+  const [lists, setLists] = useState([]);
 
   return (
     <div className="playground-grid">
       {moodal === true && <Modal></Modal>}
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        onDragEnd={(result) => onDragEnd(result, lists, setLists)}
       >
-        {Object.entries(columns).map(([columnId, column]) => {
+        {lists.map((item, _id) => {
           return (
             <div
               style={{
@@ -102,16 +104,16 @@ const Playground = ({ boardId }) => {
                 flexDirection: "column",
                 alignItems: "center",
               }}
-              key={columnId}
+              key={_id}
             >
               <div className="list">
                 <div className="list-header">
-                  <h3>{column.name}</h3>
+                  <h3>{item.name}</h3>
                   <a>
                     <FontAwesomeIcon icon={faEllipsis} />
                   </a>
                 </div>
-                {/* <Droppable droppableId={columnId} key={columnId}>
+                <Droppable droppableId={item._id} key={_id}>
                   {(provided, snapshot) => {
                     return (
                       <div
@@ -124,11 +126,11 @@ const Playground = ({ boardId }) => {
                             : "#EBECF0",
                         }}
                       >
-                        {column.items.map((item, index) => {
+                        {item.cards.map((item, index) => {
                           return (
                             <Draggable
-                              key={item.id}
-                              draggableId={item.id}
+                              key={item._id}
+                              draggableId={item._id}
                               index={index}
                             >
                               {(provided, snapshot) => {
@@ -150,7 +152,7 @@ const Playground = ({ boardId }) => {
                                       <CardTag />
                                     </div>
                                     <div className="card-title">
-                                      <h4>{item.content}</h4>
+                                      <h4>{item.name}</h4>
                                     </div>
                                     <div className="card-footer">
                                       <div className="card-date">
@@ -169,7 +171,7 @@ const Playground = ({ boardId }) => {
                       </div>
                     );
                   }}
-                </Droppable> */}
+                </Droppable>
               </div>
             </div>
           );

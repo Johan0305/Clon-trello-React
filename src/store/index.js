@@ -4,6 +4,7 @@ import { modalReducer } from "./reducers/Modal.reducer";
 import { navReducer } from "./reducers/Nav.reducer";
 import { modalPopoverReducer } from "./reducers/ModalPopover.reducer";
 import { boardReducer } from "./reducers/Board.reducer";
+import { listReducer } from "./reducers/List.reducer";
 
 const rootReducer = combineReducers({
   modalReducer,
