@@ -31,7 +31,7 @@ const Board = () => {
         }}
       >
         <Tools data={data} />
-        <Playground />
+        <Playground boardId={data._id} />
       </div>
     </div>
   );

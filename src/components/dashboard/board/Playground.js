@@ -1,80 +1,104 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVATE } from "../../../store/reducers/Modal.reducer";
+import axios from "axios";
 import Avatar from "../Avatar";
 import CardTag from "./CardTag";
 import Modal from "../../Modal/Modal";
 
-const itemsFromBackend = [
-  { id: uuidv4(), content: "First task" },
-  { id: uuidv4(), content: "Second task" },
-  { id: uuidv4(), content: "Third task" },
-];
+const Playground = ({ boardId }) => {
+  const itemsFromBackend = [
+    // { id: uuidv4(), content: "First task" },
+    // { id: uuidv4(), content: "Second task" },
+    // { id: uuidv4(), content: "Third task" },
+  ];
 
-const columnsFromBackend = {
-  [uuidv4()]: {
-    name: "Requested",
-    items: itemsFromBackend,
-  },
-  [uuidv4()]: {
-    name: "To do",
-    items: [],
-  },
-};
+  // const columnsFromBackend = {
+  //   [uuidv4()]: {
+  //     name: "Requested",
+  //     items: itemsFromBackend,
+  //   },
+  //   [uuidv4()]: {
+  //     name: "To do",
+  //     items: [],
+  //   },
+  // };
 
-const onDragEnd = (result, columns, setColumns) => {
-  if (!result.destination) return;
-  const { source, destination } = result;
+  const columnsFromBackend = {
+    [uuidv4()]: {
+      name: "Requested",
+      items: itemsFromBackend,
+    },
+    [uuidv4()]: {
+      name: "To do",
+      items: [],
+    },
+  };
+  console.log(boardId);
+  const getLists = async () => {
+    const res = await axios.get(`http://localhost:8080/lists/${boardId}`);
+    setLists(res.data.data);
+  };
 
-  if (source.droppableId !== destination.droppableId) {
-    const sourceColumn = columns[source.droppableId];
-    const destColumn = columns[destination.droppableId];
-    const sourceItems = [...sourceColumn.items];
-    const destItems = [...destColumn.items];
-    const [removed] = sourceItems.splice(source.index, 1);
-    destItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...sourceColumn,
-        items: sourceItems,
-      },
-      [destination.droppableId]: {
-        ...destColumn,
-        items: destItems,
-      },
-    });
-  } else {
-    const column = columns[source.droppableId];
-    const copiedItems = [...column.items];
-    const [removed] = copiedItems.splice(source.index, 1);
-    copiedItems.splice(destination.index, 0, removed);
-    setColumns({
-      ...columns,
-      [source.droppableId]: {
-        ...column,
-        items: copiedItems,
-      },
-    });
-  }
-};
+  useEffect(() => {
+    getLists();
+  }, []);
 
-const Playground = () => {
+  const onDragEnd = (result, columns, setColumns) => {
+    if (!result.destination) return;
+    const { source, destination } = result;
+
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId];
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems,
+        },
+      });
+    } else {
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumns({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      });
+    }
+  };
+
   const moodal = useSelector((state) => state.modalReducer.modal);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(columnsFromBackend);
   const [data, setData] = useState();
+  const [lists, setLists] = useState([]);
+
+
   return (
     <div className="playground-grid">
       {moodal === true && <Modal data={data} />}
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        onDragEnd={(result) => onDragEnd(result, lists, setLists)}
       >
-        {Object.entries(columns).map(([columnId, column], index) => {
+        {lists.map((item, _id) => {
           return (
             <div
               style={{
@@ -82,16 +106,16 @@ const Playground = () => {
                 flexDirection: "column",
                 alignItems: "center",
               }}
-              key={columnId}
+              key={_id}
             >
               <div className="list">
                 <div className="list-header">
-                  <h3>{column.name}</h3>
+                  <h3>{item.name}</h3>
                   <a>
                     <FontAwesomeIcon icon={faEllipsis} />
                   </a>
                 </div>
-                <Droppable droppableId={columnId} key={columnId}>
+                <Droppable droppableId={item._id} key={_id}>
                   {(provided, snapshot) => {
                     return (
                       <div
@@ -103,11 +127,11 @@ const Playground = () => {
                             : "#EBECF0",
                         }}
                       >
-                        {column.items.map((item, index) => {
+                        {item.cards.map((item, index) => {
                           return (
                             <Draggable
-                              key={item.id}
-                              draggableId={item.id}
+                              key={item._id}
+                              draggableId={item._id}
                               index={index}
                             >
                               {(provided, snapshot) => {
@@ -137,7 +161,7 @@ const Playground = () => {
                                       <CardTag />
                                     </div>
                                     <div className="card-title">
-                                      <h4>{item.content}</h4>
+                                      <h4>{item.name}</h4>
                                     </div>
                                     <div className="card-footer">
                                       <div className="card-date">

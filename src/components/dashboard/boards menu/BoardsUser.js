@@ -86,7 +86,7 @@ const BoardsUser = () => {
         </form>
       </div>
     );
-  }
+  } 
 };
 
 export default BoardsUser;

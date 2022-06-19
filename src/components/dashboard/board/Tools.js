@@ -23,6 +23,16 @@ const Tools = ({ data }) => {
   const { boardName } = useParams();
   const [newBoardName, setNewBoardName] = useState(boardName);
 
+  const theBoard = () => {
+    const res = theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
+  };
+
+  useEffect(() => {
+    theBoard();
+  }, []);
+
+
   const handleUpdate = async (e) => {
     e.preventDefault();
     dispatch(
