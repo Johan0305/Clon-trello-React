@@ -25,13 +25,11 @@ const Tools = ({ data }) => {
 
   const theBoard = () => {
     const res = theBoards.filter((item) => item.name === boardName);
-    setData(res[0]);
   };
 
   useEffect(() => {
     theBoard();
   }, []);
-
 
   const handleUpdate = async (e) => {
     e.preventDefault();

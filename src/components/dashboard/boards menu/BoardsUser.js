@@ -41,7 +41,20 @@ const BoardsUser = () => {
   };
 
   if (loading === true) {
-    return <h1>Actualizando...</h1>;
+    return (
+      <div className="boards-user">
+        {theBoards.map((item, id) => {
+          return (
+            <BoardTile
+              key={id}
+              boardName={item.name}
+              boardId={item._id}
+              boardMark={item.marked}
+            />
+          );
+        })}
+      </div>
+    );
   } else {
     return (
       <div className="boards-user">
@@ -86,7 +99,7 @@ const BoardsUser = () => {
         </form>
       </div>
     );
-  } 
+  }
 };
 
 export default BoardsUser;
