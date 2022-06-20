@@ -62,103 +62,106 @@ const Playground = ({ theLists }) => {
     return (
       <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
     );
-  }
-  return (
-    <div className="playground-grid">
-      {moodal === true && <Modal data={data} />}
-      <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-      >
-        {columns.map((item, _id) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-              key={_id}
-            >
-              <div className="list">
-                <div className="list-header">
-                  <h3>{item.name}</h3>
-                  <a>
-                    <FontAwesomeIcon icon={faEllipsis} />
-                  </a>
-                </div>
-                <Droppable droppableId={item._id} key={_id}>
-                  {(provided, snapshot) => {
-                    return (
-                      <div
-                        {...provided.droppableProps}
-                        ref={provided.innerRef}
-                        style={{
-                          background: snapshot.isDraggingOver
-                            ? "var(--positive)"
-                            : "#EBECF0",
-                        }}
-                      >
-                        {item.cards.map((item, index) => {
-                          return (
-                            <Draggable
-                              key={item._id}
-                              draggableId={item._id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => {
-                                return (
-                                  <div
-                                    onDoubleClick={() => {
-                                      setData(item);
-                                      console.log(snapshot);
-                                      dispatch({
-                                        type: ACTIVATE,
-                                        payload: true,
-                                      });
-                                    }}
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    className="card"
-                                    style={{
-                                      userSelect: "none",
-                                      margin: "0 0 8px 0",
-                                      ...provided.draggableProps.style,
-                                    }}
-                                  >
-                                    <div className="card-tags">
-                                      <CardTag />
-                                      <CardTag />
-                                      <CardTag />
-                                    </div>
-                                    <div className="card-title">
-                                      <h4>{item.name}</h4>
-                                    </div>
-                                    <div className="card-footer">
-                                      <div className="card-date">
-                                        <FontAwesomeIcon icon={faCalendarAlt} />
-                                        <span>14 de may - 15 de may</span>
+  } else {
+    return (
+      <div className="playground-grid">
+        {moodal === true && <Modal data={data} />}
+        <DragDropContext
+          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        >
+          {columns.map((item, _id) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+                key={_id}
+              >
+                <div className="list">
+                  <div className="list-header">
+                    <h3>{item.name}</h3>
+                    <a>
+                      <FontAwesomeIcon icon={faEllipsis} />
+                    </a>
+                  </div>
+                  <Droppable droppableId={item._id} key={_id}>
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          {...provided.droppableProps}
+                          ref={provided.innerRef}
+                          style={{
+                            background: snapshot.isDraggingOver
+                              ? "var(--positive)"
+                              : "#EBECF0",
+                          }}
+                        >
+                          {item.cards.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item._id}
+                                draggableId={item._id}
+                                index={index}
+                              >
+                                {(provided, snapshot) => {
+                                  return (
+                                    <div
+                                      onDoubleClick={() => {
+                                        setData(item);
+                                        console.log(snapshot);
+                                        dispatch({
+                                          type: ACTIVATE,
+                                          payload: true,
+                                        });
+                                      }}
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      className="card"
+                                      style={{
+                                        userSelect: "none",
+                                        margin: "0 0 8px 0",
+                                        ...provided.draggableProps.style,
+                                      }}
+                                    >
+                                      <div className="card-tags">
+                                        <CardTag />
+                                        <CardTag />
+                                        <CardTag />
                                       </div>
-                                      <Avatar id={1} />
+                                      <div className="card-title">
+                                        <h4>{item.name}</h4>
+                                      </div>
+                                      <div className="card-footer">
+                                        <div className="card-date">
+                                          <FontAwesomeIcon
+                                            icon={faCalendarAlt}
+                                          />
+                                          <span>14 de may - 15 de may</span>
+                                        </div>
+                                        <Avatar id={1} />
+                                      </div>
                                     </div>
-                                  </div>
-                                );
-                              }}
-                            </Draggable>
-                          );
-                        })}
-                        {provided.placeholder}
-                      </div>
-                    );
-                  }}
-                </Droppable>
+                                  );
+                                }}
+                              </Draggable>
+                            );
+                          })}
+                          {provided.placeholder}
+                        </div>
+                      );
+                    }}
+                  </Droppable>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </DragDropContext>
-    </div>
-  );
+            );
+          })}
+        </DragDropContext>
+      </div>
+    );
+  }
 };
 
 export default Playground;
