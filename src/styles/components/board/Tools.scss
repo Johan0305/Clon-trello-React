@@ -108,3 +108,31 @@
         color: white;
     }
 }
+.pop-create-list-r{
+    position: relative;
+}
+.tools-create-list{
+    margin-top: 6px;
+    position: absolute;
+    width: 308px;
+    background-color: white;
+    border: 1px solid var(--grey);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--round);
+    padding: 12px;
+    margin-bottom: 12px;
+    
+    h3, h4, p, span, a{
+        color: var(--black);
+    }
+    .required-field-indicator{
+        color: var(--red-delete);
+    }
+    form{
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+

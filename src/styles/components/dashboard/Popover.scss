@@ -108,6 +108,7 @@
 }
 
 .popover-recent, .popover-mark, .popover-create{
+    z-index: 5;
     position:absolute;
     top: 48px;
     left: -36px;

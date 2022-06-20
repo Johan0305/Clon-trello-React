@@ -17,7 +17,6 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
 
   const theBoard = () => {
     const res = theBoards.filter((item) => item.name === boardName);
-    console.log(res);
     setData(res[0]);
   };
 
@@ -49,7 +48,6 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
     dispatch(deleteBoard(boardId));
   };
 
-  console.log(theBoards);
   return (
     <div className="board-tile" style={{ backgroundColor: data.color }}>
       <div className="board-tile-header">
@@ -76,7 +74,12 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
         <Link to={`/board/${boardName}`}>
           <ActionButton label={"Ir al tablero"} styleName={"board-tile-go"} />
         </Link>
-        <button onClick={handleDelete}>Eliminar</button>
+        <button
+          className="button-wrapper board-tile-delete"
+          onClick={handleDelete}
+        >
+          <FontAwesomeIcon icon={faTrashCan} />
+        </button>
       </div>
     </div>
   );

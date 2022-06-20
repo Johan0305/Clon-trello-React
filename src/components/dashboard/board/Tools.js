@@ -1,14 +1,13 @@
 import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
-import ActionButton from "../ActionButton";
+
+import CreateList from "./CreateList";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {
-  updateBoard,
-  deleteBoard,
-} from "../../../store/reducers/Board.reducer";
+
+import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -31,7 +30,7 @@ const Tools = ({ data }) => {
     theBoard();
   }, []);
 
-  const handleUpdate = async (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     dispatch(
       updateBoard(data._id, {
@@ -41,7 +40,7 @@ const Tools = ({ data }) => {
     );
   };
 
-  const handleMark = async (e) => {
+  const handleMark = (e) => {
     e.preventDefault();
     dispatch(
       updateBoard(data._id, {
@@ -59,7 +58,9 @@ const Tools = ({ data }) => {
           <input
             type="text"
             value={newBoardName}
-            onChange={(e) => setNewBoardName(e.target.value)}
+            onChange={(e) => {
+              setNewBoardName(e.target.value);
+            }}
           />
         </form>
       </div>
@@ -80,13 +81,11 @@ const Tools = ({ data }) => {
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
       </IconButton>
-      <ActionButton
-        styleName={"action-button tools-button-filter"}
-        label={"Filtrar"}
-      />
+
       <IconButton styleName={"tools-button-more"}>
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
+      <CreateList boardId={data._id} />
     </div>
   );
 };

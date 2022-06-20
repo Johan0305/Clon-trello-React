@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   navReducer,
   modalPopoverReducer,
   boardReducer,
+  listReducer,
 });
 
 const middleware = applyMiddleware(thunk);

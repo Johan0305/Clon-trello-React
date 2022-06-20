@@ -5,21 +5,24 @@ const LISTS_LOADING = "LISTS_LOADING";
 const DELETE_LIST = "DELETE_LIST";
 const UPDATE_LIST = "UPDATE_LIST";
 
-const initialState = {
-  lists: [],
-  loading: false,
-  error: null,
-};
-
 export const getLists = (boardId) => {
   return async function (dispatch) {
     try {
+      dispatch({ type: LISTS_LOADING, payload: true });
       const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
       dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
+      console.log(lists.data.data);
+      dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: LISTS_ERROR, payload: err });
     }
   };
+};
+
+const initialState = {
+  lists: [],
+  loading: false,
+  error: null,
 };
 
 export const listReducer = (state = initialState, action) => {
@@ -32,19 +35,14 @@ export const listReducer = (state = initialState, action) => {
     case LISTS_SUCCESS:
       return {
         ...state,
-        theBoards: action.payload,
-      };
-    case DELETE_LIST:
-      return {
-        ...state,
-        theBoards: state.theBoards.filter(
-          (item) => item._id !== action.payload
-        ),
+        lists: action.payload,
       };
     case LISTS_ERROR:
       return {
         ...state,
         error: action.payload,
       };
+    default:
+      return state;
   }
 };

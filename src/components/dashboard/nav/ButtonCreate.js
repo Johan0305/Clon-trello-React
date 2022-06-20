@@ -8,11 +8,41 @@ import axios from "axios";
 
 const ButtonCreate = () => {
   const [newBoard, setNewBoard] = useState("");
+  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const { buttonCreate } = useSelector((state) => state.navReducer);
   const handleChange = (e) => {
     const { value } = e.target;
     setNewBoard(value);
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    if (theBoards.length < 3) {
+      try {
+        await axios.post(
+          "http://localhost:8080/boards",
+          {
+            name: newBoard,
+            marked: false,
+            closed: false,
+            color: "#9ACD32",
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        dispatch(getTheBoards());
+      } catch (err) {
+        alert("No pudimos crear el tablero, inténtalo más tarde");
+      }
+
+      setNewBoard("");
+    } else if (theBoards.length === 3) {
+      alert("Bajate las luks pues");
+    }
   };
 
   return (
@@ -32,7 +62,7 @@ const ButtonCreate = () => {
               Título del tablero
               <span className="required-field-indicator">*</span>
             </h3>
-            <form className="popover-form-create">
+            <form className="popover-form-create" onSubmit={handleCreate}>
               <div className="popover-form-input">
                 <input
                   type="text"

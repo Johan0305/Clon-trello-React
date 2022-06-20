@@ -1,51 +1,24 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVATE } from "../../../store/reducers/Modal.reducer";
-import axios from "axios";
+import { getLists } from "../../../store/reducers/List.reducer";
+import ReactLoading from "react-loading";
 import Avatar from "../Avatar";
 import CardTag from "./CardTag";
 import Modal from "../../Modal/Modal";
 
-const Playground = ({ boardId }) => {
-  const itemsFromBackend = [
-    // { id: uuidv4(), content: "First task" },
-    // { id: uuidv4(), content: "Second task" },
-    // { id: uuidv4(), content: "Third task" },
-  ];
-
-  // const columnsFromBackend = {
-  //   [uuidv4()]: {
-  //     name: "Requested",
-  //     items: itemsFromBackend,
-  //   },
-  //   [uuidv4()]: {
-  //     name: "To do",
-  //     items: [],
-  //   },
-  // };
-
-  const columnsFromBackend = {
-    [uuidv4()]: {
-      name: "Requested",
-      items: itemsFromBackend,
-    },
-    [uuidv4()]: {
-      name: "To do",
-      items: [],
-    },
-  };
-  console.log(boardId);
-  const getLists = async () => {
-    const res = await axios.get(`http://localhost:8080/lists/${boardId}`);
-    setLists(res.data.data);
-  };
-
+const Playground = ({ theLists }) => {
+  const { loading } = useSelector((state) => state.listReducer);
+  const moodal = useSelector((state) => state.modalReducer.modal);
+  const dispatch = useDispatch();
+  const [columns, setColumns] = useState(theLists);
+  const [data, setData] = useState();
+  console.log("desde el playground", theLists);
   useEffect(() => {
-    getLists();
+    setColumns(theLists);
   }, []);
 
   const onDragEnd = (result, columns, setColumns) => {
@@ -85,20 +58,18 @@ const Playground = ({ boardId }) => {
     }
   };
 
-  const moodal = useSelector((state) => state.modalReducer.modal);
-  const dispatch = useDispatch();
-  const [columns, setColumns] = useState(columnsFromBackend);
-  const [data, setData] = useState();
-  const [lists, setLists] = useState([]);
-
-
+  if (loading === true) {
+    return (
+      <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
+    );
+  }
   return (
     <div className="playground-grid">
       {moodal === true && <Modal data={data} />}
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, lists, setLists)}
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
       >
-        {lists.map((item, _id) => {
+        {columns.map((item, _id) => {
           return (
             <div
               style={{
