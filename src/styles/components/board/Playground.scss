@@ -3,5 +3,22 @@
     align-items: flex-start;
     gap: 32px;
     margin: 32px 16px;
+    overflow-x: auto;
+    height: 75vh;
+}
 
+* {
+    box-sizing: border-box;
+  }
+
+::-webkit-scrollbar{
+    height: 4px;
+    width: 4px;
+    background: gray;
+    border-radius: 2px;
+
+}
+::-webkit-scrollbar-thumb:horizontal{
+    background: #fff;
+    border-radius: 10px;
 }

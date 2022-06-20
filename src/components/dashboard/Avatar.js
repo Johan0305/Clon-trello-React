@@ -21,7 +21,7 @@ const Avatar = ({ id }) => {
       <img
         src={ls.get("picture")}
         alt="profile-img"
-        className={`avatar${id}`}
+        className="avatar1"
       />
     </div>
   );

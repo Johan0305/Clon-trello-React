@@ -7,9 +7,9 @@ import ButtonCreate from "./ButtonCreate";
 import ButtonNotifications from "./ButtonNotifications";
 import ButtonProfile from "./ButtonProfile";
 
-const Nav = () => {
+const Nav = ({ navColor }) => {
   return (
-    <nav className="nav">
+    <nav className="nav" style={{ backgroundColor: navColor }}>
       <div className="nav-left">
         <NavLogo />
         <ButtonRecent />

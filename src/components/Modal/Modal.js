@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ButtonModal from "./ButtonInternalModal2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DESACTIVATE } from "../../store/reducers/Modal.reducer";
+import { ACTIVATE, DESACTIVATE } from "../../store/reducers/Modal.reducer";
 import PopoverModal from "./PopoverModal";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -23,7 +23,7 @@ import UserButtonMembers from "./ModalPopovers/userButtonMembers";
 import { useState } from "react";
 import Calendar from "react-calendar";
 
-const Modal = ({ id, content }) => {
+const Modal = ({ data }) => {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const { buttonMembers, buttonDelete, buttonCreatetag, buttonCalendar } =
@@ -35,15 +35,12 @@ const Modal = ({ id, content }) => {
         <InternalModal>
           <div className="containerInternalModal1">
             <div className="card-details-internalmodal1">
-              <strong>{content}</strong>
+              <strong>{data.content}</strong>
               <p>En lista Doing</p>
             </div>
             <button
               onClick={() => {
-                return (
-                  dispatch({ type: DESACTIVATE }),
-                  dispatch({ type: TOGGLE_ALL_MODAL })
-                );
+                dispatch({ type: ACTIVATE, payload: false });
               }}
               className="buttonExit"
             >
@@ -193,7 +190,7 @@ const Modal = ({ id, content }) => {
         <InternalModal>
           <div className="containerInternalModal5">
             <strong>Descripción</strong>
-            <p>Aquí se encuentra la descripción de la tarjeta</p>
+            <p>La tarjeta tiene el id {data.id}</p>
           </div>
         </InternalModal>
         <InternalModal>
