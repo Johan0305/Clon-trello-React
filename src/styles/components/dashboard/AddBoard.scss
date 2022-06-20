@@ -5,13 +5,7 @@
     justify-content: center;
     align-items: center;
     background-color: var(--primary-lighter);
-    border-radius: var(--round);
-    cursor: pointer;
-    
-}
-
-.add-board:hover{
-    background-color: var(--primary-light);
+    border-radius: var(--round);    
 }
 
 .add-board-label{
@@ -25,15 +19,29 @@
     width: 256px;
     height: 128px;
     justify-content: center;
+    align-items: flex-start;
+    gap: 12px;
+}
+.add-board-form-header{
+    display: flex;
+    justify-content: left;
+    margin-left: 32px;
+}
+.add-board-form-footer{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 32px;
+    align-items: center;
+    width: 100%;
     gap: 12px;
 }
 
 .add-board-input{
     padding: 6px 12px;
     font-size: 16px;
-    border: 1px solid var(--black);
+    border: none;
     border-radius: var(--round);
-    background-color: white;
+    background-color: transparent;
     color: var(--black);
 }
 
@@ -43,16 +51,16 @@ input[type=text]:focus{
 
 
 .add-board-button{
-    background-color: var(--secondary);
+    background-color: var(--primary);
     border: none;
-    border-radius: var(--round);
     cursor: pointer;
-    padding: 12px 6px;
-    font-weight: 700;
+    border-radius: var(--round);
+    padding: 6px 12px;
     color: white;
+    font-size: 16px;
 
 }
 
 .add-board-button:hover{
-    background-color: var(--secondary-dark);
+    background-color: var(--primary-dark);
 }

@@ -1,9 +1,5 @@
-const IconButton = ({styleName, children}) => {
-    return (
-        <div className={styleName}>
-            {children}
-        </div>
-    );
-}
+const IconButton = ({ colorChange, children }) => {
+  return <div className={colorChange}>{children}</div>;
+};
 
 export default IconButton;

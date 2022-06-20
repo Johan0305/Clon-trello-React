@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import ButtonModal from "./ButtonInternalModal2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DESACTIVATE } from "../../store/reducers/Modal.reducer";
+import { ACTIVATE, DESACTIVATE } from "../../store/reducers/Modal.reducer";
 import PopoverModal from "./PopoverModal";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -17,29 +17,30 @@ import {
   TOGGLE_MEMBERS,
   TOGGLE_DELETE,
   TOGGLE_CREATETAG,
+  TOGGLE_ALL_MODAL,
 } from "../../store/reducers/ModalPopover.reducer";
 import UserButtonMembers from "./ModalPopovers/userButtonMembers";
 import { useState } from "react";
 import Calendar from "react-calendar";
 
-const Modal = () => {
+const Modal = ({ data }) => {
   const [date, setDate] = useState(new Date());
   const dispatch = useDispatch();
   const { buttonMembers, buttonDelete, buttonCreatetag, buttonCalendar } =
     useSelector((state) => state.modalPopoverReducer);
   const tagName = ["Dev", "BMW", "Diseño", "Cositas por hacer", "Dev"];
   return (
-    <div className="modal-global">
+    <div className="modal-global" key={id}>
       <div className="modal-space">
         <InternalModal>
           <div className="containerInternalModal1">
             <div className="card-details-internalmodal1">
-              <strong>Tarjeta con detalles</strong>
+              <strong>{data.content}</strong>
               <p>En lista Doing</p>
             </div>
             <button
               onClick={() => {
-                dispatch({ type: DESACTIVATE });
+                dispatch({ type: ACTIVATE, payload: false });
               }}
               className="buttonExit"
             >
@@ -189,7 +190,7 @@ const Modal = () => {
         <InternalModal>
           <div className="containerInternalModal5">
             <strong>Descripción</strong>
-            <p>Aquí se encuentra la descripción de la tarjeta</p>
+            <p>La tarjeta tiene el id {data.id}</p>
           </div>
         </InternalModal>
         <InternalModal>

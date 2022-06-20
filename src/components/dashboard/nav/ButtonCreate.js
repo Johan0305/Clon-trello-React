@@ -2,32 +2,31 @@ import Popover from "../Popover";
 import ActionButton from "../ActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_CREATE } from "../../../store/reducers/Nav.reducer";
-import { getBoards } from "../../../store/reducers/Board.reducer";
+import { getBoards, getTheBoards } from "../../../store/reducers/Board.reducer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 const ButtonCreate = () => {
   const [newBoard, setNewBoard] = useState("");
+  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
-  const { boards } = useSelector((state) => state.boardReducer);
   const { buttonCreate } = useSelector((state) => state.navReducer);
-  useEffect(() => {
-    dispatch(getBoards());
-  }, []);
   const handleChange = (e) => {
     const { value } = e.target;
     setNewBoard(value);
   };
+
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (boards.length < 3) {
+    if (theBoards.length < 3) {
       try {
-        const res = await axios.post(
+        await axios.post(
           "http://localhost:8080/boards",
           {
             name: newBoard,
-            marked: true,
+            marked: false,
             closed: false,
+            color: "#9ACD32",
           },
           {
             headers: {
@@ -35,15 +34,17 @@ const ButtonCreate = () => {
             },
           }
         );
+        dispatch(getTheBoards());
       } catch (err) {
         alert("No pudimos crear el tablero, inténtalo más tarde");
       }
-      dispatch(getBoards());
+
       setNewBoard("");
-    } else if (boards.length == 3) {
+    } else if (boards.length === 3) {
       alert("Bajate las luks pues");
     }
   };
+
   return (
     <div className="navOption-create">
       <button

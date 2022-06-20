@@ -4,13 +4,30 @@ import Divider from "../Divider";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_PROFILE } from "../../../store/reducers/Nav.reducer";
+import ls from "localstorage-slim";
+import encUTF8 from "crypto-js/enc-utf8";
+import AES from "crypto-js/aes";
 
 const ButtonProfile = () => {
+  ls.config.encrypt = true;
+  ls.config.secret = "secret-string";
+
+  ls.config.encrypter = (data, secret) =>
+    AES.encrypt(JSON.stringify(data), secret).toString();
+
+  ls.config.decrypter = (data, secret) => {
+    try {
+      return JSON.parse(AES.decrypt(data, secret).toString(encUTF8));
+    } catch (e) {
+      return data;
+    }
+  };
+
   const dispatch = useDispatch();
   const nav = useNavigate();
   const { buttonProfile } = useSelector((state) => state.navReducer);
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
+  const name = ls.get("name");
+  const email = ls.get("email");
   return (
     <div className="navOption-profile">
       <div

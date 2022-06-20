@@ -1,33 +1,31 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getBoards } from "../../../store/reducers/Board.reducer";
+import { getTheBoards } from "../../../store/reducers/Board.reducer";
+import { ColorPicker } from "@mantine/core";
+import ReactLoading from "react-loading";
 import BoardTile from "./BoardTile";
 import AddBoard from "./AddBoard";
+import swal from "sweetalert";
+import Payment from "../../dashboard/boards menu/Payment";
 
 const BoardsUser = () => {
-  const [newBoard, setNewBoard] = useState("");
+  const { theBoards, loading } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
-  const { boards, loading, error } = useSelector((state) => state.boardReducer);
-  useEffect(() => {
-    dispatch(getBoards());
-  }, []);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setNewBoard(value);
-  };
+  const [newBoard, setNewBoard] = useState("");
+  const [color, setColor] = useState("#A2BDE8");
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (boards.length < 3) {
+    if (theBoards.length < 3) {
       try {
-        const res = await axios.post(
+        await axios.post(
           "http://localhost:8080/boards",
           {
             name: newBoard,
             marked: false,
             closed: false,
+            color: color,
           },
           {
             headers: {
@@ -35,32 +33,71 @@ const BoardsUser = () => {
             },
           }
         );
+        dispatch(getTheBoards());
       } catch (err) {
-        alert("No pudimos crear el tablero, inténtalo más tarde");
+        swal(
+          "Error",
+          "No pudimos crear el tablero, inténtalo más tarde",
+          "error"
+        );
       }
-      dispatch(getBoards());
 
       setNewBoard("");
     } else if (boards.length == 3) {
-      alert("Bajate las luks pues");
+      swal(
+        "Tableros Ilimitados",
+        "Si deseas crear tableros ilimitados debes pagar para esta opción"
+      );
     }
   };
 
+  if (loading === true) {
+    return (
+      <ReactLoading type="spin" color="#A2BDE8" height={100} width={100} />
+    );
+  }
   return (
     <div className="boards-user">
-      {boards.map((item, id) => {
-        return <BoardTile boardName={item.name} boardId={item._id} />;
+      {theBoards.map((item, id) => {
+        return (
+          <BoardTile
+            key={id}
+            boardName={item.name}
+            boardId={item._id}
+            boardMark={item.marked}
+          />
+        );
       })}
-      <form onSubmit={handleCreate} className="add-board-form">
-        <input
-          type="text"
-          value={newBoard}
-          onChange={handleChange}
-          className="add-board-input"
-          placeholder="Crea un nuevo tablero..."
-        />
-        <button className="add-board-button">Crear tablero</button>
+
+      <form onSubmit={handleCreate} className="add-board add-board-form">
+        <div className="add-board-form-header">
+          <input
+            type="text"
+            value={newBoard}
+            onChange={(e) => setNewBoard(e.target.value)}
+            className="add-board-input"
+            placeholder="Crea un nuevo tablero..."
+          />
+        </div>
+        <div className="add-board-form-footer">
+          <button
+            className="add-board-button"
+            style={{ backgroundColor: color }}
+          >
+            Crear
+          </button>
+          <ColorPicker
+            format="hex"
+            withPicker={false}
+            fullWidth
+            value={color}
+            onChange={setColor}
+            swatchesPerRow={7}
+            swatches={["#FF7F50", "#FFA500", "#9370DB", "#A2BDE8", "#9ACD32"]}
+          />
+        </div>
       </form>
+      {boards.length == 3 && <Payment />}
     </div>
   );
 };

@@ -2,18 +2,30 @@ import logoTrello from "../assets/logo/Logo.svg";
 import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/componentsLogin/InputForm";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGoogle,
-  faApple,
-  faMicrosoft,
-} from "@fortawesome/free-brands-svg-icons";
 import { useState } from "react";
 import axios from "axios";
+import swal from "sweetalert";
+import ls from "localstorage-slim";
+import encUTF8 from "crypto-js/enc-utf8";
+import AES from "crypto-js/aes";
 
 const LoginFormEmailPassword = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const nav = useNavigate();
+
+  ls.config.encrypt = true;
+  ls.config.secret = "secret-string";
+
+  ls.config.encrypter = (data, secret) =>
+    AES.encrypt(JSON.stringify(data), secret).toString();
+
+  ls.config.decrypter = (data, secret) => {
+    try {
+      return JSON.parse(AES.decrypt(data, secret).toString(encUTF8));
+    } catch (e) {
+      return data;
+    }
+  };
 
   const handleChange = (e) => {
     const { value, name } = e.target;
@@ -29,16 +41,20 @@ const LoginFormEmailPassword = () => {
         password: password,
       });
       localStorage.setItem("token", res.data.data.token);
-      localStorage.setItem("name", res.data.data.name);
-      localStorage.setItem("nickname", res.data.data.nickname);
-      localStorage.setItem("email", res.data.data.email);
-      localStorage.setItem("picture", res.data.data.picture);
+      ls.set("name", res.data.data.name);
+      ls.set("nickname", res.data.data.nickname);
+      ls.set("email", res.data.data.email);
+      ls.set("picture", res.data.data.picture);
       const token = await localStorage.getItem("token");
       if (token) {
         nav("/dashboard");
       }
     } catch (e) {
-      alert("El usuario aún no esta registrado");
+      swal(
+        "Error",
+        "Verifique su contraseña o email, o si el usuario aún no esta registrado",
+        "error"
+      );
     }
   };
 
@@ -74,29 +90,6 @@ const LoginFormEmailPassword = () => {
               color={"white"}
               background={"#28a746"}
               idbtn={1}
-            />
-            <p>O</p>
-            <ButtonFormRegister
-              text={"Continuar con Google"}
-              icon={<FontAwesomeIcon icon={faGoogle} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-
-            <ButtonFormRegister
-              text={"Continuar con Microsoft"}
-              icon={<FontAwesomeIcon icon={faMicrosoft} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
-            />
-            <ButtonFormRegister
-              text={"Continuar con Apple"}
-              icon={<FontAwesomeIcon icon={faApple} />}
-              color={"#212529"}
-              background={"#f8f9fa"}
-              idbtn={2}
             />
           </form>
           <Link to="/register-form" className="linkSites2">

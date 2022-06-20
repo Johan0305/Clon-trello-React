@@ -10,7 +10,7 @@ import Response from "./pages/Response";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
-  return token ? children : <Navigate to="/register-form" />;
+  return token ? children : <Navigate to="/login" />;
 };
 
 const MainRoutes = ({ children }) => {
@@ -40,6 +40,7 @@ function App() {
           path="/dashboard"
           element={<PrivateRoute children={<Dashboard />}></PrivateRoute>}
         />
+
         <Route
           path="/board/:boardName"
           element={<PrivateRoute children={<Board />}></PrivateRoute>}

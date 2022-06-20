@@ -1,16 +1,17 @@
 export const ACTIVATE = "ACTIVATE";
 export const DESACTIVATE = "DESACTIVATE";
+export const CARDS_GET = "CARDS_GET";
+
+
 
 const initialState = {
-  modal: false,
+  modal: "",
 };
 
 export const modalReducer = (state = initialState, action) => {
   switch (action.type) {
     case ACTIVATE:
-      return { ...state, modal: true };
-    case DESACTIVATE:
-      return { ...initialState };
+      return { ...state, modal: action.payload };
     default:
       return state;
   }

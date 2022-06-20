@@ -1,110 +1,140 @@
-.tools-bar{
-    display: flex;
-    padding: 16px 12px;
-    align-items: center;
-    gap: 10px;
-    @media (max-width: 786px) {
-        padding: 8px;
-      }
+.tools-bar {
+  display: flex;
+  padding: 16px 12px;
+  align-items: center;
+  gap: 10px;
+  @media (max-width: 786px) {
+    padding: 8px;
+  }
 }
 
-.tools-boardName{
+.tools-boardName {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  text-align: center;
+  min-width: 100px;
+  @include hide-mobile;
+}
+
+.tools-boardName:focus-within {
+  border: 1px solid white;
+  background-color: var(--transparent);
+  border-radius: 4px;
+}
+.tools-boardName input[type="text"] {
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  border-style: none;
+  background: none;
+  font-size: 16px;
+  min-width: 100px;
+}
+
+.tools-boardName input[type="text"]:focus {
+  outline: none;
+  font-size: 16px;
+}
+
+.tools-boardName input:focus::placeholder {
+  font-size: 16px;
+  color: white;
+}
+
+.tools-button-fav {
+  background-color: var(--transparent);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  svg {
+    color: white;
+  }
+  svg:hover {
+    color: var(--marked);
+  }
+}
+
+.tools-button-fav:hover {
+  background-color: white;
+}
+
+.tools-button-fav-marked {
+  background-color: white;
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  svg {
+    color: var(--marked);
+  }
+}
+
+.tools-button-add {
+  background-color: white;
+  color: var(--black);
+  padding: 6px 12px;
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.tools-button-add:hover {
+  background-color: var(--primary-light);
+}
+
+.tools-button-filter {
+  background-color: var(--transparent);
+  color: white;
+}
+
+.tools-button-filter:hover {
+  background-color: white;
+  color: var(--black);
+}
+
+.tools-button-more {
+  cursor: pointer;
+  svg {
+    color: white;
+  }
+}
+
+.container-img-board {
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+  }
+}
+.pop-create-list-r{
+    position: relative;
+}
+.tools-create-list{
+    margin-top: 6px;
+    position: absolute;
+    width: 308px;
+    background-color: white;
+    border: 1px solid var(--grey);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--round);
+    padding: 12px;
+    margin-bottom: 12px;
     
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 6px 12px;
-    text-align: center;
-    min-width: 100px;
-    @include hide-mobile;
-
-}
-
-.tools-boardName:focus-within{
-    border: 1px solid white;
-    background-color: var(--transparent);
-    border-radius: 4px;
-}
-.tools-boardName input[type=text]{
-    color: white;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    border-style: none;
-    background: none;
-    font-size: 16px;
-    min-width: 100px;
-}
-
-.tools-boardName input[type=text]:focus{
-    outline: none;
-    font-size: 16px;
-}
-
-
-
-.tools-boardName input:focus::placeholder{
-    font-size: 16px;
-    color: white;
-}
-
-.tools-button-fav{
-    background-color: var(--transparent);
-    padding: 6px;
-    border-radius: 4px;
-    cursor: pointer;
-    svg{
-        color: white;
+    h3, h4, p, span, a{
+        color: var(--black);
     }
-    svg:hover{
-        color: var(--marked)
+    .required-field-indicator{
+        color: var(--red-delete);
+    }
+    form{
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
     }
 }
 
-
-.tools-button-fav:hover{
-    background-color: white;
-}
-
-.tools-button-fav-marked{
-    background-color: white;
-    padding: 6px;
-    border-radius: 4px;
-    cursor: pointer;
-  
-        svg{
-            color: var(--marked);
-        }
-
-}
-
-.tools-button-add{
-    background-color: white;
-    color: var(--black);
-    padding: 6px 12px;
-    border-radius: 4px;
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
-}
-
-.tools-button-add:hover{
-    background-color: var(--primary-light);
-}
-
-.tools-button-filter{
-    background-color: var(--transparent);
-    color: white;
-}
-
-.tools-button-filter:hover{
-    background-color: white;
-    color: var(--black);
-}
-
-.tools-button-more{
-    cursor: pointer;
-    svg{
-        color: white;
-    }
-}
