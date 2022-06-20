@@ -27,11 +27,7 @@ const Board = () => {
     theBoard();
   }, []);
 
-  if (loading) {
-    return (
-      <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
-    );
-  } else if (data.hasOwnProperty("name")) {
+  if (data.hasOwnProperty("name")) {
     return (
       <div className="board-background" style={{ backgroundColor: data.color }}>
         <Nav navColor={data.color} />
@@ -41,8 +37,16 @@ const Board = () => {
           }}
         >
           <Tools data={data} />
-
-          <Playground theLists={lists} />
+          {loading ? (
+            <ReactLoading
+              type="bubbles"
+              color="#FFF"
+              height={100}
+              width={100}
+            />
+          ) : (
+            <Playground theLists={lists} />
+          )}
         </div>
       </div>
     );

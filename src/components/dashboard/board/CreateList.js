@@ -3,6 +3,7 @@ import { Popover } from "@headlessui/react";
 import ActionButton from "../ActionButton";
 import axios from "axios";
 import { getLists } from "../../../store/reducers/List.reducer";
+import { postList } from "../../../store/reducers/List.reducer";
 import { useDispatch } from "react-redux";
 
 const CreateList = ({ boardId }) => {
@@ -10,14 +11,7 @@ const CreateList = ({ boardId }) => {
   const dispatch = useDispatch();
   const handleCreate = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post(`http://localhost:8080/lists/${boardId}`, {
-        name: newList,
-      });
-    } catch (err) {
-      alert("No pudimos crear el tablero, inténtalo más tarde");
-    }
-
+    dispatch(postList(boardId, newList));
     setNewList("");
   };
   return (

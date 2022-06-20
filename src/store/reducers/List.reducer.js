@@ -11,8 +11,28 @@ export const getLists = (boardId) => {
       dispatch({ type: LISTS_LOADING, payload: true });
       const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
       dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
-      console.log(lists.data.data);
       dispatch({ type: LISTS_LOADING, payload: false });
+    } catch (err) {
+      dispatch({ type: LISTS_ERROR, payload: err });
+    }
+  };
+};
+
+export const postList = (boardId, newList) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: LISTS_LOADING, payload: true });
+      const list = await axios.post(`http://localhost:8080/lists/${boardId}`, {
+        name: newList,
+      });
+      try {
+        dispatch({ type: LISTS_LOADING, payload: true });
+        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
+        dispatch({ type: LISTS_LOADING, payload: false });
+      } catch (err) {
+        dispatch({ type: LISTS_ERROR, payload: err });
+      }
     } catch (err) {
       dispatch({ type: LISTS_ERROR, payload: err });
     }

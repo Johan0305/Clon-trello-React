@@ -58,18 +58,16 @@ const Playground = ({ theLists }) => {
     }
   };
 
-  if (loading === true) {
-    return (
-      <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
-    );
-  } else {
-    return (
-      <div className="playground-grid">
-        {moodal === true && <Modal data={data} />}
-        <DragDropContext
-          onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
-        >
-          {columns.map((item, _id) => {
+  return (
+    <div className="playground-grid">
+      {moodal === true && <Modal data={data} />}
+      <DragDropContext
+        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+      >
+        {loading ? (
+          <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
+        ) : (
+          columns.map((item, _id) => {
             return (
               <div
                 style={{
@@ -157,11 +155,11 @@ const Playground = ({ theLists }) => {
                 </div>
               </div>
             );
-          })}
-        </DragDropContext>
-      </div>
-    );
-  }
+          })
+        )}
+      </DragDropContext>
+    </div>
+  );
 };
 
 export default Playground;
