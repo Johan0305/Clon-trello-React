@@ -6,7 +6,6 @@ import CreateList from "./CreateList";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -76,7 +75,7 @@ const Tools = ({ data }) => {
         </button>
       </form>
       <Separator />
-      <Avatar />
+      <Avatar id={1} />
       <IconButton styleName={"tools-button-add"}>
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir

@@ -40,7 +40,7 @@ const ButtonCreate = () => {
       }
 
       setNewBoard("");
-    } else if (theBoards.length === 3) {
+    } else if (boards.length === 3) {
       alert("Bajate las luks pues");
     }
   };

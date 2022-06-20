@@ -17,6 +17,7 @@ import {
   TOGGLE_MEMBERS,
   TOGGLE_DELETE,
   TOGGLE_CREATETAG,
+  TOGGLE_ALL_MODAL,
 } from "../../store/reducers/ModalPopover.reducer";
 import UserButtonMembers from "./ModalPopovers/userButtonMembers";
 import { useState } from "react";
@@ -29,7 +30,7 @@ const Modal = ({ data }) => {
     useSelector((state) => state.modalPopoverReducer);
   const tagName = ["Dev", "BMW", "Diseño", "Cositas por hacer", "Dev"];
   return (
-    <div className="modal-global">
+    <div className="modal-global" key={id}>
       <div className="modal-space">
         <InternalModal>
           <div className="containerInternalModal1">

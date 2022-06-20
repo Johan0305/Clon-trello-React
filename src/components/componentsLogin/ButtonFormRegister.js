@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-const ButtonFormRegister = ({ text, icon, color, background, idbtn, link }) => {
+const ButtonFormRegister = ({ text, icon, color, background, idbtn }) => {
   return (
     <button
       className={`loginButton${idbtn} loginFormButton`}

@@ -5,6 +5,9 @@ import { getTheBoards } from "../../../store/reducers/Board.reducer";
 import { ColorPicker } from "@mantine/core";
 import ReactLoading from "react-loading";
 import BoardTile from "./BoardTile";
+import AddBoard from "./AddBoard";
+import swal from "sweetalert";
+import Payment from "../../dashboard/boards menu/Payment";
 
 const BoardsUser = () => {
   const { theBoards, loading } = useSelector((state) => state.boardReducer);
@@ -32,12 +35,19 @@ const BoardsUser = () => {
         );
         dispatch(getTheBoards());
       } catch (err) {
-        alert("No pudimos crear el tablero, inténtalo más tarde");
+        swal(
+          "Error",
+          "No pudimos crear el tablero, inténtalo más tarde",
+          "error"
+        );
       }
 
       setNewBoard("");
-    } else if (theBoards.length === 3) {
-      alert("Bajate las luks pues");
+    } else if (boards.length == 3) {
+      swal(
+        "Tableros Ilimitados",
+        "Si deseas crear tableros ilimitados debes pagar para esta opción"
+      );
     }
   };
 
@@ -87,6 +97,7 @@ const BoardsUser = () => {
           />
         </div>
       </form>
+      {boards.length == 3 && <Payment />}
     </div>
   );
 };
