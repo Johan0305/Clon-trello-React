@@ -43,7 +43,7 @@ const BoardsUser = () => {
       }
 
       setNewBoard("");
-    } else if (boards.length == 3) {
+    } else if (theBoards.length == 3) {
       swal(
         "Tableros Ilimitados",
         "Si deseas crear tableros ilimitados debes pagar para esta opción"
@@ -97,7 +97,7 @@ const BoardsUser = () => {
           />
         </div>
       </form>
-      {boards.length == 3 && <Payment />}
+      {theBoards.length == 3 && <Payment />}
     </div>
   );
 };
