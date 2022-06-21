@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTheBoards } from "../../../store/reducers/Board.reducer";
+import { posttheBoards } from "../../../store/reducers/Board.reducer";
 import { ColorPicker } from "@mantine/core";
 import ReactLoading from "react-loading";
 import BoardTile from "./BoardTile";
@@ -18,30 +18,7 @@ const BoardsUser = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
-      try {
-        await axios.post(
-          "http://localhost:8080/boards",
-          {
-            name: newBoard,
-            marked: false,
-            closed: false,
-            color: color,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        dispatch(getTheBoards());
-      } catch (err) {
-        swal(
-          "Error",
-          "No pudimos crear el tablero, inténtalo más tarde",
-          "error"
-        );
-      }
-
+      dispatch(posttheBoards(newBoard, color));
       setNewBoard("");
     } else if (theBoards.length == 3) {
       swal(
