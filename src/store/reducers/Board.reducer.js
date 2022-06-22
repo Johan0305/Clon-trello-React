@@ -1,4 +1,5 @@
 import axios from "axios";
+import swal from "sweetalert";
 const THE_BOARDS_SUCCESS = "THE_BOARDS_SUCCESS";
 const BOARDS_ERROR = "BOARDS_ERROR";
 const BOARDS_LOADING = "BOARDS_LOADING";
@@ -25,6 +26,48 @@ export const getTheBoards = () => {
       dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
+    }
+  };
+};
+
+export const posttheBoards = (newBoard, color) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: BOARDS_LOADING, payload: true });
+      const board = await axios.post(
+        "http://localhost:8080/boards",
+        {
+          name: newBoard,
+          marked: false,
+          closed: false,
+          color: color,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      try {
+        dispatch({ type: BOARDS_LOADING, payload: true });
+        const boards = await axios.get("http://localhost:8080/boards", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        dispatch({ type: THE_BOARDS_SUCCESS, payload: boards.data.data });
+        dispatch({ type: BOARDS_LOADING, payload: false });
+      } catch (err) {
+        dispatch({ type: BOARDS_ERROR, payload: err });
+      }
+      swal("Éxito", "Tablero creado exitosamente");
+    } catch (err) {
+      dispatch({ type: BOARDS_ERROR, payload: err });
+      swal(
+        "Error",
+        "No pudimos crear el tablero, inténtalo más tarde",
+        "error"
+      );
     }
   };
 };

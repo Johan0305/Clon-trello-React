@@ -5,16 +5,12 @@ import BoardThumbnail from "./BoardThumbnail";
 import { TOGGLE_MARK } from "../../../store/reducers/Nav.reducer";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import { getTheBoards } from "../../../store/reducers/Board.reducer";
 
 const ButtonMark = () => {
   const dispatch = useDispatch();
   const { theBoards } = useSelector((state) => state.boardReducer);
   const { buttonMark } = useSelector((state) => state.navReducer);
-  useEffect(() => {
-    dispatch(getTheBoards());
-  }, []);
+
   return (
     <div className="navOption-mark">
       <a
@@ -35,7 +31,7 @@ const ButtonMark = () => {
                   <Link key={_id} to={`/board/${item.name}`}>
                     <div className="popover-option">
                       <div className="popover-option-board">
-                        <BoardThumbnail />
+                        <BoardThumbnail color={item.color} />
                         <h3>{item.name}</h3>
                       </div>
                       <FontAwesomeIcon icon={faStar} />

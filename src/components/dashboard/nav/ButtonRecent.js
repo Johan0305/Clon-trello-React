@@ -8,6 +8,7 @@ import { TOGGLE_RECENT } from "../../../store/reducers/Nav.reducer";
 const ButtonRecent = () => {
   const dispatch = useDispatch();
   const { buttonRecent } = useSelector((state) => state.navReducer);
+  const { theBoards } = useSelector((state) => state.boardReducer);
 
   return (
     <div className="navOption-recent">
@@ -25,14 +26,8 @@ const ButtonRecent = () => {
           <Popover popoverTitle={"Tableros recientes"}>
             <div className="popover-option">
               <div className="popover-option-board">
-                <BoardThumbnail />
-                <h3>Clonando Trello</h3>
-              </div>
-            </div>
-            <div className="popover-option">
-              <div className="popover-option-board">
-                <BoardThumbnail />
-                <h3>Rpg Game</h3>
+                <BoardThumbnail color={theBoards[theBoards.length - 1].color} />
+                <h3>{theBoards[theBoards.length - 1].name}</h3>
               </div>
             </div>
           </Popover>

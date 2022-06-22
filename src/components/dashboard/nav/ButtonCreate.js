@@ -2,8 +2,9 @@ import Popover from "../Popover";
 import ActionButton from "../ActionButton";
 import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_CREATE } from "../../../store/reducers/Nav.reducer";
-import { getBoards, getTheBoards } from "../../../store/reducers/Board.reducer";
-import { useEffect, useState } from "react";
+import { posttheBoards } from "../../../store/reducers/Board.reducer";
+import swal from "sweetalert";
+import { useState } from "react";
 import axios from "axios";
 
 const ButtonCreate = () => {
@@ -19,29 +20,13 @@ const ButtonCreate = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
-      try {
-        await axios.post(
-          "http://localhost:8080/boards",
-          {
-            name: newBoard,
-            marked: false,
-            closed: false,
-            color: "#9ACD32",
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        dispatch(getTheBoards());
-      } catch (err) {
-        alert("No pudimos crear el tablero, inténtalo más tarde");
-      }
-
+      dispatch(posttheBoards(newBoard, "#9ACD32"));
       setNewBoard("");
-    } else if (boards.length === 3) {
-      alert("Bajate las luks pues");
+    } else if (theBoards.length === 3) {
+      swal(
+        "Tableros Ilimitados",
+        "Si deseas crear tableros ilimitados debes pagar para esta opción"
+      );
     }
   };
 
