@@ -1,7 +1,7 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsis, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVATE } from "../../../store/reducers/Modal.reducer";
 import { getLists } from "../../../store/reducers/List.reducer";
@@ -9,6 +9,7 @@ import ReactLoading from "react-loading";
 import Avatar from "../Avatar";
 import CardTag from "./CardTag";
 import Modal from "../../Modal/Modal";
+import DeleteList from "./DeleteList";
 
 const Playground = ({ theLists }) => {
   const { loading } = useSelector((state) => state.listReducer);
@@ -16,7 +17,6 @@ const Playground = ({ theLists }) => {
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(theLists);
   const [data, setData] = useState();
-  console.log("desde el playground", theLists);
   useEffect(() => {
     setColumns(theLists);
   }, []);
@@ -80,9 +80,7 @@ const Playground = ({ theLists }) => {
                 <div className="list">
                   <div className="list-header">
                     <h3>{item.name}</h3>
-                    <a>
-                      <FontAwesomeIcon icon={faEllipsis} />
-                    </a>
+                    <DeleteList listId={item._id} />
                   </div>
                   <Droppable droppableId={item._id} key={_id}>
                     {(provided, snapshot) => {

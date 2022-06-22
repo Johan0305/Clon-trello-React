@@ -39,6 +39,19 @@ export const postList = (boardId, newList) => {
   };
 };
 
+export const deleteList = (listId) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: LISTS_LOADING, payload: true });
+      const list = await axios.delete(`http://localhost:8080/lists/${listId}`);
+      dispatch({ type: DELETE_LIST, payload: listId });
+      dispatch({ type: LISTS_LOADING, payload: false });
+    } catch (err) {
+      alert("No se pudo borrar el tablero");
+    }
+  };
+};
+
 const initialState = {
   lists: [],
   loading: false,
@@ -56,6 +69,11 @@ export const listReducer = (state = initialState, action) => {
       return {
         ...state,
         lists: action.payload,
+      };
+    case DELETE_LIST:
+      return {
+        ...state,
+        theBoards: state.lists.filter((item) => item._id !== action.payload),
       };
     case LISTS_ERROR:
       return {

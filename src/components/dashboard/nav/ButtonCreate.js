@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { TOGGLE_CREATE } from "../../../store/reducers/Nav.reducer";
 import { getBoards, getTheBoards } from "../../../store/reducers/Board.reducer";
 import { useEffect, useState } from "react";
+import swal from "sweetalert";
 import axios from "axios";
 
 const ButtonCreate = () => {
@@ -36,12 +37,15 @@ const ButtonCreate = () => {
         );
         dispatch(getTheBoards());
       } catch (err) {
-        alert("No pudimos crear el tablero, inténtalo más tarde");
+        swal("Error", "No pudimos crear el tablero, inténtalo más tarde");
       }
 
       setNewBoard("");
-    } else if (boards.length === 3) {
-      alert("Bajate las luks pues");
+    } else if (theBoards.length === 3) {
+      swal(
+        "Tableros Ilimitados",
+        "Si deseas crear tableros ilimitados debes pagar para esta opción"
+      );
     }
   };
 

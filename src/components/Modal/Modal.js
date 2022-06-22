@@ -30,7 +30,7 @@ const Modal = ({ data }) => {
     useSelector((state) => state.modalPopoverReducer);
   const tagName = ["Dev", "BMW", "Diseño", "Cositas por hacer", "Dev"];
   return (
-    <div className="modal-global" key={id}>
+    <div className="modal-global">
       <div className="modal-space">
         <InternalModal>
           <div className="containerInternalModal1">
