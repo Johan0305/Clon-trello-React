@@ -45,7 +45,7 @@ const Board = () => {
               width={100}
             />
           ) : (
-            <Playground theLists={lists} />
+            <Playground theLists={lists} boardId={data._id} />
           )}
         </div>
       </div>

@@ -11,7 +11,7 @@ import CardTag from "./CardTag";
 import Modal from "../../Modal/Modal";
 import DeleteList from "./DeleteList";
 
-const Playground = ({ theLists }) => {
+const Playground = ({ theLists, boardId }) => {
   const { loading } = useSelector((state) => state.listReducer);
   const moodal = useSelector((state) => state.modalReducer.modal);
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ const Playground = ({ theLists }) => {
                 <div className="list">
                   <div className="list-header">
                     <h3>{item.name}</h3>
-                    <DeleteList listId={item._id} />
+                    <DeleteList listId={item._id} boardId={boardId} />
                   </div>
                   <Droppable droppableId={item._id} key={_id}>
                     {(provided, snapshot) => {

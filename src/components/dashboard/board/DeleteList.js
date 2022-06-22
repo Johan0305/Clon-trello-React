@@ -1,15 +1,15 @@
 import { Popover } from "@headlessui/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { deleteList } from "../../../store/reducers/List.reducer";
+import { deleteList, getLists } from "../../../store/reducers/List.reducer";
 import { useDispatch } from "react-redux";
 
 import ActionButton from "../ActionButton";
-const DeleteList = ({ listId }) => {
+const DeleteList = ({ listId, boardId }) => {
   const dispatch = useDispatch();
   const handleDelete = async (e) => {
     e.preventDefault();
-    dispatch(deleteList(listId));
+    dispatch(deleteList(listId, boardId));
   };
   return (
     <Popover>
