@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { posttheBoards } from "../../../store/reducers/Board.reducer";
+import {
+  getTheBoards,
+  posttheBoards,
+} from "../../../store/reducers/Board.reducer";
 import { ColorPicker } from "@mantine/core";
 import ReactLoading from "react-loading";
 import BoardTile from "./BoardTile";
@@ -14,6 +17,9 @@ const BoardsUser = () => {
   const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState("");
   const [color, setColor] = useState("#A2BDE8");
+  useState(() => {
+    dispatch(getTheBoards());
+  }, []);
 
   const handleCreate = async (e) => {
     e.preventDefault();
