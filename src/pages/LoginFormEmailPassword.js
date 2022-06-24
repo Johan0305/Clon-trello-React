@@ -1,8 +1,7 @@
 import logoTrello from "../assets/logo/Logo.svg";
-import ButtonFormRegister from "../components/componentsLogin/ButtonFormRegister";
 import { Link, useNavigate } from "react-router-dom";
-import InputForm from "../components/componentsLogin/InputForm";
-import { useState } from "react";
+import { useForm } from "@mantine/form";
+import { Box, TextInput, PasswordInput, Button, Group } from "@mantine/core";
 import axios from "axios";
 import swal from "sweetalert";
 import ls from "localstorage-slim";
@@ -10,7 +9,22 @@ import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
 
 const LoginFormEmailPassword = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const form = useForm({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validate: {
+      email: (value) =>
+        /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(value)
+          ? null
+          : "El email es inválido",
+      password: (value) =>
+        /(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(value)
+          ? null
+          : "La contraseña debe contener mínimo 8 carácteres y al menos una letra mayúscula, una letra minúscula y un número",
+    },
+  });
   const nav = useNavigate();
 
   ls.config.encrypt = true;
@@ -27,14 +41,9 @@ const LoginFormEmailPassword = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { value, name } = e.target;
-    setUser({ ...user, [name]: value });
-  };
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = user;
+    console.log(form.values);
+    const { email, password } = form.values;
     try {
       const res = await axios.post("http://localhost:8080/users/login", {
         email: email,
@@ -66,32 +75,33 @@ const LoginFormEmailPassword = () => {
         </Link>
         <div className="loginContainerRegister">
           <p className="loginTextCreateAccount">Iniciar sesión en Trello</p>
-          <form className="loginForm" onSubmit={handleSubmit}>
-            <InputForm
-              type="email"
-              name="email"
-              text="Introduce tu correo electrónico"
-              pattern="[a-zA-Z0-9!#$%&'*_+-]([\.]?[a-zA-Z0-9!#$%&'*_+-])+@[a-zA-Z0-9]([^@&%$\/()=?¿!.,:;]|\d)+[a-zA-Z0-9][\.][a-zA-Z]{2,4}([\.][a-zA-Z]{2})?"
-              errorMessage="El email es requerido y debe ser válido"
-              onChange={handleChange}
-              value={user.email}
-            ></InputForm>
-            <InputForm
-              type="password"
-              name="password"
-              text="Introduce tu contraseña"
-              pattern="(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              errorMessage="La contraseña es requerida y debe contener mínimo 8 carácteres y al menos una letra mayúscula, una letra minúscula y un número"
-              value={user.password}
-              onChange={handleChange}
-            ></InputForm>
-            <ButtonFormRegister
-              text={"Continuar"}
-              color={"white"}
-              background={"#28a746"}
-              idbtn={1}
-            />
-          </form>
+          <Box>
+            <form className="loginForm" onSubmit={form.onSubmit(handleSubmit)}>
+              <TextInput
+                required
+                className="inputForm"
+                placeholder="Introduce tu email"
+                {...form.getInputProps("email")}
+              />
+              <PasswordInput
+                required
+                className="inputForm"
+                placeholder="Introduce tu contraseña"
+                {...form.getInputProps("password")}
+              />
+              <Group mt="md">
+                <Button
+                  type="submit"
+                  variant="gradient"
+                  gradient={{ from: "teal", to: "lime", deg: 105 }}
+                  className="loginFormButton"
+                >
+                  Continuar
+                </Button>
+              </Group>
+              <p>Olvidaste tu contraseña?</p>
+            </form>
+          </Box>
           <Link to="/register-form" className="linkSites2">
             Registrese para crear una cuenta
           </Link>
