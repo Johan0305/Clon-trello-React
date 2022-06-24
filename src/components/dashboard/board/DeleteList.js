@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { deleteList, getLists } from "../../../store/reducers/List.reducer";
 import { useDispatch } from "react-redux";
-
 import ActionButton from "../ActionButton";
 const DeleteList = ({ listId, boardId }) => {
   const dispatch = useDispatch();
@@ -24,8 +23,8 @@ const DeleteList = ({ listId, boardId }) => {
             onClick={handleDelete}
           >
             <ActionButton
-              label={"Borrar"}
-              styleName={"popover-button-create"}
+              label={"Borrar lista"}
+              styleName={"popover-button-delete"}
             />
           </Popover.Button>
         </div>

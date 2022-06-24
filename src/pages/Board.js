@@ -14,6 +14,7 @@ const Board = () => {
   const { boardName } = useParams();
   const { lists, loading } = useSelector((state) => state.listReducer);
   const { theBoards } = useSelector((state) => state.boardReducer);
+  const { cards } = useSelector((state) => state.cardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
 
@@ -45,7 +46,7 @@ const Board = () => {
               width={100}
             />
           ) : (
-            <Playground theLists={lists} boardId={data._id} />
+            <Playground theLists={lists} boardId={data._id} cards={cards} />
           )}
         </div>
       </div>

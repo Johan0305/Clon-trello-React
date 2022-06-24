@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Popover } from "@headlessui/react";
 import ActionButton from "../ActionButton";
-import axios from "axios";
-import { getLists } from "../../../store/reducers/List.reducer";
 import { postList } from "../../../store/reducers/List.reducer";
 import { useDispatch } from "react-redux";
 
