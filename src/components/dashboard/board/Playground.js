@@ -97,7 +97,7 @@ const Playground = ({ theLists, boardId, cards }) => {
     }
   };
 
-  //console.log("cards", theCards);
+  console.log("columns", columns);
   return (
     <div className="playground-grid">
       {moodal === true && <Modal data={data} />}
