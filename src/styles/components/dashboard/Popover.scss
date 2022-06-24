@@ -87,6 +87,17 @@
     
 }
 
+.popover-button-delete{
+    cursor: pointer;
+    margin: 0 auto;
+    width: 284px;
+    background-color: var(--red-delete);
+    padding: 6px 12px;
+    color: white;
+    border-radius: var(--round);
+    text-align: center;
+}
+
 .popover-button-create:hover{
     background-color: var(--primary);
 }

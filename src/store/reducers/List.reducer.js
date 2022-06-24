@@ -41,6 +41,51 @@ export const postList = (boardId, newList) => {
   };
 };
 
+export const deleteList = (listId, boardId) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: LISTS_LOADING, payload: true });
+      const list = await axios.delete(`http://localhost:8080/lists/${listId}`);
+      dispatch({ type: DELETE_LIST, payload: listId });
+      try {
+        dispatch({ type: LISTS_LOADING, payload: true });
+        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
+        dispatch({ type: LISTS_LOADING, payload: false });
+      } catch (err) {
+        dispatch({ type: LISTS_ERROR, payload: err });
+      }
+      dispatch({ type: LISTS_LOADING, payload: false });
+    } catch (err) {
+      alert("No se pudo borrar el tablero");
+    }
+  };
+};
+
+export const updateList = (listId, data, boardId) => {
+  return async function (dispatch) {
+    try {
+      dispatch({ type: LISTS_LOADING, payload: true });
+      const board = await axios.put(
+        `http://localhost:8080/lists/${listId}`,
+        data
+      );
+      dispatch({ type: UPDATE_LIST, payload: data });
+      try {
+        dispatch({ type: LISTS_LOADING, payload: true });
+        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
+        dispatch({ type: LISTS_LOADING, payload: false });
+      } catch (err) {
+        dispatch({ type: LISTS_ERROR, payload: err });
+      }
+      dispatch({ type: LISTS_LOADING, payload: false });
+    } catch (err) {
+      alert("No se pudo actualizar tu tablero");
+    }
+  };
+};
+
 const initialState = {
   lists: [],
   loading: false,
@@ -58,6 +103,18 @@ export const listReducer = (state = initialState, action) => {
       return {
         ...state,
         lists: action.payload,
+      };
+    case DELETE_LIST:
+      return {
+        ...state,
+        lists: state.lists.filter((item) => item._id !== action.payload),
+      };
+    case UPDATE_LIST:
+      return {
+        ...state,
+        lists: state.lists.map((item) =>
+          item._id === action.payload._id ? action.payload : item
+        ),
       };
     case LISTS_ERROR:
       return {
