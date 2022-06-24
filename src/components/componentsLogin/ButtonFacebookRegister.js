@@ -13,7 +13,6 @@ const ButtonFacebookRegister = () => {
 
   const responseFacebookRe = async (response) => {
     const resFb = await response;
-    console.log(resFb);
 
     ls.config.encrypt = true;
     ls.config.secret = "secret-string";
