@@ -7,6 +7,7 @@ import LoginFormEmailPassword from "./pages/LoginFormEmailPassword.js";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Response from "./pages/Response";
+import RecoverPassword from "./pages/RecoverPassword";
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -52,6 +53,7 @@ function App() {
         <Route path="/response" element={<Response />}>
           <Route path=":redirect" component={<Response />} />
         </Route>
+        <Route path="/rec-password/:token" element={<RecoverPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
