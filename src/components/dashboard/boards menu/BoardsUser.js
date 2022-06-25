@@ -11,22 +11,43 @@ import BoardTile from "./BoardTile";
 import AddBoard from "./AddBoard";
 import swal from "sweetalert";
 import Payment from "../../dashboard/boards menu/Payment";
+import ls from "localstorage-slim";
+import encUTF8 from "crypto-js/enc-utf8";
+import AES from "crypto-js/aes";
 
 const BoardsUser = () => {
   const { theBoards, loading } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [newBoard, setNewBoard] = useState("");
   const [color, setColor] = useState("#A2BDE8");
+
+  ls.config.encrypt = true;
+  ls.config.secret = "secret-string";
+
+  ls.config.encrypter = (data, secret) =>
+    AES.encrypt(JSON.stringify(data), secret).toString();
+
+  ls.config.decrypter = (data, secret) => {
+    try {
+      return JSON.parse(AES.decrypt(data, secret).toString(encUTF8));
+    } catch (e) {
+      return data;
+    }
+  };
+
   useState(() => {
     dispatch(getTheBoards());
   }, []);
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    if (theBoards.length < 3) {
+    if (theBoards.length < 3 && ls.get("premium") === false) {
       dispatch(posttheBoards(newBoard, color));
       setNewBoard("");
-    } else if (theBoards.length == 3) {
+    } else if (ls.get("premium")) {
+      dispatch(posttheBoards(newBoard, color));
+      setNewBoard("");
+    } else if (theBoards.length === 3 && ls.get("premium") === false) {
       swal(
         "Tableros Ilimitados",
         "Si deseas crear tableros ilimitados debes pagar para esta opción"
@@ -80,7 +101,7 @@ const BoardsUser = () => {
           />
         </div>
       </form>
-      {theBoards.length == 3 && <Payment />}
+      {theBoards.length === 3 && ls.get("premium") === false && <Payment />}
     </div>
   );
 };
