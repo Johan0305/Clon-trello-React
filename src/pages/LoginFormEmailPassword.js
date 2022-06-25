@@ -7,6 +7,7 @@ import swal from "sweetalert";
 import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
+import ButtonRecoveredPassword from "../components/componentsLogin/ButtonRecoveredPassword";
 
 const LoginFormEmailPassword = () => {
   const form = useForm({
@@ -42,7 +43,6 @@ const LoginFormEmailPassword = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log(form.values);
     const { email, password } = form.values;
     try {
       const res = await axios.post("http://localhost:8080/users/login", {
@@ -99,9 +99,9 @@ const LoginFormEmailPassword = () => {
                   Continuar
                 </Button>
               </Group>
-              <p>Olvidaste tu contraseña?</p>
             </form>
           </Box>
+          <ButtonRecoveredPassword />
           <Link to="/register-form" className="linkSites2">
             Registrese para crear una cuenta
           </Link>

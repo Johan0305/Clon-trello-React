@@ -55,9 +55,7 @@ const RegisterForm = () => {
     }
   };
   const handleSubmit = async (e) => {
-    console.log(form.values);
     const { name, nickname, email, password } = form.values;
-    console.log(name);
     try {
       const res = await axios.post("http://localhost:8080/users/register", {
         name: name,

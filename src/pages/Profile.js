@@ -1,5 +1,6 @@
 import Nav from "../components/dashboard/nav/Nav";
 import AboutProfile from "../components/profile/AboutProfile";
+import ButtonChangePassword from "../components/profile/ButtonChangePassword";
 import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch } from "react-redux";
 
@@ -16,6 +17,7 @@ const Profile = () => {
         }}
       >
         <AboutProfile />
+        <ButtonChangePassword />
       </div>
     </div>
   );
