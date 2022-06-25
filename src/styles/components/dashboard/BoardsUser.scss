@@ -22,3 +22,10 @@
 .paymentButton-boards:hover{
     background-color: var(--primary);
 }
+
+.boards-closed{
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

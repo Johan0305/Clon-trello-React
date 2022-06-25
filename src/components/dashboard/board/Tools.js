@@ -7,12 +7,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import {
-  faUserPlus,
-  faStar,
-  faEllipsisV,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserPlus, faStar } from "@fortawesome/free-solid-svg-icons";
+import CloseBoard from "./CloseBoard";
 
 const Tools = ({ data }) => {
   const { theBoards } = useSelector((state) => state.boardReducer);
@@ -62,28 +58,23 @@ const Tools = ({ data }) => {
           />
         </form>
       </div>
-      <form>
-        <button className="button-wrapper" onClick={handleMark}>
-          <IconButton
-            colorChange={
-              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
-            }
-          >
-            <FontAwesomeIcon icon={faStar} />
-          </IconButton>
-        </button>
-      </form>
+      <button className="button-wrapper" onClick={handleMark}>
+        <IconButton
+          colorChange={
+            data.marked ? "tools-button-fav-marked" : "tools-button-fav"
+          }
+        >
+          <FontAwesomeIcon icon={faStar} />
+        </IconButton>
+      </button>
       <Separator />
       <Avatar id={1} />
-      <IconButton styleName={"tools-button-add"}>
+      <div className={"tools-button-add"}>
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
-      </IconButton>
-
-      <IconButton styleName={"tools-button-more"}>
-        <FontAwesomeIcon icon={faEllipsisV} />
-      </IconButton>
+      </div>
       <CreateList boardId={data._id} />
+      <CloseBoard data={data} />
     </div>
   );
 };
