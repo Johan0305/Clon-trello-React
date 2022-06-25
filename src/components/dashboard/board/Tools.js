@@ -1,9 +1,8 @@
-import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import CreateList from "./CreateList";
-import { useSelector, useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,18 +10,10 @@ import { faUserPlus, faStar } from "@fortawesome/free-solid-svg-icons";
 import CloseBoard from "./CloseBoard";
 
 const Tools = ({ data }) => {
-  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const { boardName } = useParams();
   const [newBoardName, setNewBoardName] = useState(boardName);
-
-  const theBoard = () => {
-    const res = theBoards.filter((item) => item.name === boardName);
-  };
-
-  useEffect(() => {
-    theBoard();
-  }, []);
+  const [marked, setMarked] = useState(data.marked);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -34,15 +25,15 @@ const Tools = ({ data }) => {
     );
   };
 
-  const handleMark = (e) => {
+  const handleMark = async (e) => {
     e.preventDefault();
+
     dispatch(
       updateBoard(data._id, {
         ...data,
-        marked: !data.marked,
+        marked: !marked,
       })
     );
-    console.log(data);
   };
 
   return (
@@ -58,15 +49,21 @@ const Tools = ({ data }) => {
           />
         </form>
       </div>
-      <button className="button-wrapper" onClick={handleMark}>
-        <IconButton
-          colorChange={
-            data.marked ? "tools-button-fav-marked" : "tools-button-fav"
-          }
-        >
-          <FontAwesomeIcon icon={faStar} />
-        </IconButton>
+
+      <button
+        onClick={(e) => {
+          handleMark(e);
+          setMarked(!marked);
+        }}
+        className={
+          marked
+            ? "button-wrapper tools-button-fav-marked"
+            : "button-wrapper tools-button-fav"
+        }
+      >
+        <FontAwesomeIcon icon={faStar} />
       </button>
+
       <Separator />
       <Avatar id={1} />
       <div className={"tools-button-add"}>

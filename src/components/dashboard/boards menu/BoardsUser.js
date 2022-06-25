@@ -9,7 +9,6 @@ import {
 import { ColorPicker } from "@mantine/core";
 import ReactLoading from "react-loading";
 import BoardTile from "./BoardTile";
-import AddBoard from "./AddBoard";
 import ToggleBoardsButton from "./ToggleBoardsButton";
 import swal from "sweetalert";
 import Payment from "../../dashboard/boards menu/Payment";
@@ -21,7 +20,6 @@ const BoardsUser = () => {
   const [color, setColor] = useState("#A2BDE8");
   useState(() => {
     dispatch(getTheBoards());
-    console.log(theBoards);
   }, []);
 
   const handleCreate = async (e) => {
@@ -90,7 +88,10 @@ const BoardsUser = () => {
       </div>
 
       <Disclosure>
-        <Disclosure.Button className="button-wrapper">
+        <Disclosure.Button
+          className="button-wrapper"
+          style={{ fontSize: "16px", color: "var(--black)" }}
+        >
           <ToggleBoardsButton />
         </Disclosure.Button>
         <Disclosure.Panel>

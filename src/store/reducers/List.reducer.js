@@ -62,7 +62,7 @@ export const deleteList = (listId, boardId) => {
   };
 };
 
-export const updateList = (listId, data, boardId) => {
+export const updateList = (listId, data) => {
   return async function (dispatch) {
     try {
       dispatch({ type: LISTS_LOADING, payload: true });
@@ -71,14 +71,6 @@ export const updateList = (listId, data, boardId) => {
         data
       );
       dispatch({ type: UPDATE_LIST, payload: data });
-      try {
-        dispatch({ type: LISTS_LOADING, payload: true });
-        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
-        dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
-        dispatch({ type: LISTS_LOADING, payload: false });
-      } catch (err) {
-        dispatch({ type: LISTS_ERROR, payload: err });
-      }
       dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
       alert("No se pudo actualizar tu tablero");
