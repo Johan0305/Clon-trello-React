@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getLists } from "../store/reducers/List.reducer";
 import ReactLoading from "react-loading";
+import { Modal } from "@mantine/core";
 
 const Board = () => {
   const { boardName } = useParams();
@@ -31,6 +32,7 @@ const Board = () => {
     return (
       <div className="board-background" style={{ backgroundColor: data.color }}>
         <Nav navColor={data.color} />
+        <Modal opened={true}>{}</Modal>
         <div
           onClick={() => {
             dispatch({ type: TOGGLE_ALL });

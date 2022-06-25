@@ -20,8 +20,11 @@ const Response = () => {
       return data;
     }
   };
+
   const [resp, setResp] = useState({});
+  const [loading, setLoading] = useState(false);
   const name = ls.get("name");
+  const premium = { premium: true };
   const query = window.location.search;
   const res = {};
   query
@@ -32,42 +35,80 @@ const Response = () => {
       res[key] = value;
     });
   const params = res.ref_payco;
-  useEffect(() => {
-    axios
-      .get(`https://secure.epayco.co/validation/v1/reference/${params}`)
-      .then(({ data }) => {
-        setResp(data);
+
+  const getInformation = async () => {
+    try {
+      const dataTransaction = await axios.get(
+        `https://secure.epayco.co/validation/v1/reference/${params}`
+      );
+      setResp(dataTransaction);
+      ls.remove("premium");
+      ls.set("premium", dataTransaction.data.success);
+      console.log(ls.get("premium"));
+      const user = await axios.get("http://localhost:8080/users/myuser/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
       });
+      console.log(user);
+      try {
+        await axios.put(
+          "http://localhost:8080/users/myuser",
+          { ...user.data.data, premium: dataTransaction.data.success },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    } catch (err) {
+      console.log("no se pudo traer la información");
+    }
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getInformation();
+    setLoading(false);
   }, []);
-  let moreData = resp.data;
-  return (
-    <div>
-      <Nav />
-      <div className="pageResponse-container">
-        <LandingHeaderBrand />
-        <h3 className="pageResponse-title">
-          {name} el estado de tu transacción fue: {resp.title_response}
-        </h3>
-        <p>{resp.text_response}</p>
-        {moreData ? (
-          <>
-            <p>
-              Respuesta a tu transacción de ePayco: {moreData.x_description}
-            </p>
-            <p>
-              Tu transacción con factura{" "}
-              <strong># {moreData.x_id_invoice}</strong> por{" "}
-              <strong>{moreData.x_amount} COP </strong>
-              fue <strong>{moreData.x_response}</strong> para mayor información
-              cominicarse con el proveedor de su tarjeta.
-            </p>
-          </>
-        ) : (
-          <p>Loading...</p>
-        )}
+
+  let moreData = resp.data?.data;
+
+  if (loading === true) {
+    return <h1>Cargando info...</h1>;
+  } else {
+    return (
+      <div>
+        <Nav />
+        <div className="pageResponse-container">
+          <LandingHeaderBrand />
+          <h3 className="pageResponse-title">
+            {name} el estado de tu transacción fue: {resp.title_response}
+          </h3>
+          <p>{resp.text_response}</p>
+          {moreData ? (
+            <>
+              <p>
+                Respuesta a tu transacción de ePayco: {moreData.x_description}
+              </p>
+              <p>
+                Tu transacción con factura{" "}
+                <strong># {moreData.x_id_invoice}</strong> por{" "}
+                <strong>{moreData.x_amount} COP </strong>
+                fue <strong>{moreData.x_response}</strong> para mayor
+                información cominicarse con el proveedor de su tarjeta.
+              </p>
+            </>
+          ) : (
+            <p>Loading...</p>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Response;

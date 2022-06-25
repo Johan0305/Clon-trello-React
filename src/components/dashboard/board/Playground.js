@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVATE } from "../../../store/reducers/Modal.reducer";
-import { getLists } from "../../../store/reducers/List.reducer";
 import ReactLoading from "react-loading";
 import Avatar from "../Avatar";
 import CardTag from "./CardTag";

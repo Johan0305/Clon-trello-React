@@ -72,7 +72,7 @@ const Modal = ({ data }) => {
                         className="inputForm"
                         placeholder="Ingrese un correo electronico"
                       />
-                      <UserButtonMembers></UserButtonMembers>
+                      <UserButtonMembers />
                       <button className="buttonAddMembers">
                         Añadir miembro
                       </button>
