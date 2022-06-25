@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Disclosure } from "@headlessui/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getTheBoards,
@@ -24,6 +24,7 @@ const BoardsUser = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+
     if (theBoards.length < 3) {
       dispatch(posttheBoards(newBoard, color));
       setNewBoard("");

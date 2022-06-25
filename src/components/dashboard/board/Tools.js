@@ -27,7 +27,6 @@ const Tools = ({ data }) => {
 
   const handleMark = async (e) => {
     e.preventDefault();
-
     dispatch(
       updateBoard(data._id, {
         ...data,
@@ -70,6 +69,7 @@ const Tools = ({ data }) => {
         <FontAwesomeIcon icon={faUserPlus} />
         Compartir
       </div>
+
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />
     </div>

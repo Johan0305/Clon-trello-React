@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import toast from "react-hot-toast";
 const LISTS_SUCCESS = "LISTS_SUCCESS";
 const LISTS_ERROR = "LISTS_ERROR";
 const LISTS_LOADING = "LISTS_LOADING";
@@ -35,8 +35,10 @@ export const postList = (boardId, newList) => {
       } catch (err) {
         dispatch({ type: LISTS_ERROR, payload: err });
       }
+      toast.success("Lista creada exitosamente.");
     } catch (err) {
       dispatch({ type: LISTS_ERROR, payload: err });
+      toast.error("No pudimos crear la lista, inténtalo más tarde.");
     }
   };
 };
@@ -55,9 +57,11 @@ export const deleteList = (listId, boardId) => {
       } catch (err) {
         dispatch({ type: LISTS_ERROR, payload: err });
       }
+      toast.success("Lista eliminada.");
       dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
       alert("No se pudo borrar el tablero");
+      toast.error("No pudimos eliminar la lista, inténtalo más tarde.");
     }
   };
 };
@@ -73,7 +77,7 @@ export const updateList = (listId, data) => {
       dispatch({ type: UPDATE_LIST, payload: data });
       dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
-      alert("No se pudo actualizar tu tablero");
+      toast.error("No pudimos actualizar la lista, inténtalo más tarde.");
     }
   };
 };

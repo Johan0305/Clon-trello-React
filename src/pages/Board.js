@@ -1,7 +1,5 @@
-import React, { Suspense, lazy } from "react";
 import Nav from "../components/dashboard/nav/Nav";
 import Tools from "../components/dashboard/board/Tools";
-
 import Playground from "../components/dashboard/board/Playground";
 import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,7 +12,6 @@ const Board = () => {
   const { boardName } = useParams();
   const { lists, loading } = useSelector((state) => state.listReducer);
   const { theBoards } = useSelector((state) => state.boardReducer);
-  const { cards } = useSelector((state) => state.cardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
 
@@ -46,7 +43,7 @@ const Board = () => {
               width={100}
             />
           ) : (
-            <Playground theLists={lists} boardId={data._id} cards={cards} />
+            <Playground theLists={lists} boardId={data._id} />
           )}
         </div>
       </div>

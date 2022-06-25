@@ -12,7 +12,7 @@ import Modal from "../../Modal/Modal";
 import DeleteList from "./DeleteList";
 import AddCard from "./AddCard";
 
-const Playground = ({ theLists, boardId, cards }) => {
+const Playground = ({ theLists, boardId }) => {
   const { loading } = useSelector((state) => state.listReducer);
 
   const moodal = useSelector((state) => state.modalReducer.modal);

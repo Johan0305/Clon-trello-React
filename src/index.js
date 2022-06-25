@@ -4,6 +4,7 @@ import "./index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "react-calendar/dist/Calendar.css";
+
 import { store } from "./store";
 import { Provider } from "react-redux";
 
