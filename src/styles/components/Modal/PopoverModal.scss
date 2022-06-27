@@ -63,3 +63,13 @@
 .calendar-dropdown {
   cursor: pointer;
 }
+
+.form-tags-Modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-container {
+  height: 100%;
+  width: 100%;
+}

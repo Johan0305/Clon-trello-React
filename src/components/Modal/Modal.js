@@ -1,121 +1,133 @@
-import InternalModal from "./InternalModal";
-import Avatar from "../dashboard/Avatar";
-import {
-  faAngleDown,
-  faXmark,
-  faCalendarDays,
-  faCrown,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import ButtonModal from "./ButtonInternalModal2";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ACTIVATE, DESACTIVATE } from "../../store/reducers/Modal.reducer";
-import PopoverModal from "./PopoverModal";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  TOGGLE_CALENDAR,
-  TOGGLE_MEMBERS,
-  TOGGLE_DELETE,
-  TOGGLE_CREATETAG,
   TOGGLE_ALL_MODAL,
+  TOGGLE_CREATETAG,
 } from "../../store/reducers/ModalPopover.reducer";
-import UserButtonMembers from "./ModalPopovers/userButtonMembers";
-import { useState } from "react";
-import Calendar from "react-calendar";
+import InternalModal from "./InternalModal";
+import ButtonModal from "./ButtonInternalModal2";
+import PopoverModal from "./PopoverModal";
+import HeaderModal from "./HeaderModal";
 
-const Modal = ({ data }) => {
-  const [date, setDate] = useState(new Date());
+import { ColorPicker } from "@mantine/core";
+
+import axios from "axios";
+import CalendarModal from "./CalendarModal";
+import DescriptionModal from "./DescriptionModal";
+import DeleteCardModal from "./DeleteCardModal";
+import MembersModal from "./MembersModal";
+
+const Modal = ({ data, boardData, listModal }) => {
+  const { buttonCreatetag } = useSelector((state) => state.modalPopoverReducer);
   const dispatch = useDispatch();
-  const { buttonMembers, buttonDelete, buttonCreatetag, buttonCalendar } =
-    useSelector((state) => state.modalPopoverReducer);
-  const tagName = ["Dev", "BMW", "Diseño", "Cositas por hacer", "Dev"];
+  const [users, setUsers] = useState([]);
+  const [color, setColor] = useState("#5f9ea0");
+  const [newTag, setNewTag] = useState("");
+  const [tag, setTag] = useState([]);
+
+  useEffect(() => {
+    usersModal();
+  }, []);
+
+  const usersModal = async () => {
+    const info = await axios.get(
+      `http://localhost:8080/boards/${boardData._id}`
+    );
+    const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
+    setTag(tagData.data.data);
+    setUsers(info.data.data.user);
+  };
+
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    await axios.post(`http://localhost:8080/tags/${data._id}`, {
+      name: newTag,
+      color: color,
+    });
+    const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
+    setTag(tagData.data.data);
+    setNewTag("");
+    dispatch({
+      type: TOGGLE_CREATETAG,
+      payload: !buttonCreatetag,
+    });
+  };
+
   return (
-
     <div className="modal-global">
-
       <div className="modal-space">
         <InternalModal>
-          <div className="containerInternalModal1">
-            <div className="card-details-internalmodal1">
-              <strong>{data.content}</strong>
-              <p>En lista Doing</p>
-            </div>
-            <button
-              onClick={() => {
-                dispatch({ type: ACTIVATE, payload: false });
-              }}
-              className="buttonExit"
-            >
-              <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-            </button>
-          </div>
+          <HeaderModal
+            data={data}
+            listModal={listModal}
+            boardData={boardData}
+          />
         </InternalModal>
         <InternalModal>
-          <div className="container1InternalModal2">
-            <div>
-              <strong>Miembros</strong>
-            </div>
-            <div className="containerAvatarInternalModal2">
-              <FontAwesomeIcon icon={faCrown} className="avatar2" />
-              <div>
-                <span
-                  className="membersModal"
-                  onClick={() =>
-                    dispatch({ type: TOGGLE_MEMBERS, payload: !buttonMembers })
-                  }
-                >
-                  <Avatar type={faPlus} id={1} />
-                </span>
-                {buttonMembers && (
-                  <div className="PopoverModalAvatar">
-                    <PopoverModal popoverTitle={"Miembros"}>
-                      <input
-                        type="email"
-                        className="inputForm"
-                        placeholder="Ingrese un correo electronico"
-                      />
-                      <UserButtonMembers />
-                      <button className="buttonAddMembers">
-                        Añadir miembro
-                      </button>
-                    </PopoverModal>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <MembersModal users={users} />
           <div className="container2InternalModal2">
             <strong>Etiquetas</strong>
             <div className="containerButtonsInternalModal2">
-              {tagName.map((text, id) => (
-                <ButtonModal id={id + 1} text={text}></ButtonModal>
-              ))}
+              {tag.map((item, id) => {
+                return (
+                  <ButtonModal
+                    id={id + 1}
+                    item={item}
+                    usersModal={usersModal}
+                  />
+                );
+              })}
               <div className="container-createTag">
                 <button
                   className="buttonModal6"
-                  onClick={() =>
+                  onClick={() => {
+                    console.log(boardData);
                     dispatch({
                       type: TOGGLE_CREATETAG,
                       payload: !buttonCreatetag,
-                    })
-                  }
+                    });
+                  }}
                 >
                   <FontAwesomeIcon icon={faPlus} />
                 </button>
                 {buttonCreatetag && (
                   <PopoverModal popoverTitle="Etiquetas">
-                    <label>
-                      <strong>Nombre</strong>
-                    </label>
-                    <input type="text" />
-                    <div className="colors-tags-create">
-                      {tagName.map((text) => (
-                        <button className="color-tag-create">{text}</button>
-                      ))}
-                    </div>
-                    <button className="create-tag">
-                      Crear una etiqueta nueva
-                    </button>
+                    <form onSubmit={handleCreate} className={"form-tags-Modal"}>
+                      <label>
+                        <strong>Nombre</strong>
+                      </label>
+                      <input
+                        type="text"
+                        value={newTag}
+                        onChange={(e) => {
+                          setNewTag(e.target.value);
+                        }}
+                        placeholder="Crea una nueva etiqueta"
+                      />
+                      <ColorPicker
+                        format="hex"
+                        withPicker={false}
+                        fullWidth
+                        value={color}
+                        onChange={setColor}
+                        swatchesPerRow={5}
+                        swatches={[
+                          "#FF7F50",
+                          "#FFA500",
+                          "#9370DB",
+                          "#A2BDE8",
+                          "#9ACD32",
+                        ]}
+                      />
+                      <button
+                        className="create-tag"
+                        style={{ backgroundColor: color }}
+                      >
+                        Crear una etiqueta nueva
+                      </button>
+                    </form>
                   </PopoverModal>
                 )}
               </div>
@@ -123,97 +135,17 @@ const Modal = ({ data }) => {
           </div>
         </InternalModal>
         <InternalModal>
-          <div className="containerInternalModal4">
-            <strong>Fecha</strong>
-            <div className="containerCalendarInternalModal4">
-              <input type="checkbox" />
-              <p>
-                <FontAwesomeIcon icon={faCalendarDays} />
-              </p>
-              <p>
-                {date.length > 0 ? (
-                  <p className="text-center">
-                    {date[0].toDateString()} -{date[1].toDateString()}
-                  </p>
-                ) : (
-                  <p className="text-center">{date.toDateString()}</p>
-                )}
-              </p>
-              <div>
-                <p
-                  className="calendar-dropdown"
-                  onClick={() =>
-                    dispatch({
-                      type: TOGGLE_CALENDAR,
-                      payload: !buttonCalendar,
-                    })
-                  }
-                >
-                  <FontAwesomeIcon icon={faAngleDown} />
-                </p>
-                {buttonCalendar && (
-                  <div className="containerPopoverCalendar">
-                    <PopoverModal popoverTitle="Fechas">
-                      <div className="calendarModal">
-                        <div className="calendar-container">
-                          <Calendar
-                            onChange={setDate}
-                            value={date}
-                            selectRange={true}
-                          />
-                        </div>
-                        {date.length > 0 ? (
-                          <p className="text-center">
-                            <strong className="bold">Fecha de inicio:</strong>{" "}
-                            {date[0].toDateString()}
-                            <strong className="bold">
-                              Fecha de vencimiento:
-                            </strong>{" "}
-                            {date[1].toDateString()}
-                          </p>
-                        ) : (
-                          <p className="text-center">
-                            <strong className="bold">Fecha por default</strong>{" "}
-                            {date.toDateString()}
-                          </p>
-                        )}
-                      </div>
-                      <div className="container-buttons-calendar">
-                        <button className="buttonAddMembers">Guardar</button>
-                        <button className="buttonInternalModal6">Quitar</button>
-                      </div>
-                    </PopoverModal>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
+          <CalendarModal data={data} />
         </InternalModal>
         <InternalModal>
-          <div className="containerInternalModal5">
-            <strong>Descripción</strong>
-            <p>La tarjeta tiene el id {data.id}</p>
-          </div>
+          <DescriptionModal data={data} />
         </InternalModal>
         <InternalModal>
-          <div>
-            <button
-              className="buttonInternalModal6"
-              onClick={() =>
-                dispatch({ type: TOGGLE_DELETE, payload: !buttonDelete })
-              }
-            >
-              Eliminar Tarjeta
-            </button>
-            {buttonDelete && (
-              <PopoverModal popoverTitle="¿Deseas eliminar esta tarjeta?">
-                <p>Recuerda que no es posible deshacer esta acción.</p>
-                <button className="buttonInternalModal6">
-                  Eliminar tarjeta
-                </button>
-              </PopoverModal>
-            )}
-          </div>
+          <DeleteCardModal
+            data={data}
+            listModal={listModal}
+            boardData={boardData}
+          />
         </InternalModal>
       </div>
     </div>

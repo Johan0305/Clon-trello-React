@@ -9,13 +9,11 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getLists } from "../store/reducers/List.reducer";
 import ReactLoading from "react-loading";
-import { Modal } from "@mantine/core";
 
 const Board = () => {
   const { boardName } = useParams();
   const { lists, loading } = useSelector((state) => state.listReducer);
   const { theBoards } = useSelector((state) => state.boardReducer);
-  const { cards } = useSelector((state) => state.cardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
 
@@ -33,7 +31,6 @@ const Board = () => {
     return (
       <div className="board-background" style={{ backgroundColor: data.color }}>
         <Nav navColor={data.color} />
-        <Modal opened={true}>{}</Modal>
         <div
           onClick={() => {
             dispatch({ type: TOGGLE_ALL });
@@ -48,7 +45,7 @@ const Board = () => {
               width={100}
             />
           ) : (
-            <Playground theLists={lists} boardId={data._id} cards={cards} />
+            <Playground theLists={lists} boardId={data._id} boardData={data} />
           )}
         </div>
       </div>
