@@ -1,5 +1,5 @@
 import BoardsUser from "./BoardsUser";
-import ToggleBoardsButton from "./ToggleBoardsButton";
+
 import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
@@ -22,7 +22,6 @@ const BoardsMenu = () => {
     <div className="boards-menu-container">
       <h2 className="boards-menu-title">Tus tableros {ls.get("name")}</h2>
       <BoardsUser />
-      <ToggleBoardsButton />
     </div>
   );
 };

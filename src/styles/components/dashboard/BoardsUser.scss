@@ -5,7 +5,7 @@
 }
 
 .paymentButton-boards{
-    width: 300px;
+    width: 320px;
     height: 40px;
     color: var(--primary-dark);
     font-size: 16px;
@@ -21,4 +21,11 @@
 
 .paymentButton-boards:hover{
     background-color: var(--primary);
+}
+
+.boards-closed{
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }

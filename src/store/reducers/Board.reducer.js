@@ -1,5 +1,5 @@
 import axios from "axios";
-import swal from "sweetalert";
+import toast from "react-hot-toast";
 const THE_BOARDS_SUCCESS = "THE_BOARDS_SUCCESS";
 const BOARDS_ERROR = "BOARDS_ERROR";
 const BOARDS_LOADING = "BOARDS_LOADING";
@@ -60,14 +60,10 @@ export const posttheBoards = (newBoard, color) => {
       } catch (err) {
         dispatch({ type: BOARDS_ERROR, payload: err });
       }
-      swal("Éxito", "Tablero creado exitosamente");
+      toast.success("Tablero creado exitosamente.");
     } catch (err) {
       dispatch({ type: BOARDS_ERROR, payload: err });
-      swal(
-        "Error",
-        "No pudimos crear el tablero, inténtalo más tarde",
-        "error"
-      );
+      toast.error("No pudimos crear el tablero, inténtalo más tarde.");
     }
   };
 };
@@ -81,8 +77,9 @@ export const deleteBoard = (boardId) => {
       );
       dispatch({ type: DELETE_BOARD, payload: boardId });
       dispatch({ type: BOARDS_LOADING, payload: false });
+      toast.success("Tablero eliminado.");
     } catch (err) {
-      alert("No se pudo borrar el tablero");
+      toast.error("No pudimos eliminar el tablero, inténtalo más tarde.");
     }
   };
 };
@@ -96,7 +93,7 @@ export const updateBoard = (boardId, data) => {
       );
       dispatch({ type: UPDATE_BOARD, payload: data });
     } catch (err) {
-      alert("No se pudo actualizar tu tablero");
+      toast.error("No pudimos Actualizar el tablero, inténtalo más tarde.");
     }
   };
 };

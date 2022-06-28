@@ -49,7 +49,14 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
   };
 
   return (
-    <div className="board-tile" style={{ backgroundColor: data.color }}>
+    <div
+      className="board-tile"
+      style={
+        data.closed
+          ? { backgroundColor: "#444" }
+          : { backgroundColor: data.color }
+      }
+    >
       <div className="board-tile-header">
         <form onBlur={handleUpdate}>
           <input

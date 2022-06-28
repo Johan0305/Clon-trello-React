@@ -12,7 +12,7 @@ const CreateList = ({ boardId }) => {
     e.preventDefault();
     dispatch(postList(boardId, newList));
     setNewList("");
-    swal("Éxito", "Lista creada exitosamente", "success");
+    swal("Éxito", "Lista creada exitosamente");
   };
   return (
     <Popover className="pop-create-list-r">

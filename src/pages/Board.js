@@ -1,7 +1,5 @@
-import React, { Suspense, lazy } from "react";
 import Nav from "../components/dashboard/nav/Nav";
 import Tools from "../components/dashboard/board/Tools";
-
 import Playground from "../components/dashboard/board/Playground";
 import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch, useSelector } from "react-redux";

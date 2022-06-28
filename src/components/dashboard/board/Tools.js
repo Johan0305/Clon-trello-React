@@ -1,25 +1,23 @@
-import IconButton from "../IconButton";
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import CreateList from "./CreateList";
-import { useSelector, useDispatch } from "react-redux";
+
+import CloseBoard from "./CloseBoard";
+
+import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {
-  faUserPlus,
-  faStar,
-  faEllipsisV,
-} from "@fortawesome/free-solid-svg-icons";
+import { faStar, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import ShareBoards from "./ShareBoards";
 
 const Tools = ({ data }) => {
-  const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const { boardName } = useParams();
   const [newBoardName, setNewBoardName] = useState(boardName);
+  const [marked, setMarked] = useState(data.marked);
   const prof = useNavigate();
 
   const theBoard = () => {
@@ -40,15 +38,14 @@ const Tools = ({ data }) => {
     );
   };
 
-  const handleMark = (e) => {
+  const handleMark = async (e) => {
     e.preventDefault();
     dispatch(
       updateBoard(data._id, {
         ...data,
-        marked: !data.marked,
+        marked: !marked,
       })
     );
-    console.log(data);
   };
 
   return (
@@ -64,17 +61,21 @@ const Tools = ({ data }) => {
           />
         </form>
       </div>
-      <form>
-        <button className="button-wrapper" onClick={handleMark}>
-          <IconButton
-            colorChange={
-              data.marked ? "tools-button-fav-marked" : "tools-button-fav"
-            }
-          >
-            <FontAwesomeIcon icon={faStar} />
-          </IconButton>
-        </button>
-      </form>
+
+      <button
+        onClick={(e) => {
+          handleMark(e);
+          setMarked(!marked);
+        }}
+        className={
+          marked
+            ? "button-wrapper tools-button-fav-marked"
+            : "button-wrapper tools-button-fav"
+        }
+      >
+        <FontAwesomeIcon icon={faStar} />
+      </button>
+
       <Separator />
       <div
         onClick={() => {
@@ -88,6 +89,7 @@ const Tools = ({ data }) => {
         <FontAwesomeIcon icon={faEllipsisV} />
       </IconButton>
       <CreateList boardId={data._id} />
+      <CloseBoard data={data} />
     </div>
   );
 };
