@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";

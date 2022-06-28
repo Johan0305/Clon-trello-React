@@ -5,12 +5,12 @@ import CreateList from "./CreateList";
 import CloseBoard from "./CloseBoard";
 
 import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faStar, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ShareBoards from "./ShareBoards";
 
 const Tools = ({ data }) => {
