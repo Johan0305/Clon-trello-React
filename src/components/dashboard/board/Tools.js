@@ -20,13 +20,13 @@ const Tools = ({ data }) => {
   const [marked, setMarked] = useState(data.marked);
   const prof = useNavigate();
 
-  const theBoard = () => {
-    const res = theBoards.filter((item) => item.name === boardName);
-  };
+  // const theBoard = () => {
+  //   const res = theBoards.filter((item) => item.name === boardName);
+  // };
 
-  useEffect(() => {
-    theBoard();
-  }, []);
+  // useEffect(() => {
+  //   theBoard();
+  // }, []);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -85,9 +85,9 @@ const Tools = ({ data }) => {
         <Avatar id={1} />
       </div>
       <ShareBoards boardInfo={data} />
-      <IconButton styleName={"tools-button-more"}>
+      {/* <IconButton styleName={"tools-button-more"}>
         <FontAwesomeIcon icon={faEllipsisV} />
-      </IconButton>
+      </IconButton> */}
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />
     </div>
