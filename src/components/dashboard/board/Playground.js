@@ -57,16 +57,24 @@ const Playground = ({ theLists, boardId, boardData }) => {
       ]);
 
       dispatch(
-        updateList(source.droppableId, {
-          ...sourceColumn,
-          cards: sourceItems,
-        })
+        updateList(
+          source.droppableId,
+          {
+            ...sourceColumn,
+            cards: sourceItems,
+          },
+          boardId
+        )
       );
       dispatch(
-        updateList(destination.droppableId, {
-          ...destColumn,
-          cards: destItems,
-        })
+        updateList(
+          destination.droppableId,
+          {
+            ...destColumn,
+            cards: destItems,
+          },
+          boardId
+        )
       );
     } else {
       const sourceIndex = columns
@@ -88,10 +96,14 @@ const Playground = ({ theLists, boardId, boardData }) => {
       ]);
       console.log(columns[sourceIndex]);
       dispatch(
-        updateList(source.droppableId, {
-          ...column,
-          cards: copiedItems,
-        })
+        updateList(
+          source.droppableId,
+          {
+            ...column,
+            cards: copiedItems,
+          },
+          boardId
+        )
       );
     }
   };

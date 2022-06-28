@@ -77,6 +77,7 @@ const Tools = ({ data }) => {
         <Avatar id={1} />
       </div>
       <ShareBoards boardInfo={data} />
+
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />
     </div>
