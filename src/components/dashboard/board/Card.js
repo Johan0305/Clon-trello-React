@@ -17,7 +17,7 @@ const Card = () => {
       <div className="card-footer">
         <div className="card-date">
           <FontAwesomeIcon icon={faCalendarAlt} />
-          <span>14 de may - 15 de may</span>
+          <span>14 de may - 16 de may</span>
         </div>
         <Avatar id={1} />
       </div>

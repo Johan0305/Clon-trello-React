@@ -15,15 +15,16 @@ const Board = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
 
-  const theBoard = () => {
-    const res = theBoards.filter((item) => item.name === boardName);
-    setData(res[0]);
-    dispatch(getLists(res[0]._id));
-  };
-
   useEffect(() => {
     theBoard();
   }, []);
+
+  const theBoard = () => {
+    const res = theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
+    console.log(res);
+    dispatch(getLists(res[0]._id));
+  };
 
   if (data.hasOwnProperty("name")) {
     return (

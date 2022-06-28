@@ -177,7 +177,7 @@ const Playground = ({ theLists, boardId, boardData }) => {
                                             icon={faCalendarAlt}
                                           />
                                           <span>
-                                            {item.date.length > 0
+                                            {item.date.length > 1
                                               ? `${item.date[0]} - ${item.date[1]}`
                                               : `${new Date().toDateString()}`}
                                           </span>

@@ -20,14 +20,6 @@ const Tools = ({ data }) => {
   const [marked, setMarked] = useState(data.marked);
   const prof = useNavigate();
 
-  const theBoard = () => {
-    const res = theBoards.filter((item) => item.name === boardName);
-  };
-
-  useEffect(() => {
-    theBoard();
-  }, []);
-
   const handleUpdate = (e) => {
     e.preventDefault();
     dispatch(
@@ -85,9 +77,6 @@ const Tools = ({ data }) => {
         <Avatar id={1} />
       </div>
       <ShareBoards boardInfo={data} />
-      <IconButton styleName={"tools-button-more"}>
-        <FontAwesomeIcon icon={faEllipsisV} />
-      </IconButton>
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />
     </div>
