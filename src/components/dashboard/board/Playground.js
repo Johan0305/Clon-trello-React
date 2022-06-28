@@ -12,16 +12,14 @@ import Modal from "../../Modal/Modal";
 import DeleteList from "./DeleteList";
 import AddCard from "./AddCard";
 
-const Playground = ({ theLists, boardId }) => {
+const Playground = ({ theLists, boardId, boardData }) => {
   const { loading } = useSelector((state) => state.listReducer);
 
   const moodal = useSelector((state) => state.modalReducer.modal);
   const dispatch = useDispatch();
   const [columns, setColumns] = useState(theLists);
   const [data, setData] = useState();
-  useEffect(() => {
-    setColumns(theLists);
-  }, []);
+  const [listModal, setListModal] = useState("");
 
   const onDragEnd = (result, columns, setColumns) => {
     if (!result.destination) return;
@@ -57,6 +55,7 @@ const Playground = ({ theLists, boardId }) => {
           cards: destItems,
         },
       ]);
+
       dispatch(
         updateList(source.droppableId, {
           ...sourceColumn,
@@ -99,14 +98,15 @@ const Playground = ({ theLists, boardId }) => {
 
   return (
     <div className="playground-grid">
-      {moodal === true && <Modal data={data} />}
       <DragDropContext
-        onDragEnd={(result) => onDragEnd(result, columns, setColumns)}
+        onDragEnd={async (result) =>
+          await onDragEnd(result, columns, setColumns)
+        }
       >
         {loading ? (
           <ReactLoading type="bubbles" color="#FFF" height={100} width={100} />
         ) : (
-          columns.map((item, _id) => {
+          columns.map((itemList, _id) => {
             return (
               <div
                 style={{
@@ -118,10 +118,10 @@ const Playground = ({ theLists, boardId }) => {
               >
                 <div className="list">
                   <div className="list-header">
-                    <h3>{item.name}</h3>
-                    <DeleteList listId={item._id} boardId={boardId} />
+                    <h3>{itemList.name}</h3>
+                    <DeleteList listId={itemList._id} boardId={boardId} />
                   </div>
-                  <Droppable droppableId={item._id} key={_id}>
+                  <Droppable droppableId={itemList._id} key={_id}>
                     {(provided, snapshot) => {
                       return (
                         <div
@@ -134,7 +134,7 @@ const Playground = ({ theLists, boardId }) => {
                             minHeight: "1px",
                           }}
                         >
-                          {item.cards.map((item, index) => {
+                          {itemList.cards.map((item, index) => {
                             return (
                               <Draggable
                                 key={item._id}
@@ -145,8 +145,8 @@ const Playground = ({ theLists, boardId }) => {
                                   return (
                                     <div
                                       onDoubleClick={() => {
+                                        setListModal(itemList);
                                         setData(item);
-                                        console.log(snapshot);
                                         dispatch({
                                           type: ACTIVATE,
                                           payload: true,
@@ -176,7 +176,11 @@ const Playground = ({ theLists, boardId }) => {
                                           <FontAwesomeIcon
                                             icon={faCalendarAlt}
                                           />
-                                          <span>14 de may - 15 de may</span>
+                                          <span>
+                                            {item.date.length > 0
+                                              ? `${item.date[0]} - ${item.date[1]}`
+                                              : `${new Date().toDateString()}`}
+                                          </span>
                                         </div>
                                         <Avatar id={1} />
                                       </div>
@@ -191,13 +195,16 @@ const Playground = ({ theLists, boardId }) => {
                       );
                     }}
                   </Droppable>
-                  <AddCard listId={item._id} boardId={boardId} />
+                  <AddCard listId={itemList._id} boardId={boardId} />
                 </div>
               </div>
             );
           })
         )}
       </DragDropContext>
+      {moodal && (
+        <Modal data={data} boardData={boardData} listModal={listModal} />
+      )}
     </div>
   );
 };

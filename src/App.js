@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Response from "./pages/Response";
 import { Toaster } from "react-hot-toast";
+import RecoverPassword from "./pages/RecoverPassword";
+
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem("token");
   return token ? children : <Navigate to="/login" />;
@@ -52,6 +54,7 @@ function App() {
         <Route path="/response" element={<Response />}>
           <Route path=":redirect" component={<Response />} />
         </Route>
+        <Route path="/rec-password/:token" element={<RecoverPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster position="bottom-center" />

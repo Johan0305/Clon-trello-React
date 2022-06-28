@@ -1,19 +1,32 @@
 import Separator from "../Separator";
 import Avatar from "../Avatar";
 import CreateList from "./CreateList";
+
+import CloseBoard from "./CloseBoard";
+
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { updateBoard } from "../../../store/reducers/Board.reducer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faStar } from "@fortawesome/free-solid-svg-icons";
-import CloseBoard from "./CloseBoard";
+
+import { faStar, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
+import ShareBoards from "./ShareBoards";
 
 const Tools = ({ data }) => {
   const dispatch = useDispatch();
   const { boardName } = useParams();
   const [newBoardName, setNewBoardName] = useState(boardName);
   const [marked, setMarked] = useState(data.marked);
+  const prof = useNavigate();
+
+  const theBoard = () => {
+    const res = theBoards.filter((item) => item.name === boardName);
+  };
+
+  useEffect(() => {
+    theBoard();
+  }, []);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -64,12 +77,17 @@ const Tools = ({ data }) => {
       </button>
 
       <Separator />
-      <Avatar id={1} />
-      <div className={"tools-button-add"}>
-        <FontAwesomeIcon icon={faUserPlus} />
-        Compartir
+      <div
+        onClick={() => {
+          prof("/profile");
+        }}
+      >
+        <Avatar id={1} />
       </div>
-
+      <ShareBoards boardInfo={data} />
+      <IconButton styleName={"tools-button-more"}>
+        <FontAwesomeIcon icon={faEllipsisV} />
+      </IconButton>
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />
     </div>

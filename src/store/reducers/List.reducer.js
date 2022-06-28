@@ -2,7 +2,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 const LISTS_SUCCESS = "LISTS_SUCCESS";
 const LISTS_ERROR = "LISTS_ERROR";
-const LISTS_LOADING = "LISTS_LOADING";
+export const LISTS_LOADING = "LISTS_LOADING";
 const DELETE_LIST = "DELETE_LIST";
 const UPDATE_LIST = "UPDATE_LIST";
 

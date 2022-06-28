@@ -55,9 +55,7 @@ const RegisterForm = () => {
     }
   };
   const handleSubmit = async (e) => {
-    console.log(form.values);
     const { name, nickname, email, password } = form.values;
-    console.log(name);
     try {
       const res = await axios.post("http://localhost:8080/users/register", {
         name: name,
@@ -70,6 +68,7 @@ const RegisterForm = () => {
       ls.set("nickname", res.data.data.nickname);
       ls.set("email", res.data.data.email);
       ls.set("picture", res.data.data.picture);
+      ls.set("premium", res.data.data.premium);
       const token = await localStorage.getItem("token");
       if (token) {
         nav("/dashboard");
