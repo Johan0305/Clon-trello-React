@@ -45,7 +45,7 @@ const ShareBoards = ({ boardInfo }) => {
       users.filter((data) => {
         if (search === "") {
           return data.email;
-        } else if (data.email.includes(search)) {
+        } else if (data.email.includes(search.toLowerCase())) {
           return data.email;
         }
       })
@@ -77,7 +77,6 @@ const ShareBoards = ({ boardInfo }) => {
           Compartir
         </IconButton>
       </div>
-      {console.log(users)}
       {open === true && (
         <div className="popover shareButton">
           <div className="popover-header">

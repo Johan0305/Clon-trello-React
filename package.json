@@ -10,6 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@headlessui/react": "^1.6.4",
     "@mantine/core": "^4.2.10",
+    "@mantine/form": "^4.2.10",
     "@mantine/hooks": "^4.2.10",
     "@mantine/modals": "^4.2.10",
     "@mantine/next": "^4.2.9",

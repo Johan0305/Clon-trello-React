@@ -1,13 +1,12 @@
-import Avatar from "../../dashboard/Avatar";
-
-const UserButtonMembers = () => {
-  const name = localStorage.getItem("name");
-  const email = localStorage.getItem("email");
+const UserButtonMembers = ({ usersInfo }) => {
+  const { nickname, email, picture } = usersInfo;
   return (
     <div className="userButtonMembers">
-      <Avatar id={1} />
+      <div>
+        <img src={picture} alt="profile-img" className="avatar1" />
+      </div>
       <div className="userDescription">
-        <strong>{name}</strong>
+        <strong>{nickname}</strong>
         <p>{email}</p>
       </div>
     </div>
