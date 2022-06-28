@@ -60,7 +60,6 @@ export const deleteList = (listId, boardId) => {
       toast.success("Lista eliminada.");
       dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
-      alert("No se pudo borrar el tablero");
       toast.error("No pudimos eliminar la lista, inténtalo más tarde.");
     }
   };
