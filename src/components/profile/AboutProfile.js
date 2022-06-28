@@ -3,6 +3,7 @@ import axios from "axios";
 import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
+import ButtonChangePassword from "./ButtonChangePassword";
 
 const AboutProfile = () => {
   ls.config.encrypt = true;
@@ -124,6 +125,7 @@ const AboutProfile = () => {
           className="aboutProfile-imgInputChoose"
         />
         <button className="aboutProfile-buttonUpdate">Actualizar</button>
+        <ButtonChangePassword />
       </form>
     </div>
   );

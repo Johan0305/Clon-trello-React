@@ -69,6 +69,19 @@
     font-size: 16px;
 }
 
+.container-buttonSearchNav{
+    display: flex;
+    flex-direction: column;
+    position: relative ;
+}
+
+.popover-buttonSearchNav{
+    z-index: 5;
+    position: absolute;
+    top: 48px;
+    left: -36px;
+}
+
 
 
 .nav-search input:focus::placeholder{

@@ -1,6 +1,5 @@
 import logoTrello from "../assets/logo/Logo.svg";
 import { Link, useNavigate } from "react-router-dom";
-import ButtonFacebookRegister from "../components/componentsLogin/ButtonFacebookRegister";
 import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 import axios from "axios";
 import swal from "sweetalert";
@@ -141,8 +140,6 @@ const RegisterForm = () => {
                   Continuar
                 </Button>
               </Group>
-              <p>O</p>
-              <ButtonFacebookRegister />
             </form>
           </Box>
           <Link to="/login" className="linkSites2">
