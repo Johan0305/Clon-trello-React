@@ -30,6 +30,7 @@
     font-size: 20px;
   }
   p {
+    margin-top: 6px;
     font-size: 16px;
     color: var(--grey);
   }
@@ -39,4 +40,10 @@
   border: none;
   font-size: 20px;
   align-self: flex-start;
+  svg{
+    color: var(--black);
+  }
+  svg:hover{
+    color: var(--lime-green);
+  }
 }

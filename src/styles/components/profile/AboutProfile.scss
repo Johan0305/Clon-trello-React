@@ -8,13 +8,18 @@
 .aboutProfile{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 12px;
 }
 
+
+
 .aboutProfile-inputuser, .aboutProfile-email{
-    margin: 15px;
-    height: 0.7cm;
-    width: 250px;
+    padding: 6px 12px;
+    width: 100%;
+    font-size: 16px;
+    color: var(--black);
+    border: 1px solid var(--black);
+    border-radius: 4px;
 }
 
 .aboutProfile-imgBioChoose{
@@ -27,7 +32,7 @@
   width: 120px;
   height: 120px;
   border-radius: 100%;
-  border: 2px solid var(--yellow);
+  border: 6px solid var(--yellow);
 }
 
 
@@ -41,15 +46,15 @@
 
 .aboutProfile-buttonUpdate{
   width: 150px;
-  height: 30px;
+  height: 36px;
   border: 1px solid rgb(227, 226, 226);
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 4px;
   margin: 10px;
   align-items: center;
   cursor: pointer;
-  color: #6C757D;
-  font-size: 1.25rem;
+  color: white;
+  background-color: var(--primary);
   @media (max-width: 768px) {
     width: 180px;
     font-size: 12px;
@@ -58,4 +63,17 @@
 
 .aboutProfile-buttonUpdate:hover {
     background-color: rgb(162, 189, 232) !important;
+  }
+
+  .profileContainer-name{
+    width: 200px;
+    height: 24px;
+   
+  }
+  .profileContainer-userName{
+    width: 200px;
+  }
+
+  .aboutProfile-buttons-container{
+    display: flex;
   }
