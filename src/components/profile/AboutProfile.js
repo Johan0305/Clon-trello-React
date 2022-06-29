@@ -81,13 +81,11 @@ const AboutProfile = () => {
           height={200}
           className="aboutProfile-imgBio"
         ></img>
-        <h2 className="profileContainer-name">{name}</h2>
-        <h3 className="profileContainer-userName">@{nickname}</h3>
+        <div className="profileContainer-names">
+          <h2 className="profileContainer-name">{name}</h2>
+          <h3 className="profileContainer-userName">@{nickname}</h3>
+        </div>
       </header>
-      <p className="aboutProfile-about">
-        <strong>Acerca de</strong>
-      </p>
-      <hr></hr>
       <form onSubmit={handleSubmit} className="aboutProfile">
         <label htmlFor="name" className="aboutProfile-nameUSer">
           Nombre de usuario:
@@ -124,8 +122,10 @@ const AboutProfile = () => {
           onChange={handleChange}
           className="aboutProfile-imgInputChoose"
         />
-        <button className="aboutProfile-buttonUpdate">Actualizar</button>
-        <ButtonChangePassword />
+        <div className="aboutProfile-buttons-container">
+          <button className="aboutProfile-buttonUpdate">Actualizar</button>
+          <ButtonChangePassword />
+        </div>
       </form>
     </div>
   );
