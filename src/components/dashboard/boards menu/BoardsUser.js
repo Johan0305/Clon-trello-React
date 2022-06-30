@@ -91,6 +91,7 @@ const BoardsUser = () => {
             <button
               className="add-board-button"
               style={{ backgroundColor: color }}
+              data-cy="button-dashboard"
             >
               Crear
             </button>
