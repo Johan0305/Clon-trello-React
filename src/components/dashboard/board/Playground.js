@@ -176,9 +176,9 @@ const Playground = ({ theLists, boardId, boardData }) => {
                                       key={_id}
                                     >
                                       <div className="card-tags">
-                                        <CardTag />
-                                        <CardTag />
-                                        <CardTag />
+                                        {item.tags.map((cardInfo) => (
+                                          <CardTag cardInfo={cardInfo} />
+                                        ))}
                                       </div>
                                       <div className="card-title">
                                         <h4>{item.name}</h4>

@@ -32,7 +32,7 @@ const ButtonModal = ({ item, id, usersModal }) => {
   return (
     <div>
       <button
-        className={`buttonModal${id}`}
+        className={`buttonModal`}
         onClick={() =>
           buttonEditag === 0
             ? dispatch({ type: TOGGLE_EDITAG, payload: id })
