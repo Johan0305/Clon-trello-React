@@ -27,7 +27,6 @@ const CalendarModal = ({ data, listModal, boardData }) => {
     });
   };
 
-  console.log(data.date);
   return (
     <div className="containerInternalModal4">
       <strong>Fecha</strong>
