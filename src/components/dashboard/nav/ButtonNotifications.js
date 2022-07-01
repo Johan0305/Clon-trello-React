@@ -4,11 +4,25 @@ import Popover from "../Popover";
 import Notification from "./Notification";
 import { TOGGLE_NOTIFICATIONS } from "../../../store/reducers/Nav.reducer";
 import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 
-const ButtonNotifications = () => {
+const ButtonNotifications = ({ socket }) => {
   const dispatch = useDispatch();
   const { buttonNotifications } = useSelector((state) => state.navReducer);
+  const [notification, setNotification] = useState([]);
+  useEffect(() => {
+    socket?.on("sendNotificationFromBoard", (msg) => {
+      setNotification(notification.concat(msg));
+      console.log(notification, msg);
+    });
+  }, [socket]);
 
+  console.log(notification);
+  console.log(
+    notification
+      .map((item) => item)
+      .slice(notification.length - 3, notification.length)
+  );
   return (
     <div className="navOption-notification">
       <div className="nav-notifications">
@@ -28,14 +42,18 @@ const ButtonNotifications = () => {
       {buttonNotifications && (
         <div className="popover-notifications">
           <Popover popoverTitle={"Notificaciones"}>
-            <Notification>
-              <span>
-                Alicia te invitó a colaborar en su tablero “jardinería-2854”
-              </span>
-            </Notification>
-            <Notification>
-              <span>Alessia te invitó a colaborar en su tablero “viajes”</span>
-            </Notification>
+            {notification.length === 0 ? (
+              <h1>Tus notificaciones</h1>
+            ) : (
+              notification
+                .map((item) => (
+                  <Notification>
+                    <span>{item}</span>
+                  </Notification>
+                ))
+                .slice(notification.length - 3, notification.length)
+                .reverse()
+            )}
           </Popover>
         </div>
       )}

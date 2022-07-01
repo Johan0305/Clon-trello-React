@@ -16,7 +16,7 @@ import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
 
-const ShareBoards = ({ boardInfo }) => {
+const ShareBoards = ({ boardInfo, socket }) => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState([]);
   const [usersFilter, setUsersFilter] = useState([]);
@@ -115,6 +115,7 @@ const ShareBoards = ({ boardInfo }) => {
                 usersFilter.map((data) => {
                   return (
                     <UserButtonMembersSearch
+                      socket={socket}
                       data={data}
                       boardInfo={boardInfo}
                     />

@@ -1,6 +1,5 @@
 import Nav from "../components/dashboard/nav/Nav";
 import BoardsMenu from "../components/dashboard/boards menu/BoardsMenu";
-
 import { TOGGLE_ALL } from "../store/reducers/Nav.reducer";
 import { useDispatch } from "react-redux";
 

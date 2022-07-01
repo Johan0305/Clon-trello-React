@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getLists } from "../store/reducers/List.reducer";
 import ReactLoading from "react-loading";
+import io from "socket.io-client";
 
 const Board = () => {
   const { boardName } = useParams();
@@ -14,6 +15,20 @@ const Board = () => {
   const { theBoards } = useSelector((state) => state.boardReducer);
   const dispatch = useDispatch();
   const [data, setData] = useState({});
+  const [socket, setSocket] = useState(null);
+
+  useEffect(() => {
+    const newSocket = io.connect("http://localhost:8080", {
+      transports: ["websocket"],
+      autoConnect: true,
+      forceNew: true,
+      query: {
+        Authorization: localStorage.getItem("token"),
+      },
+    });
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
 
   useEffect(() => {
     theBoard();
@@ -35,13 +50,13 @@ const Board = () => {
           backgroundImage: `url("https://www.transparenttextures.com/patterns/gplay.png")`,
         }}
       >
-        <Nav navColor={data.color} />
+        <Nav navColor={data.color} socket={socket} />
         <div
           onClick={() => {
             dispatch({ type: TOGGLE_ALL });
           }}
         >
-          <Tools data={data} />
+          <Tools data={data} socket={socket} />
           {loading ? (
             <ReactLoading
               type="bubbles"
