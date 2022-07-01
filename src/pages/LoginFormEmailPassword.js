@@ -72,7 +72,13 @@ const LoginFormEmailPassword = () => {
     <div className="loginContainer">
       <div className="loginMain">
         <Link to="/">
-          <img width="200px" height="57.14px" src={logoTrello} alt="" />
+          <img
+            width="200px"
+            height="57.14px"
+            src={logoTrello}
+            alt=""
+            data-cy="trelloImg-login"
+          />
         </Link>
         <div className="loginContainerRegister">
           <p className="loginTextCreateAccount">Iniciar sesión en Trello</p>
@@ -83,12 +89,14 @@ const LoginFormEmailPassword = () => {
                 className="inputForm"
                 placeholder="Introduce tu email"
                 {...form.getInputProps("email")}
+                data-cy="textInput-login"
               />
               <PasswordInput
                 required
                 className="inputForm"
                 placeholder="Introduce tu contraseña"
                 {...form.getInputProps("password")}
+                data-cy="passwordInput-login"
               />
               <Group mt="md">
                 <Button
@@ -96,6 +104,7 @@ const LoginFormEmailPassword = () => {
                   variant="gradient"
                   gradient={{ from: "teal", to: "lime", deg: 105 }}
                   className="loginFormButton"
+                  data-cy="button-login"
                 >
                   Continuar
                 </Button>
