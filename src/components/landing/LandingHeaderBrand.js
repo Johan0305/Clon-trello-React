@@ -4,7 +4,7 @@ import logoTrello from "../../assets/logo/Logo.svg";
 const LandingHeaderBrand = () => {
   return (
     <Link to="/">
-      <img width="128" src={logoTrello} alt="" />
+      <img width="128" src={logoTrello} alt="" data-cy="trelloImg-landing" />
     </Link>
   );
 };

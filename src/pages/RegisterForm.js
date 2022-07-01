@@ -81,7 +81,13 @@ const RegisterForm = () => {
     <div className="loginContainer">
       <div className="loginMain">
         <Link to="/">
-          <img width="200px" height="57.14px" src={logoTrello} alt="" />
+          <img
+            width="200px"
+            height="57.14px"
+            src={logoTrello}
+            alt=""
+            data-cy="trelloImg-register"
+          />
         </Link>
         <div className="loginContainerRegister">
           <p className="loginTextCreateAccount">Crea tu cuenta</p>
@@ -92,27 +98,32 @@ const RegisterForm = () => {
                 className="inputForm"
                 placeholder="Introduce tu nombre"
                 {...form.getInputProps("name")}
+                data-cy="textInput-register"
               />
               <TextInput
                 required
                 className="inputForm"
                 placeholder="Introduce tu nickname"
                 {...form.getInputProps("nickname")}
+                data-cy="textInput-register"
               />
               <TextInput
                 required
                 className="inputForm"
                 placeholder="Introduce tu email"
                 {...form.getInputProps("email")}
+                data-cy="textInput-register"
               />
               <PasswordInput
                 required
                 className="inputForm"
+                data-cy="passwordInput-register"
                 placeholder="Introduce tu contraseña"
                 {...form.getInputProps("password")}
               />
               <PasswordInput
                 className="inputForm"
+                data-cy="passwordInput-register"
                 placeholder="Confirma tu contraseña"
                 {...form.getInputProps("confirmPassword")}
               />
@@ -136,6 +147,7 @@ const RegisterForm = () => {
                   variant="gradient"
                   gradient={{ from: "teal", to: "lime", deg: 105 }}
                   className="loginFormButton"
+                  data-cy="button-register"
                 >
                   Continuar
                 </Button>

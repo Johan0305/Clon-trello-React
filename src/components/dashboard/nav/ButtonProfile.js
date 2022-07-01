@@ -35,6 +35,7 @@ const ButtonProfile = () => {
         onClick={(event) => {
           dispatch({ type: TOGGLE_PROFILE, payload: !buttonProfile });
         }}
+        data-cy="buttonProfile-nav"
       >
         <Avatar id={1} />
       </div>
@@ -58,6 +59,7 @@ const ButtonProfile = () => {
                 localStorage.clear();
                 return nav("/");
               }}
+              data-cy="buttonLogout-Profile"
             >
               Cerrar sesión
             </a>
