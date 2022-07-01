@@ -22,7 +22,6 @@ const ButtonCreate = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     if (theBoards.length < 3) {
-
       dispatch(posttheBoards(newBoard, "#9ACD32"));
       setNewBoard("");
     } else if (theBoards.length === 3) {
@@ -40,6 +39,7 @@ const ButtonCreate = () => {
         onClick={(event) => {
           dispatch({ type: TOGGLE_CREATE, payload: !buttonCreate });
         }}
+        data-cy="buttonCreate-nav"
       >
         Crear
       </button>
@@ -57,9 +57,10 @@ const ButtonCreate = () => {
                   value={newBoard}
                   onChange={handleChange}
                   placeholder="Crea un nuevo tablero..."
+                  data-cy="inputCreate-Create"
                 ></input>
               </div>
-              <button className="button-wrapper">
+              <button className="button-wrapper" data-cy="buttonCreate-Create">
                 <ActionButton
                   label={"Crear"}
                   styleName={"popover-button-create"}

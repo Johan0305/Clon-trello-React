@@ -9,13 +9,13 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-background">
-      <Nav data-cy="nav-dashboard" />
+      <Nav />
       <div
         onClick={(event) => {
           dispatch({ type: TOGGLE_ALL });
         }}
       >
-        <BoardsMenu data-cy="boardsMenu-dashboard" />
+        <BoardsMenu />
       </div>
     </div>
   );

@@ -73,7 +73,6 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
               ? "board-mark-button-marked button-wrapper"
               : "board-mark-button button-wrapper"
           }
-          data-cy="button-dashboard"
         >
           <FontAwesomeIcon icon={faStar} />
         </button>
@@ -85,7 +84,6 @@ const BoardTile = ({ boardName, boardId, boardMark }) => {
         <button
           className="button-wrapper board-tile-delete"
           onClick={handleDelete}
-          data-cy="button-dashboard"
         >
           <FontAwesomeIcon icon={faTrashCan} />
         </button>

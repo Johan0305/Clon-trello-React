@@ -8,7 +8,7 @@ const LandingContainerDescriptionForm = () => {
           <button
             type="submit"
             className="lCDescription-form-button"
-            data-cy="button-landing"
+            data-cy="buttonBody-landing"
           >
             Regístrate. ¡Es gratis!
           </button>

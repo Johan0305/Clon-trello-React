@@ -41,7 +41,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "e2e": "cypress open"
+    "e2e": "cypress open",
+    "cypress": "e2e run --headless --browser chrome > Newt-e2e-test-results.txt"
   },
   "eslintConfig": {
     "extends": [

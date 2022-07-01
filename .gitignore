@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+Newt-e2e-test-results.txt
+cypress.config.js
+/cypress
 
 # production
 /build

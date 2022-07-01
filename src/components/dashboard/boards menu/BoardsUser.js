@@ -113,7 +113,7 @@ const BoardsUser = () => {
           className="button-wrapper"
           style={{ fontSize: "16px", color: "var(--black)" }}
         >
-          <ToggleBoardsButton />
+          <ToggleBoardsButton data-cy="button-closeBoards" />
         </Disclosure.Button>
         <Disclosure.Panel>
           <div className="boards-closed">

@@ -6,7 +6,7 @@ const LandingHeaderButton = () => {
       <button
         className="landingHeader-Button"
         type="submit"
-        data-cy="button-landing"
+        data-cy="buttonNav-landing"
       >
         <strong>Ir a tus tableros</strong>
       </button>

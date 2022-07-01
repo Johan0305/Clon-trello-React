@@ -8,7 +8,11 @@ import ButtonSearch from "./ButtonSearch";
 
 const Nav = ({ navColor }) => {
   return (
-    <nav className="nav" style={{ backgroundColor: navColor }}>
+    <nav
+      className="nav"
+      style={{ backgroundColor: navColor }}
+      data-cy="nav-dashboard"
+    >
       <div className="nav-left">
         <NavLogo />
         <ButtonRecent />

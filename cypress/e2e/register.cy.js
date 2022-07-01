@@ -1,4 +1,4 @@
-describe("Test e2e to landing page", () => {
+describe("Test e2e to register page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:3000/register-form");
   });

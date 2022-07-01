@@ -18,6 +18,7 @@ const ButtonMark = () => {
         onClick={(event) => {
           dispatch({ type: TOGGLE_MARK, payload: !buttonMark });
         }}
+        data-cy="buttonMark-nav"
       >
         Marcado
         <FontAwesomeIcon icon={faAngleDown} />

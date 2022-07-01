@@ -19,7 +19,7 @@ const BoardsMenu = () => {
     }
   };
   return (
-    <div className="boards-menu-container">
+    <div className="boards-menu-container" data-cy="boardsMenu-dashboard">
       <h2 className="boards-menu-title">Tus tableros {ls.get("name")}</h2>
       <BoardsUser />
     </div>
