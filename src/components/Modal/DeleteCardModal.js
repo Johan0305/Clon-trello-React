@@ -22,7 +22,6 @@ const DeleteCardModal = ({ data, listModal, boardData }) => {
       console.log(err);
     }
   };
-  console.log(data);
   return (
     <div>
       <button

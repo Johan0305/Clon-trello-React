@@ -2,18 +2,14 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  TOGGLE_ALL_MODAL,
-  TOGGLE_CREATETAG,
-} from "../../store/reducers/ModalPopover.reducer";
+import { TOGGLE_CREATETAG } from "../../store/reducers/ModalPopover.reducer";
 import InternalModal from "./InternalModal";
 import ButtonModal from "./ButtonInternalModal2";
 import PopoverModal from "./PopoverModal";
 import HeaderModal from "./HeaderModal";
-
 import { ColorPicker } from "@mantine/core";
-
 import axios from "axios";
+import swal from "sweetalert";
 import CalendarModal from "./CalendarModal";
 import DescriptionModal from "./DescriptionModal";
 import DeleteCardModal from "./DeleteCardModal";
@@ -42,17 +38,24 @@ const Modal = ({ data, boardData, listModal }) => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    await axios.post(`http://localhost:8080/tags/${data._id}`, {
-      name: newTag,
-      color: color,
-    });
-    const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
-    setTag(tagData.data.data);
-    setNewTag("");
-    dispatch({
-      type: TOGGLE_CREATETAG,
-      payload: !buttonCreatetag,
-    });
+    if (tag.length < 6) {
+      await axios.post(`http://localhost:8080/tags/${data._id}`, {
+        name: newTag,
+        color: color,
+      });
+      const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
+      setTag(tagData.data.data);
+      setNewTag("");
+      dispatch({
+        type: TOGGLE_CREATETAG,
+        payload: !buttonCreatetag,
+      });
+    } else {
+      swal(
+        "No se pudo crear tu etiqueta",
+        "Solo tienes un máximo de 6 etiquetas por cada tablero"
+      );
+    }
   };
 
   return (
@@ -81,7 +84,7 @@ const Modal = ({ data, boardData, listModal }) => {
               })}
               <div className="container-createTag">
                 <button
-                  className="buttonModal6"
+                  className="buttonModal-create"
                   onClick={() => {
                     console.log(boardData);
                     dispatch({
@@ -95,8 +98,12 @@ const Modal = ({ data, boardData, listModal }) => {
                 {buttonCreatetag && (
                   <PopoverModal popoverTitle="Etiquetas">
                     <form onSubmit={handleCreate} className={"form-tags-Modal"}>
-                      <label>
+                      <label className="description-tagCreate">
                         <strong>Nombre</strong>
+                        <small>
+                          Recuerda que tu etiqueta solo puede ser de máximo 10
+                          caracteres
+                        </small>
                       </label>
                       <input
                         type="text"

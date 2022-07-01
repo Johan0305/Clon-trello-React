@@ -15,19 +15,26 @@ const Board = () => {
   const dispatch = useDispatch();
   const [data, setData] = useState({});
 
-  const theBoard = () => {
-    const res = theBoards.filter((item) => item.name === boardName);
-    setData(res[0]);
-    dispatch(getLists(res[0]._id));
-  };
-
   useEffect(() => {
     theBoard();
   }, []);
 
+  const theBoard = () => {
+    const res = theBoards.filter((item) => item.name === boardName);
+    setData(res[0]);
+
+    dispatch(getLists(res[0]._id));
+  };
+
   if (data.hasOwnProperty("name")) {
     return (
-      <div className="board-background" style={{ backgroundColor: data.color }}>
+      <div
+        className="board-background"
+        style={{
+          backgroundColor: data.color,
+          backgroundImage: `url("https://www.transparenttextures.com/patterns/gplay.png")`,
+        }}
+      >
         <Nav navColor={data.color} />
         <div
           onClick={() => {

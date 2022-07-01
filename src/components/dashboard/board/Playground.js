@@ -1,5 +1,5 @@
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -57,16 +57,24 @@ const Playground = ({ theLists, boardId, boardData }) => {
       ]);
 
       dispatch(
-        updateList(source.droppableId, {
-          ...sourceColumn,
-          cards: sourceItems,
-        })
+        updateList(
+          source.droppableId,
+          {
+            ...sourceColumn,
+            cards: sourceItems,
+          },
+          boardId
+        )
       );
       dispatch(
-        updateList(destination.droppableId, {
-          ...destColumn,
-          cards: destItems,
-        })
+        updateList(
+          destination.droppableId,
+          {
+            ...destColumn,
+            cards: destItems,
+          },
+          boardId
+        )
       );
     } else {
       const sourceIndex = columns
@@ -88,10 +96,14 @@ const Playground = ({ theLists, boardId, boardData }) => {
       ]);
       console.log(columns[sourceIndex]);
       dispatch(
-        updateList(source.droppableId, {
-          ...column,
-          cards: copiedItems,
-        })
+        updateList(
+          source.droppableId,
+          {
+            ...column,
+            cards: copiedItems,
+          },
+          boardId
+        )
       );
     }
   };
@@ -164,9 +176,9 @@ const Playground = ({ theLists, boardId, boardData }) => {
                                       key={_id}
                                     >
                                       <div className="card-tags">
-                                        <CardTag />
-                                        <CardTag />
-                                        <CardTag />
+                                        {item.tags.map((cardInfo) => (
+                                          <CardTag cardInfo={cardInfo} />
+                                        ))}
                                       </div>
                                       <div className="card-title">
                                         <h4>{item.name}</h4>
@@ -177,7 +189,7 @@ const Playground = ({ theLists, boardId, boardData }) => {
                                             icon={faCalendarAlt}
                                           />
                                           <span>
-                                            {item.date.length > 0
+                                            {item.date.length > 1
                                               ? `${item.date[0]} - ${item.date[1]}`
                                               : `${new Date().toDateString()}`}
                                           </span>

@@ -35,9 +35,13 @@ const CalendarModal = ({ data, listModal, boardData }) => {
           <FontAwesomeIcon icon={faCalendarDays} />
         </p>
         <span>
-          {data.date.length > 0 ? (
+          {data.date.length > 1 ? (
             <p className="text-center">
-              {data.date[0]} - {data.date[1]}
+              {data.date[0]} - {data.date[0]}
+            </p>
+          ) : date.length > 0 ? (
+            <p className="text-center">
+              {date[0].toDateString()} - {date[1].toDateString()}
             </p>
           ) : (
             <p className="text-center">{date.toDateString()}</p>
@@ -74,6 +78,15 @@ const CalendarModal = ({ data, listModal, boardData }) => {
                         Fecha de vencimiento:
                       </strong>{" "}
                       {data.date[1]}
+                    </p>
+                  ) : date.length > 0 ? (
+                    <p className="text-center">
+                      <strong className="bold">Fecha de inicio:</strong>{" "}
+                      {date[0].toDateString()}
+                      <strong className="bold">
+                        Fecha de vencimiento:
+                      </strong>{" "}
+                      {date[1].toDateString()}
                     </p>
                   ) : (
                     <p className="text-center">

@@ -3,7 +3,6 @@ import { Popover } from "@headlessui/react";
 import ActionButton from "../ActionButton";
 import { postList } from "../../../store/reducers/List.reducer";
 import { useDispatch } from "react-redux";
-import swal from "sweetalert";
 
 const CreateList = ({ boardId }) => {
   const [newList, setNewList] = useState("");
@@ -12,7 +11,6 @@ const CreateList = ({ boardId }) => {
     e.preventDefault();
     dispatch(postList(boardId, newList));
     setNewList("");
-    swal("Éxito", "Lista creada exitosamente");
   };
   return (
     <Popover className="pop-create-list-r">

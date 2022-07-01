@@ -41,3 +41,12 @@
     background-color: var(--primary-dark);
   }
 }
+
+.description-tagCreate {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  small {
+    margin-bottom: 10px;
+  }
+}

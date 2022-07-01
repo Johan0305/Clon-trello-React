@@ -67,13 +67,13 @@ const ShareBoards = ({ boardInfo }) => {
   return (
     <div>
       <div
-        className="buttonShare"
+        className="action-button tools-button-filter"
         onClick={() => {
           setOpen(!open);
         }}
       >
         <IconButton styleName={"tools-button-add"}>
-          <FontAwesomeIcon icon={faUserPlus} />
+          <FontAwesomeIcon icon={faUserPlus} style={{ marginRight: "12px" }} />
           Compartir
         </IconButton>
       </div>

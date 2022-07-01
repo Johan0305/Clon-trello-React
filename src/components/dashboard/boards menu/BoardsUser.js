@@ -91,6 +91,7 @@ const BoardsUser = () => {
             <button
               className="add-board-button"
               style={{ backgroundColor: color }}
+              data-cy="button-dashboard"
             >
               Crear
             </button>
@@ -112,7 +113,7 @@ const BoardsUser = () => {
           className="button-wrapper"
           style={{ fontSize: "16px", color: "var(--black)" }}
         >
-          <ToggleBoardsButton />
+          <ToggleBoardsButton data-cy="button-closeBoards" />
         </Disclosure.Button>
         <Disclosure.Panel>
           <div className="boards-closed">

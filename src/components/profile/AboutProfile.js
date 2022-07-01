@@ -3,6 +3,7 @@ import axios from "axios";
 import ls from "localstorage-slim";
 import encUTF8 from "crypto-js/enc-utf8";
 import AES from "crypto-js/aes";
+import ButtonChangePassword from "./ButtonChangePassword";
 
 const AboutProfile = () => {
   ls.config.encrypt = true;
@@ -80,13 +81,11 @@ const AboutProfile = () => {
           height={200}
           className="aboutProfile-imgBio"
         ></img>
-        <h2 className="profileContainer-name">{name}</h2>
-        <h3 className="profileContainer-userName">@{nickname}</h3>
+        <div className="profileContainer-names">
+          <h2 className="profileContainer-name">{name}</h2>
+          <h3 className="profileContainer-userName">@{nickname}</h3>
+        </div>
       </header>
-      <p className="aboutProfile-about">
-        <strong>Acerca de</strong>
-      </p>
-      <hr></hr>
       <form onSubmit={handleSubmit} className="aboutProfile">
         <label htmlFor="name" className="aboutProfile-nameUSer">
           Nombre de usuario:
@@ -123,7 +122,10 @@ const AboutProfile = () => {
           onChange={handleChange}
           className="aboutProfile-imgInputChoose"
         />
-        <button className="aboutProfile-buttonUpdate">Actualizar</button>
+        <div className="aboutProfile-buttons-container">
+          <button className="aboutProfile-buttonUpdate">Actualizar</button>
+          <ButtonChangePassword />
+        </div>
       </form>
     </div>
   );

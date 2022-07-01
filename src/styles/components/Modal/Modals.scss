@@ -46,23 +46,14 @@
       border-radius: var(--round);
     }
 
-    .buttonModal1 {
-      @include modalButtonsInternal2(var(--primary), 45px);
+    .buttonModal {
+      @include modalButtonsInternal2(_, 100%);
+      padding-left: 20px;
+      padding-right: 20px;
     }
-    .buttonModal2 {
-      @include modalButtonsInternal2(var(--light-green), 53px);
-    }
-    .buttonModal3 {
-      @include modalButtonsInternal2(var(--lime-green), 62px);
-    }
-    .buttonModal4 {
-      @include modalButtonsInternal2(var(--yellow), 119px);
-    }
-    .buttonModal5 {
-      @include modalButtonsInternal2(var(--softblue), 45px);
-    }
-    .buttonModal6 {
-      @include modalButtonsInternal2(var(--grey), 31px);
+    .buttonModal-create {
+      @include modalButtonsInternal2(_, 31px);
+      background-color: var(--primary-dark);
     }
   }
 }
