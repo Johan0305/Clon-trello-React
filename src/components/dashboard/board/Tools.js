@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import ShareBoards from "./ShareBoards";
 
-const Tools = ({ data }) => {
+const Tools = ({ data, socket }) => {
   const dispatch = useDispatch();
   const { boardName } = useParams();
   const [newBoardName, setNewBoardName] = useState(boardName);
@@ -76,7 +76,7 @@ const Tools = ({ data }) => {
       >
         <Avatar id={1} />
       </div>
-      <ShareBoards boardInfo={data} />
+      <ShareBoards boardInfo={data} socket={socket} />
 
       <CreateList boardId={data._id} />
       <CloseBoard data={data} />

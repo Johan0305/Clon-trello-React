@@ -6,7 +6,7 @@ import ButtonNotifications from "./ButtonNotifications";
 import ButtonProfile from "./ButtonProfile";
 import ButtonSearch from "./ButtonSearch";
 
-const Nav = ({ navColor }) => {
+const Nav = ({ navColor, socket }) => {
   return (
     <nav
       className="nav"
@@ -21,7 +21,7 @@ const Nav = ({ navColor }) => {
       </div>
       <div className="nav-right">
         <ButtonSearch />
-        <ButtonNotifications />
+        <ButtonNotifications socket={socket} />
         <ButtonProfile />
       </div>
     </nav>
