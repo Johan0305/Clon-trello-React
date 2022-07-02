@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/19397183/177006058-6bb00f72-2319-4f49-8b98-57dcf5de4dc7.png)
+
 # Trello
 Manage your projects, organize your tasks and create team spirit in one place.
 This Trello clone was created with educational purposes for Make IT Real Bootcamp V22.
