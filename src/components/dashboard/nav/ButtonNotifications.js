@@ -17,12 +17,6 @@ const ButtonNotifications = ({ socket }) => {
     });
   }, [socket]);
 
-  console.log(notification);
-  console.log(
-    notification
-      .map((item) => item)
-      .slice(notification.length - 3, notification.length)
-  );
   return (
     <div className="navOption-notification">
       <div className="nav-notifications">

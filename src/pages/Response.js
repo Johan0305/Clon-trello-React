@@ -46,7 +46,7 @@ const Response = () => {
       ls.set("premium", dataTransaction.data.success);
       console.log(ls.get("premium"));
       const user = await axios.get(
-        `${process.env.REACT_APP_URL_BACK}/users/myuser/`,
+        `${process.env.REACT_APP_URL_BACK}/users/myuser`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
