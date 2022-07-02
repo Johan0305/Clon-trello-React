@@ -29,9 +29,11 @@ const Modal = ({ data, boardData, listModal }) => {
 
   const usersModal = async () => {
     const info = await axios.get(
-      `http://localhost:8080/boards/${boardData._id}`
+      `${process.env.REACT_APP_URL_BACK}/boards/${boardData._id}`
     );
-    const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
+    const tagData = await axios.get(
+      `${process.env.REACT_APP_URL_BACK}/tags/${data._id}`
+    );
     setTag(tagData.data.data);
     setUsers(info.data.data.user);
   };
@@ -39,11 +41,13 @@ const Modal = ({ data, boardData, listModal }) => {
   const handleCreate = async (e) => {
     e.preventDefault();
     if (tag.length < 6) {
-      await axios.post(`http://localhost:8080/tags/${data._id}`, {
+      await axios.post(`${process.env.REACT_APP_URL_BACK}/tags/${data._id}`, {
         name: newTag,
         color: color,
       });
-      const tagData = await axios.get(`http://localhost:8080/tags/${data._id}`);
+      const tagData = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/tags/${data._id}`
+      );
       setTag(tagData.data.data);
       setNewTag("");
       dispatch({

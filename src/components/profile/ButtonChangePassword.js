@@ -24,7 +24,7 @@ const ButtonChangePassword = () => {
     const token = localStorage.getItem("token");
     try {
       const res = await axios.put(
-        "http://localhost:8080/users/changepassword",
+        `${process.env.REACT_APP_URL_BACK}/users/changepassword`,
         {
           actualPassword: actualPassword,
           newPassword: newPassword,

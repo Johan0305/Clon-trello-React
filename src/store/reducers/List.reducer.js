@@ -10,7 +10,9 @@ export const getLists = (boardId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: LISTS_LOADING, payload: true });
-      const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+      const lists = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/lists/${boardId}`
+      );
       dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
       dispatch({ type: LISTS_LOADING, payload: false });
     } catch (err) {
@@ -23,12 +25,17 @@ export const postList = (boardId, newList) => {
   return async function (dispatch) {
     try {
       dispatch({ type: LISTS_LOADING, payload: true });
-      const list = await axios.post(`http://localhost:8080/lists/${boardId}`, {
-        name: newList,
-      });
+      const list = await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/lists/${boardId}`,
+        {
+          name: newList,
+        }
+      );
       try {
         dispatch({ type: LISTS_LOADING, payload: true });
-        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        const lists = await axios.get(
+          `${process.env.REACT_APP_URL_BACK}/lists/${boardId}`
+        );
         dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
 
         dispatch({ type: LISTS_LOADING, payload: false });
@@ -47,11 +54,15 @@ export const deleteList = (listId, boardId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: LISTS_LOADING, payload: true });
-      const list = await axios.delete(`http://localhost:8080/lists/${listId}`);
+      const list = await axios.delete(
+        `${process.env.REACT_APP_URL_BACK}/lists/${listId}`
+      );
       dispatch({ type: DELETE_LIST, payload: listId });
       try {
         dispatch({ type: LISTS_LOADING, payload: true });
-        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        const lists = await axios.get(
+          `${process.env.REACT_APP_URL_BACK}/lists/${boardId}`
+        );
         dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
         dispatch({ type: LISTS_LOADING, payload: false });
       } catch (err) {
@@ -70,12 +81,14 @@ export const updateList = (listId, data, boardId) => {
     try {
       dispatch({ type: LISTS_LOADING, payload: true });
       const board = await axios.put(
-        `http://localhost:8080/lists/${listId}`,
+        `${process.env.REACT_APP_URL_BACK}/lists/${listId}`,
         data
       );
       try {
         dispatch({ type: LISTS_LOADING, payload: true });
-        const lists = await axios.get(`http://localhost:8080/lists/${boardId}`);
+        const lists = await axios.get(
+          `${process.env.REACT_APP_URL_BACK}/lists/${boardId}`
+        );
         dispatch({ type: LISTS_SUCCESS, payload: lists.data.data });
 
         dispatch({ type: LISTS_LOADING, payload: false });

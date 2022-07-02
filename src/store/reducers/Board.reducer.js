@@ -17,11 +17,14 @@ export const getTheBoards = () => {
   return async function (dispatch) {
     try {
       dispatch({ type: BOARDS_LOADING, payload: true });
-      const boards = await axios.get("http://localhost:8080/boards", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const boards = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/boards`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       dispatch({ type: THE_BOARDS_SUCCESS, payload: boards.data.data });
       dispatch({ type: BOARDS_LOADING, payload: false });
     } catch (err) {
@@ -35,7 +38,7 @@ export const posttheBoards = (newBoard, color) => {
     try {
       dispatch({ type: BOARDS_LOADING, payload: true });
       const board = await axios.post(
-        "http://localhost:8080/boards",
+        `${process.env.REACT_APP_URL_BACK}/boards`,
         {
           name: newBoard,
           marked: false,
@@ -50,11 +53,14 @@ export const posttheBoards = (newBoard, color) => {
       );
       try {
         dispatch({ type: BOARDS_LOADING, payload: true });
-        const boards = await axios.get("http://localhost:8080/boards", {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const boards = await axios.get(
+          `${process.env.REACT_APP_URL_BACK}/boards`,
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
         dispatch({ type: THE_BOARDS_SUCCESS, payload: boards.data.data });
         dispatch({ type: BOARDS_LOADING, payload: false });
       } catch (err) {
@@ -73,7 +79,7 @@ export const deleteBoard = (boardId) => {
     try {
       dispatch({ type: BOARDS_LOADING, payload: true });
       const board = await axios.delete(
-        `http://localhost:8080/boards/${boardId}`
+        `${process.env.REACT_APP_URL_BACK}/boards/${boardId}`
       );
       dispatch({ type: DELETE_BOARD, payload: boardId });
       dispatch({ type: BOARDS_LOADING, payload: false });
@@ -88,7 +94,7 @@ export const updateBoard = (boardId, data) => {
   return async function (dispatch) {
     try {
       const board = await axios.put(
-        `http://localhost:8080/boards/${boardId}`,
+        `${process.env.REACT_APP_URL_BACK}/boards/${boardId}`,
         data
       );
       dispatch({ type: UPDATE_BOARD, payload: data });

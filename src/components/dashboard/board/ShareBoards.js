@@ -54,7 +54,9 @@ const ShareBoards = ({ boardInfo, socket }) => {
 
   const getUsers = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/users");
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/users`
+      );
       const usersFilter = data.data.filter(({ email }) => {
         return !(email === ls.get("email"));
       });

@@ -39,14 +39,18 @@ const AboutProfile = () => {
     ls.set("name", name);
     ls.set("nickname", nickname);
 
-    const response = await axios.put("http://localhost:8080/users", data, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const response = await axios.put(
+      `${process.env.REACT_APP_URL_BACK}/users`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
     const updatePicture = await axios.get(
-      "http://localhost:8080/users/myuser",
+      `${process.env.REACT_APP_URL_BACK}/users/myuser`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

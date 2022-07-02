@@ -14,7 +14,7 @@ const DeleteCardModal = ({ data, listModal, boardData }) => {
 
   const deleteCard = async () => {
     try {
-      await axios.delete(`http://localhost:8080/cards/${data._id}`);
+      await axios.delete(`${process.env.REACT_APP_URL_BACK}/${data._id}`);
       dispatch({ type: ACTIVATE, payload: false });
       dispatch({ type: TOGGLE_ALL_MODAL });
       dispatch(getLists(boardData._id));

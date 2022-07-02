@@ -23,9 +23,12 @@ const ButtonRecoveredPassword = () => {
     const { email } = form.values;
     try {
       console.log(email);
-      const res = await axios.post("http://localhost:8080/users/getemail", {
-        email: email,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/users/getemail`,
+        {
+          email: email,
+        }
+      );
       swal(
         "Recuperación de contraseña!",
         "Si el email está registrado, se enviará un link al correo para la recuperación de la contraseña"

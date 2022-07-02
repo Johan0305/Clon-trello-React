@@ -9,7 +9,10 @@ export const postTag = (cardId, data) => {
   return async function (dispatch) {
     try {
       dispatch({ type: TAGS_LOADING, payload: true });
-      await axios.post(`http://localhost:8080/tags/${cardId}`, data);
+      await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/tags/${cardId}`,
+        data
+      );
       dispatch({ type: TAGS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: TAGS_ERROR, payload: err });
@@ -21,7 +24,7 @@ export const deleteTag = (cardId, tagId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: TAGS_LOADING, payload: true });
-      await axios.delete(`http://localhost:8080/tags/${tagId}`);
+      await axios.delete(`${process.env.REACT_APP_URL_BACK}/tags/${tagId}`);
       dispatch({ type: TAGS_LOADING, payload: false });
     } catch (err) {
       dispatch({ type: TAGS_ERROR, payload: err });
@@ -32,7 +35,7 @@ export const deleteTag = (cardId, tagId) => {
 export const updateTag = (tagId, cardId, data) => {
   return async function (dispatch) {
     dispatch({ type: TAGS_LOADING, payload: true });
-    await axios.put(`http://localhost:8080/tags/${tagId}`, data);
+    await axios.put(`${process.env.REACT_APP_URL_BACK}/tags/${tagId}`, data);
     dispatch({ type: TAGS_LOADING, payload: false });
   };
 };

@@ -18,7 +18,7 @@ const Board = () => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io.connect("http://localhost:8080", {
+    const newSocket = io.connect(`${process.env.REACT_APP_URL_BACK}/`, {
       transports: ["websocket"],
       autoConnect: true,
       forceNew: true,

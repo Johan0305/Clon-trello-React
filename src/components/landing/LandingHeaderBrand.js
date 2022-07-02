@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoTrello from "../../assets/logo/Logo.svg";
+import logoTrello from "../../assets/logo/logo.svg";
 
 const LandingHeaderBrand = () => {
   return (

@@ -38,7 +38,7 @@ const Payment = () => {
       country: "co",
       lang: "es",
 
-      response: "http://localhost:3000/response",
+      response: "http://www.trello.top/response",
 
       //Atributos cliente
       name_billing: `${name}`,

@@ -1,4 +1,4 @@
-import logoTrello from "../assets/logo/Logo.svg";
+import logoTrello from "../assets/logo/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "@mantine/form";
 import { Box, TextInput, PasswordInput, Button, Group } from "@mantine/core";
@@ -45,10 +45,13 @@ const LoginFormEmailPassword = () => {
   const handleSubmit = async (e) => {
     const { email, password } = form.values;
     try {
-      const res = await axios.post("http://localhost:8080/users/login", {
-        email: email,
-        password: password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/users/login`,
+        {
+          email: email,
+          password: password,
+        }
+      );
       localStorage.setItem("token", res.data.data.token);
       ls.set("name", res.data.data.name);
       ls.set("nickname", res.data.data.nickname);

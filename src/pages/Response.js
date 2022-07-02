@@ -45,15 +45,18 @@ const Response = () => {
       ls.remove("premium");
       ls.set("premium", dataTransaction.data.success);
       console.log(ls.get("premium"));
-      const user = await axios.get("http://localhost:8080/users/myuser/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const user = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/users/myuser/`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       console.log(user);
       try {
         await axios.put(
-          "http://localhost:8080/users/myuser",
+          `${process.env.REACT_APP_URL_BACK}/users/myuser`,
           { ...user.data.data, premium: dataTransaction.data.success },
           {
             headers: {

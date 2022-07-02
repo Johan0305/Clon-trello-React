@@ -10,7 +10,9 @@ export const getCards = (listId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: CARDS_LOADING, payload: true });
-      const lists = await axios.get(`http://localhost:8080/cards/${listId}`);
+      const lists = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/cards/${listId}`
+      );
       dispatch({ type: CARDS_SUCCESS, payload: lists.data.data });
       dispatch({ type: CARDS_LOADING, payload: false });
     } catch (err) {
@@ -23,9 +25,12 @@ export const postCard = (listId, newCard, boardId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: CARDS_LOADING, payload: true });
-      const card = await axios.post(`http://localhost:8080/cards/${listId}`, {
-        name: newCard,
-      });
+      const card = await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/cards/${listId}`,
+        {
+          name: newCard,
+        }
+      );
       dispatch(getLists(boardId));
       dispatch({ type: CARDS_SUCCESS, payload: card });
       dispatch({ type: CARDS_LOADING, payload: false });
@@ -39,11 +44,15 @@ export const deleteCard = (cardId, listId) => {
   return async function (dispatch) {
     try {
       dispatch({ type: CARDS_LOADING, payload: true });
-      const card = await axios.delete(`http://localhost:8080/cards/${cardId}`);
+      const card = await axios.delete(
+        `${process.env.REACT_APP_URL_BACK}/cards/${cardId}`
+      );
       dispatch({ type: DELETE_CARD, payload: cardId });
       try {
         dispatch({ type: CARDS_LOADING, payload: true });
-        const cards = await axios.get(`http://localhost:8080/cards/${listId}`);
+        const cards = await axios.get(
+          `${process.env.REACT_APP_URL_BACK}/cards/${listId}`
+        );
         dispatch({ type: CARDS_SUCCESS, payload: cards.data.data });
         dispatch({ type: CARDS_LOADING, payload: false });
       } catch (err) {

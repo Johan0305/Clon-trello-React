@@ -13,7 +13,7 @@ const ButtonModal = ({ item, id, usersModal }) => {
 
   const updateTag = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/tags/${item._id}`, {
+    await axios.put(`${process.env.REACT_APP_URL_BACK}/tags/${item._id}`, {
       ...item,
       name: name,
       color: color,
@@ -24,7 +24,7 @@ const ButtonModal = ({ item, id, usersModal }) => {
 
   const deleteTag = async (e) => {
     e.preventDefault();
-    await axios.delete(`http://localhost:8080/tags/${item._id}`);
+    await axios.delete(`${process.env.REACT_APP_URL_BACK}/tags/${item._id}`);
     usersModal();
     dispatch({ type: TOGGLE_EDITAG, payload: 0 });
   };

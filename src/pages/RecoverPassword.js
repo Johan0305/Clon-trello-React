@@ -29,7 +29,7 @@ const RecoverPassword = () => {
     const { email, newPassword, confirmNewPassword } = form.values;
     try {
       const res = await axios.put(
-        "http://localhost:8080/users/recovered-password",
+        `${process.env.REACT_APP_URL_BACK}/users/recovered-password`,
         {
           email: email,
           newPassword: newPassword,

@@ -1,4 +1,4 @@
-import logoTrello from "../assets/logo/Logo.svg";
+import logoTrello from "../assets/logo/logo.svg";
 import { Link, useNavigate } from "react-router-dom";
 import RedirectionLink from "../components/componentsLogin/RedirectionLinkForm";
 import axios from "axios";
@@ -56,12 +56,15 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     const { name, nickname, email, password } = form.values;
     try {
-      const res = await axios.post("http://localhost:8080/users/register", {
-        name: name,
-        nickname: nickname,
-        email: email,
-        password: password,
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_URL_BACK}/users/register`,
+        {
+          name: name,
+          nickname: nickname,
+          email: email,
+          password: password,
+        }
+      );
       localStorage.setItem("token", res.data.data.token);
       ls.set("name", res.data.data.name);
       ls.set("nickname", res.data.data.nickname);

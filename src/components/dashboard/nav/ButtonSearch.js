@@ -31,11 +31,14 @@ const ButtonSearch = () => {
 
   const getBoards = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8080/boards", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_URL_BACK}/boards`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
       const boardsFilter = data.data.filter(({ name }) => {
         return name;
       });

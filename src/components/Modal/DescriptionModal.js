@@ -8,7 +8,7 @@ const DescriptionModal = ({ data }) => {
 
   const updateCard = async (e) => {
     e.preventDefault();
-    await axios.put(`http://localhost:8080/cards/${data._id}`, {
+    await axios.put(`${process.env.REACT_APP_URL_BACK}/cards/${data._id}`, {
       ...data,
       description: description,
     });
