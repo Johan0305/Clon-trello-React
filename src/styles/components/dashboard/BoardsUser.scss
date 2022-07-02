@@ -1,0 +1,31 @@
+.boards-user{
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.paymentButton-boards{
+    width: 320px;
+    height: 40px;
+    color: var(--primary-dark);
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border: 0ch;
+    border-radius: var(--round);
+    cursor: pointer;
+    background-color: var(--primary-light);
+    margin-top: 38px;
+}
+
+.paymentButton-boards:hover{
+    background-color: var(--primary);
+}
+
+.boards-closed{
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}

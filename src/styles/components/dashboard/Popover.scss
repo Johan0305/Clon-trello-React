@@ -1,0 +1,132 @@
+.popover{
+    width: 308px;
+    background-color: white;
+    border: 1px solid var(--grey);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--round);
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    h3, h4, p, span, a{
+        color: var(--black);
+    }
+    .required-field-indicator{
+        color: var(--red-delete);
+    }
+}
+
+.popover-header{
+    display: flex;
+    justify-content: space-between;
+    svg{
+        cursor: pointer;
+        color: var(--grey);
+    }
+    svg:hover{
+        color: var(--lime-green);
+    }
+}
+
+.popover-option{
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    svg{
+        color: var(--marked);
+    }
+}
+
+.popover-option:hover{
+    background-color: var(--primary-light);
+    border-radius: var(--round);
+}
+
+.popover-option-board{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.popover-form-create{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.popover-form-input{
+    padding: 6px 12px;
+    border: 1px solid var(--black);
+    border-radius: var(--round);
+}
+
+.popover-form-input input[type=text]{
+    border-style: none;
+    background: none;
+    font-size: 16px;
+}
+
+.popover-form-input input[type=text]:focus{
+    outline: none;
+    color: var(--black);
+    font-size: 16px;
+}
+
+.popover-button-create{
+    cursor: pointer;
+    margin: 0 auto;
+    width: 284px;
+    background-color: var(--primary-dark);
+    padding: 6px 12px;
+    color: white;
+    border-radius: var(--round);
+    text-align: center;
+    
+}
+
+.popover-button-delete{
+    cursor: pointer;
+    margin: 0 auto;
+    width: 284px;
+    background-color: var(--red-delete);
+    padding: 6px 12px;
+    color: white;
+    border-radius: var(--round);
+    text-align: center;
+}
+
+.popover-button-create:hover{
+    background-color: var(--primary);
+}
+
+.popover-containerProfile{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.popover-close{
+    margin: 0 auto;
+    cursor: pointer;
+    color: var(--black);
+}
+
+.popover-close:hover{
+    text-decoration: underline;
+}
+
+.popover-recent, .popover-mark, .popover-create{
+    z-index: 5;
+    position:absolute;
+    top: 48px;
+    left: -36px;
+}
+
+.popover-notifications, .popover-profile{
+    position:absolute;
+    top: 48px;
+    left: -300px;
+}

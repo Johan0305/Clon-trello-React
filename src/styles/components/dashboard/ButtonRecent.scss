@@ -1,0 +1,16 @@
+.navOption-recent{
+    @include dashboardButton-a;
+    @include hide-mobile;
+    @include hide-tablet;
+}
+
+.navOption-recent:hover{
+    background-color: var(--transparent);
+    
+}
+
+.navOption-recentA{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}

@@ -1,0 +1,35 @@
+.list{
+    width: 308px;
+    
+    background-color: #EBECF0;    
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    border-radius: var(--round);
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    h3, h4, p, span, a{
+        color: var(--black);
+    }
+    svg{
+        color: var(--grey);
+        cursor: pointer;
+    }
+    svg:hover{
+        color: var(--lime-green);
+    }
+}
+
+.list-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+}
+
+.list-card-container{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}

@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Radio+Canada:wght@400;700&display=swap");
+* {
+  font-family: "Radio Canada", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+.aboutProfile{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+
+
+.aboutProfile-inputuser, .aboutProfile-email{
+    padding: 6px 12px;
+    width: 100%;
+    font-size: 16px;
+    color: var(--black);
+    border: 1px solid var(--black);
+    border-radius: 4px;
+}
+
+.aboutProfile-imgBioChoose{
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.aboutProfile-imgBio{
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: 6px solid var(--yellow);
+}
+
+
+.aboutProfile-nameUSer, .aboutProfile-about{
+    margin-top: 15px;
+}
+
+.aboutProfile-imgInputChoose{
+  margin: 10px;
+}
+
+.aboutProfile-buttonUpdate{
+  width: 150px;
+  height: 36px;
+  border: 1px solid rgb(227, 226, 226);
+  font-size: 16px;
+  border-radius: 4px;
+  margin: 10px;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  background-color: var(--primary);
+  @media (max-width: 768px) {
+    width: 180px;
+    font-size: 12px;
+  }
+}
+
+.aboutProfile-buttonUpdate:hover {
+    background-color: rgb(162, 189, 232) !important;
+  }
+
+  .profileContainer-name{
+    width: 200px;
+    height: 24px;
+   
+  }
+  .profileContainer-userName{
+    width: 200px;
+  }
+
+  .aboutProfile-buttons-container{
+    display: flex;
+  }

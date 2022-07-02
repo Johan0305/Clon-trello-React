@@ -1,0 +1,36 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 6px;
+    gap: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D5EAEA;
+    border-radius: 4px;
+    h4{
+        font-weight: 400;
+    }
+}
+
+.card-tags{
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.card-footer{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.card-date{
+    display: flex;
+    gap: 6px;
+    span{
+        color: var(--grey);
+
+    }
+}

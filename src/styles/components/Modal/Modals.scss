@@ -1,0 +1,88 @@
+.containerInternalModal1 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  height: 48px;
+}
+
+.title-card-modal {
+  color: var(--black);
+}
+.description-card-modal {
+  font-size: 16px;
+  width: 46rem;
+}
+.container1InternalModal2 {
+  display: flex;
+  flex-direction: column;
+  height: 59px;
+  justify-content: space-between;
+
+  .containerAvatarInternalModal2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 74px;
+    .membersModal {
+      display: flex;
+    }
+  }
+}
+.container2InternalModal2 {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 36px;
+  height: 59px;
+  width: 385px;
+  justify-content: space-around;
+  .containerButtonsInternalModal2 {
+    display: flex;
+    gap: 5px;
+    button {
+      height: 22px;
+      border: none;
+      color: white;
+      border-radius: var(--round);
+    }
+
+    .buttonModal {
+      @include modalButtonsInternal2(_, 100%);
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .buttonModal-create {
+      @include modalButtonsInternal2(_, 31px);
+      background-color: var(--primary-dark);
+    }
+  }
+}
+
+.containerInternalModal4 {
+  display: flex;
+  flex-direction: column;
+  height: 54px;
+  justify-content: space-between;
+  width: 244px;
+  .containerCalendarInternalModal4 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+.buttonInternalModal6 {
+  background-color: var(--red-delete);
+  width: 132px;
+  height: 31px;
+  border-radius: var(--round);
+  color: white;
+  border: none;
+}
+
+.buttonInternalModal6:hover {
+  background-color: var(--scarlett);
+}

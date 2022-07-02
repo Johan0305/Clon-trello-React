@@ -1,0 +1,78 @@
+.board-tile {
+  width: 256px;
+  height: 128px;
+  background-color: var(--secondary);
+  border-radius: var(--round);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.board-tile-header {
+  padding: 32px 32px 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.board-tile-footer {
+  display: flex;
+  padding: 0px 32px 32px 32px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board-tile-delete {
+  color: var(--red-delete);
+  cursor: pointer;
+  svg {
+    font-size: 16px;
+  }
+}
+
+.board-tile-go {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: var(--round);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.board-tile-go:hover {
+  background-color: var(--transparent);
+}
+
+.board-mark-button {
+  cursor: pointer;
+  svg {
+    font-size: 16px;
+    color: white;
+  }
+  svg:hover {
+    color: var(--marked);
+  }
+}
+
+.board-mark-button-marked {
+  svg {
+    font-size: 16px;
+    color: var(--marked);
+  }
+}
+
+.board-name {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: white;
+  width: 100%;
+}
+
+.board-name input[type="text"]:focus {
+  outline: none;
+  border: none;
+}
+
+.board-name input:focus::placeholder {
+  font-size: 16px;
+  color: red;
+}

@@ -1,0 +1,27 @@
+.linkSites1 {
+  text-decoration: none;
+  text-align: center;
+}
+
+.linkSites1:hover {
+  color: rgb(0, 129, 129) !important;
+}
+
+.linkSites2 {
+  text-decoration: none;
+  margin-top: 30px;
+}
+
+.linkSites2:hover {
+  color: rgb(0, 129, 129) !important;
+}
+
+.linkSites1,
+.linkSites2 {
+  color: rgb(0, 165, 110) !important;
+}
+
+.linkSites1,
+.linkSites2:visited {
+  color: rgb(13, 25, 26);
+}

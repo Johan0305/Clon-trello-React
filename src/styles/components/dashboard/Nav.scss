@@ -1,0 +1,97 @@
+.nav{
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 480px) {
+        padding: 8px;
+      }
+    
+}
+
+.nav-left, .nav-right{
+    display: flex;
+    align-items: center;
+   
+}
+
+.nav-left{
+    gap: 32px;
+}
+
+.nav-right{
+    gap: 18px;
+}
+
+.nav-button-create{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
+.nav-button-create:hover{
+    background-color: var(--transparent);
+}
+
+.nav-search{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    border: 1px solid white;
+    border-radius: var(--round);
+    background-color: var(--transparent);
+    ::placeholder{
+        font-size: 16px;
+        color: white;
+    }
+    @media (max-width: 480px) {
+        display: none;
+      }
+}
+.nav-search:focus-within{
+    background-color: white;
+    border: 1px solid var(--black);
+    svg{
+        color: var(--black);
+    }
+}
+.nav-search input[type=text]{
+    border-style: none;
+    background: none;
+    font-size: 16px;
+}
+
+.nav-search input[type=text]:focus{
+    outline: none;
+    color: var(--black);
+    font-size: 16px;
+}
+
+.container-buttonSearchNav{
+    display: flex;
+    flex-direction: column;
+    position: relative ;
+}
+
+.popover-buttonSearchNav{
+    z-index: 5;
+    position: absolute;
+    top: 48px;
+    left: -36px;
+}
+
+
+
+.nav-search input:focus::placeholder{
+    font-size: 16px;
+    color: var(--black);
+}
+
+.nav-notifications-icon, .nav-avatar {
+    cursor: pointer;
+}
+

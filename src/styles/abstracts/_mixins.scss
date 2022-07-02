@@ -1,0 +1,32 @@
+@mixin modalButtonsInternal2($background, $width) {
+  width: $width;
+}
+
+@mixin landingButtons() {
+  background: #bac948;
+  border: 1px solid #e2d469;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+@mixin dashboardButton-a() {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--round);
+  cursor: pointer;
+}
+
+@mixin hide-mobile() {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+@mixin hide-tablet() {
+  @media (max-width: 786px) {
+    display: none;
+  }
+}

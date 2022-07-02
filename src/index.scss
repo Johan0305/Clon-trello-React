@@ -1,10 +1,57 @@
 /* abstracts */
-@use "./styles/abstracts/variables";
-@use "./styles/abstracts/mixins";
+@import "./styles/abstracts/variables";
+@import "./styles/abstracts/mixins";
 
 /* base */
-@use "./styles/base/base";
-@use "./styles/base/resets";
+@import "./styles/base/base";
+@import "./styles/base/resets";
 
 /* components */
-@use "./styles/components/Nav.scss";
+@import "./styles/components/dashboard/Nav.scss";
+@import "./styles/components/dashboard/NavLogo.scss";
+@import "./styles/components/dashboard/ActionButton.scss";
+@import "./styles/components/dashboard/Avatar.scss";
+@import "./styles/components/dashboard/BoardsMenu.scss";
+@import "./styles/components/dashboard/BoardsUser.scss";
+@import "./styles/components/dashboard/BoardTile.scss";
+@import "./styles/components/dashboard/AddBoard.scss";
+@import "./styles/components/dashboard/ToggleBoardsButton.scss";
+@import "./styles/components/dashboard/Popover.scss";
+@import "./styles/components/dashboard/BoardThumbnail.scss";
+@import "./styles/components/dashboard/Notification.scss";
+@import "./styles/components/componentsRegisterForm/ButtonFormRegister.scss";
+@import "./styles/components/landing/LandingHeader.scss";
+@import "./styles/components/landing/LandingHeaderButton.scss";
+@import "./styles/components/landing/LandingContainer.scss";
+@import "./styles/components/landing/LandingContainerIllustration.scss";
+@import "./styles/components/landing/LandingContainerDescription.scss";
+@import "./styles/components/landing/LandingContainerDescriptionText.scss";
+@import "./styles/components/landing/LandingContainerDescriptionForm.scss";
+@import "./styles/components/componentsRegisterForm/RedirectionLinkForm.scss";
+@import "./styles/components/componentsRegisterForm/InputForm.scss";
+@import "./styles/components/board/Tools.scss";
+@import "./styles/components/board/AddList.scss";
+@import "./styles/components/board/Playground.scss";
+@import "./styles/components/board/List.scss";
+@import "./styles/components/board/Card.scss";
+@import "./styles/components/board/CardTag.scss";
+@import "./styles/components/dashboard/ButtonCreate.scss";
+@import "./styles/components/dashboard/ButtonMark.scss";
+@import "./styles/components/dashboard/ButtonNotifications.scss";
+@import "./styles/components/dashboard/ButtonProfile.scss";
+@import "./styles/components/dashboard/ButtonRecent.scss";
+@import "./styles/components/Modal/Modal.scss";
+@import "./styles/components/Modal/Modals.scss";
+@import "./styles/components/profile/AboutProfile.scss";
+@import "./styles/components/Modal/PopoverModal.scss";
+@import "./styles/components/Modal/ModalPopovers/userButtonMembers.scss";
+@import "./styles/components/Modal/ModalPopovers/tagsButtonEditTags.scss";
+@import "./styles/components/board/ShareButton.scss";
+@import "./styles/components/board/AddCard.scss";
+@import "./styles/components/board/AddList.scss";
+/* pages */
+@import "./styles/pages/RegisterForm.scss";
+@import "./styles/pages/Landing.scss";
+@import "./styles/pages/Profile.scss";
+@import "./styles/pages/NotFound.scss";
+@import "./styles/pages/Response.scss";
