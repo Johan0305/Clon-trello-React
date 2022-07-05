@@ -38,7 +38,7 @@ const Payment = () => {
       country: "co",
       lang: "es",
 
-      response: "https://trello.top/response",
+      response: `${process.env.REACT_APP_BASE_URL}/response`,
 
       //Atributos cliente
       name_billing: `${name}`,
@@ -51,6 +51,8 @@ const Payment = () => {
       methodsDisable: ["PSE"],
     });
   }
+
+  console.log(`url de respuesta: ${process.env.REACT_APP_BASE_URL}/response`);
 
   return (
     <button onClick={handleClick} className="paymentButton-boards">
