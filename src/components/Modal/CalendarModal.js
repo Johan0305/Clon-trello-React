@@ -14,7 +14,7 @@ const CalendarModal = ({ data, listModal, boardData }) => {
 
   const updateDate = async (e) => {
     e.preventDefault();
-    await axios.put(`${process.env.REACT_APP_URL_BACK}/${data._id}`, {
+    await axios.put(`${process.env.REACT_APP_URL_BACK}/cards/${data._id}`, {
       ...data,
       date:
         date.length > 0
