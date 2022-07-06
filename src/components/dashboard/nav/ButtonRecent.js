@@ -21,18 +21,25 @@ const ButtonRecent = () => {
         Reciente
         <FontAwesomeIcon icon={faAngleDown} />
       </a>
-      {buttonRecent && (
-        <div className="popover-recent">
-          <Popover popoverTitle={"Tableros recientes"}>
-            <div className="popover-option">
-              <div className="popover-option-board">
-                <BoardThumbnail color={theBoards[theBoards.length - 1].color} />
-                <h3>{theBoards[theBoards.length - 1].name}</h3>
+      {buttonRecent &&
+        (theBoards.length === 0 ? (
+          <div className="popover-recent">
+            <Popover popoverTitle={"Tableros recientes"}></Popover>
+          </div>
+        ) : (
+          <div className="popover-recent">
+            <Popover popoverTitle={"Tableros recientes"}>
+              <div className="popover-option">
+                <div className="popover-option-board">
+                  <BoardThumbnail
+                    color={theBoards[theBoards.length - 1].color}
+                  />
+                  <h3>{theBoards[theBoards.length - 1].name}</h3>
+                </div>
               </div>
-            </div>
-          </Popover>
-        </div>
-      )}
+            </Popover>
+          </div>
+        ))}
     </div>
   );
 };
